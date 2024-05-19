@@ -12,6 +12,7 @@ import Button from '@mui/material/Button';
 import MenuItem from '@mui/material/MenuItem';
 // import AdbIcon from '@mui/icons-material/Adb';
 import { useRouter } from "next/navigation";
+import { logout } from './actions';
 
 const pages = ['Home', 'Current Trips', 'Past Trips', 'Logout'];
 
@@ -82,9 +83,13 @@ function ResponsiveAppBar() {
             >
               {pages.map((page) => (
                 <MenuItem key={page} onClick={() => {
-                    const [firstWord, secondWord] = page.split(" ");
-                    const path = secondWord ? `${firstWord.toLowerCase()}${secondWord}` : firstWord.toLowerCase();
-                    router.push(`/${path}`);
+                    if (page === "Logout") {
+                      logout();
+                    } else {
+                      const [firstWord, secondWord] = page.split(" ");
+                      const path = secondWord ? `${firstWord.toLowerCase()}${secondWord}` : firstWord.toLowerCase();
+                      router.push(`/${path}`);
+                    }
                   }}>
                   <Typography textAlign="center">{page}</Typography>
                 </MenuItem>
@@ -115,9 +120,13 @@ function ResponsiveAppBar() {
               <Button
                 key={page}
                 onClick={() => {
-                    const [firstWord, secondWord] = page.split(" ");
-                    const path = secondWord ? `${firstWord.toLowerCase()}${secondWord}` : firstWord.toLowerCase();
-                    router.push(`/${path}`);
+                    if (page === "Logout") {
+                      logout();
+                    } else {
+                      const [firstWord, secondWord] = page.split(" ");
+                      const path = secondWord ? `${firstWord.toLowerCase()}${secondWord}` : firstWord.toLowerCase();
+                      router.push(`/${path}`);
+                    }
                   }}
                 sx={{ my: 2, color: 'white', display: 'block' }}
               >
