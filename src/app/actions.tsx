@@ -75,7 +75,7 @@ export async function signUp(prevState: any, formData: FormData) {
   }
 
   applyCookie(email);
-  redirect(`/dashboard/${email}`);
+  redirect(`/home/${email}`);
 }
 
 export async function login(prevState: any, formData: FormData) {
@@ -115,7 +115,8 @@ export async function auth(email: string) {
     }
     const user = jwt.verify(token, process.env.SECRET_KEY_JWT as string) as {
       username: string;
-    };
+    };  
+     
 
     if (user.username !== email) {
       throw new Error("Invalid token");

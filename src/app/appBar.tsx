@@ -16,7 +16,7 @@ import { logout } from './actions';
 
 const pages = ['Home', 'Current Trips', 'Past Trips', 'Logout'];
 
-function ResponsiveAppBar() {
+function ResponsiveAppBar({ email}: { email: string }) {
     const router = useRouter();
   const [anchorElNav, setAnchorElNav] = React.useState<null | HTMLElement>(null);
 //   const [anchorElUser, setAnchorElUser] = React.useState<null | HTMLElement>(null);
@@ -88,7 +88,7 @@ function ResponsiveAppBar() {
                     } else {
                       const [firstWord, secondWord] = page.split(" ");
                       const path = secondWord ? `${firstWord.toLowerCase()}${secondWord}` : firstWord.toLowerCase();
-                      router.push(`/${path}`);
+                      router.push(`/${path}/${email}`);
                     }
                   }}>
                   <Typography textAlign="center">{page}</Typography>
@@ -125,7 +125,7 @@ function ResponsiveAppBar() {
                     } else {
                       const [firstWord, secondWord] = page.split(" ");
                       const path = secondWord ? `${firstWord.toLowerCase()}${secondWord}` : firstWord.toLowerCase();
-                      router.push(`/${path}`);
+                      router.push(`/${path}/${email}`);
                     }
                   }}
                 sx={{ my: 2, color: 'white', display: 'block' }}
