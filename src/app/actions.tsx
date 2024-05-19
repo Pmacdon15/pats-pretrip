@@ -1,11 +1,10 @@
 "use server";
-import PasswordHasher from "./hasher.js";
+import PasswordHasher from "./hasher";
 import { cookies } from "next/headers";
 import jwt from "jsonwebtoken";
-import Database from "./db.js";
+import Database from "./db";
 import { redirect } from "next/navigation";
-import { z } from 'zod'
-
+import { z } from 'zod';
 
 const schemaSignup = z.object({
   email: z.string({
@@ -104,7 +103,7 @@ export async function login(prevState: any, formData: FormData) {
     return { message: "Error: " + (error instanceof Error ? error.message : error) };
   }
   applyCookie(email);
-  redirect(`/dashboard/${email}`);
+  redirect(`/`);
 }
 
 export async function auth(email: string) {

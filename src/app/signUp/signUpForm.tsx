@@ -7,17 +7,18 @@ import TextField from '@mui/material/TextField';
 import Visibility from '@mui/icons-material/Visibility';
 import VisibilityOff from '@mui/icons-material/VisibilityOff';
 import Button from '@mui/material/Button';
-import Link from '@mui/material/Link';
-import Checkbox from '@mui/material/Checkbox';
-import FormControlLabel from '@mui/material/FormControlLabel';
-
+import { signUp } from "../actions";
 import { useForm } from "react-hook-form";
+import { useFormState } from 'react-dom';
 import { useState } from "react";
-
 import style from './page.module.css';
 
-export default function LoginForm() {
+const initialState = {
+    message: '',
+}
 
+export default function LoginForm() {
+    const [state, formAction] = useFormState(signUp, initialState);
     const { register } = useForm();
 
     const [showPassword, setShowPassword] = React.useState(false);
@@ -40,7 +41,7 @@ export default function LoginForm() {
     };
     return (
         <>
-            <form className={style.form} >
+            <form action={formAction} className={style.form} >
                 <TextField
                     id="outlined-start-adornment"
                     label="E mail"
@@ -179,6 +180,7 @@ export default function LoginForm() {
                         },
                     }}
                 />
+                <p>{state?.message}</p>
                 <Button
                     variant="contained"
                     type="submit"
