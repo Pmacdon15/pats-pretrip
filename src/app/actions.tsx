@@ -101,7 +101,7 @@ export async function login(prevState: any, formData: FormData) {
       "Error logging in user: ",
       error instanceof Error ? error.message : error
     );
-    return { message: "User not authenticated. Error: " + (error instanceof Error ? error.message : error) };
+    return { message: "Error: " + (error instanceof Error ? error.message : error) };
   }
   applyCookie(email);
   redirect(`/dashboard/${email}`);
@@ -123,7 +123,7 @@ export async function auth(email: string) {
     }    
     Authed = true;
   } catch (error) {
-    console.error("Error verifying token: ", error instanceof Error ? error.message : error);    
+    console.error("Error: ", error instanceof Error ? error.message : error);    
   }
   if(!Authed){
     redirect("/");
@@ -134,7 +134,7 @@ export async function logout() {
   try {
     cookies().delete("AuthCookieTracking");
   } catch (error) {
-    console.error("Error logging out: ", error);
+    console.error("Error: ", error);
   }
   redirect("/");
 }

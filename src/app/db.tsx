@@ -11,7 +11,7 @@ export default class Database {
     "use server";
     try {
       const { rows } = await sql`
-        INSERT INTO tsloginUsers (email, first_name, last_name, password)
+        INSERT INTO ppUsers (email, first_name, last_name, password)
         VALUES (${email}, ${first_name}, ${last_name}, ${password})
         `;
       if (Array.isArray(rows) && rows.length === 0) {
@@ -27,7 +27,7 @@ export default class Database {
   }
   async getHashedPassword(email: string) {
     const { rows } = await sql`
-      SELECT password FROM tsloginUsers WHERE email = ${email}
+      SELECT password FROM ppUsers WHERE email = ${email}
     `;
 
     if (rows.length === 0) {
