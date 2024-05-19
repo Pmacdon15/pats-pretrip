@@ -1,8 +1,8 @@
 "use server";
-import PasswordHasher from "./hasher.ts";
+import PasswordHasher from "./hasher.js";
 import { cookies } from "next/headers";
 import jwt from "jsonwebtoken";
-import Database from "./db.ts";
+import Database from "./db.js";
 import { redirect } from "next/navigation";
 import { z } from 'zod'
 
