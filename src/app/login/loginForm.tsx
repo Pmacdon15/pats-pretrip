@@ -29,7 +29,7 @@ export default function LoginForm() {
             <form className={style.form} >
                 <TextField
                     id="outlined-start-adornment"
-                    label="e Mail"
+                    label="E mail"
                     required={true}
                     {...register("email", { required: true })}
                     sx={{ marginLeft: 'auto', marginRight: 'auto', width: '100%', backgroundColor: "white", borderRadius: "5px", color: "black" }}
@@ -71,7 +71,7 @@ export default function LoginForm() {
                     Sign In
                 </Button>
                 <p>If you don't have an account, please click here to register by 
-                    <Link href="#" sx={{ marginLeft: 'auto', marginRight: 'auto', width: '80%', textAlign: 'center', color: 'black' }}> clicking here!</Link>
+                    <Link href="/signUp" sx={{ marginLeft: 'auto', marginRight: 'auto', width: '80%', textAlign: 'center', color: 'black' }}> clicking here!</Link>
                 </p>
             </form>
         </>
