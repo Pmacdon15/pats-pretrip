@@ -29,9 +29,9 @@ export default function LoginForm() {
             <form className={style.form} >
                 <TextField
                     id="outlined-start-adornment"
-                    label="Username"
+                    label="e Mail"
                     required={true}
-                    {...register("username", { required: true })}
+                    {...register("email", { required: true })}
                     sx={{ marginLeft: 'auto', marginRight: 'auto', width: '100%', backgroundColor: "white", borderRadius: "5px", color: "black" }}
                     InputLabelProps={{
                         required: false,
