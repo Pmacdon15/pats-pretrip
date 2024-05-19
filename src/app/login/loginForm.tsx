@@ -10,13 +10,17 @@ import Button from '@mui/material/Button';
 import Link from '@mui/material/Link';
 import Checkbox from '@mui/material/Checkbox';
 import FormControlLabel from '@mui/material/FormControlLabel';
-
 import { useForm } from "react-hook-form";
-
 import style from './page.module.css';
+import { login } from "@/app/actions";
+import { useFormState } from 'react-dom';
+
+const initialState = {
+    message: '',
+}
 
 export default function LoginForm() {
-
+    const [state, formAction] = useFormState(login, initialState);
     const { register } = useForm();
 
     const [showPassword, setShowPassword] = React.useState(false);
@@ -26,12 +30,12 @@ export default function LoginForm() {
     };
     return (
         <>
-            <form className={style.form} >
+            <form  action={formAction} className={style.form} >
                 <TextField
                     id="outlined-start-adornment"
-                    label="Username"
+                    label="E mail"
                     required={true}
-                    {...register("username", { required: true })}
+                    {...register("email", { required: true })}
                     sx={{ marginLeft: 'auto', marginRight: 'auto', width: '100%', backgroundColor: "white", borderRadius: "5px", color: "black" }}
                     InputLabelProps={{
                         required: false,
@@ -63,6 +67,7 @@ export default function LoginForm() {
                     sx={{ marginLeft: 'auto', marginRight: 'auto', width: '100%', backgroundColor: "white", borderRadius: "5px", color: "black" }}
                 />
                 <FormControlLabel control={<Checkbox />} label="Remember-me" sx={{ marginLeft: "5px", float: "left" }} />
+                {state?.message}
                 <Button
                     variant="contained"
                     type="submit"
@@ -71,7 +76,7 @@ export default function LoginForm() {
                     Sign In
                 </Button>
                 <p>If you don't have an account, please click here to register by 
-                    <Link href="#" sx={{ marginLeft: 'auto', marginRight: 'auto', width: '80%', textAlign: 'center', color: 'black' }}> clicking here!</Link>
+                    <Link href="/signUp" sx={{ marginLeft: 'auto', marginRight: 'auto', width: '80%', textAlign: 'center', color: 'black' }}> clicking here!</Link>
                 </p>
             </form>
         </>
