@@ -9,13 +9,14 @@ import Menu from '@mui/material/Menu';
 import MenuIcon from '@mui/icons-material/Menu';
 import Container from '@mui/material/Container';
 import Button from '@mui/material/Button';
-
 import MenuItem from '@mui/material/MenuItem';
-import AdbIcon from '@mui/icons-material/Adb';
+// import AdbIcon from '@mui/icons-material/Adb';
+import { useRouter } from "next/navigation";
 
 const pages = ['Home', 'Current Trips', 'Past Trips', 'Logout'];
 
 function ResponsiveAppBar() {
+    const router = useRouter();
   const [anchorElNav, setAnchorElNav] = React.useState<null | HTMLElement>(null);
 //   const [anchorElUser, setAnchorElUser] = React.useState<null | HTMLElement>(null);
 
@@ -80,7 +81,11 @@ function ResponsiveAppBar() {
               }}
             >
               {pages.map((page) => (
-                <MenuItem key={page} onClick={handleCloseNavMenu}>
+                <MenuItem key={page} onClick={() => {
+                    const [firstWord, secondWord] = page.split(" ");
+                    const path = secondWord ? `${firstWord.toLowerCase()}${secondWord}` : firstWord.toLowerCase();
+                    router.push(`/${path}`);
+                  }}>
                   <Typography textAlign="center">{page}</Typography>
                 </MenuItem>
               ))}
@@ -109,7 +114,11 @@ function ResponsiveAppBar() {
             {pages.map((page) => (
               <Button
                 key={page}
-                onClick={handleCloseNavMenu}
+                onClick={() => {
+                    const [firstWord, secondWord] = page.split(" ");
+                    const path = secondWord ? `${firstWord.toLowerCase()}${secondWord}` : firstWord.toLowerCase();
+                    router.push(`/${path}`);
+                  }}
                 sx={{ my: 2, color: 'white', display: 'block' }}
               >
                 {page}
@@ -122,3 +131,4 @@ function ResponsiveAppBar() {
   );
 }
 export default ResponsiveAppBar;
+
