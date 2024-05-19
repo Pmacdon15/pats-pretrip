@@ -75,8 +75,8 @@ export default function LoginForm() {
                 >
                     Sign In
                 </Button>
-                <p>If you don't have an account, please click here to register by 
-                    <Link href="/signUp" sx={{ marginLeft: 'auto', marginRight: 'auto', width: '80%', textAlign: 'center', color: 'black' }}> clicking here!</Link>
+                <p>If you don't have an account,
+                    <Link href="/signUp" sx={{ marginLeft: 'auto', marginRight: 'auto', width: '80%', textAlign: 'center', color: 'black' }}> click here!</Link>
                 </p>
             </form>
         </>
