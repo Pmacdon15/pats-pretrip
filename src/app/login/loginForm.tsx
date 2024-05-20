@@ -36,7 +36,18 @@ export default function LoginForm() {
                     label="E mail"
                     required={true}
                     {...register("email", { required: true })}
-                    sx={{ marginLeft: 'auto', marginRight: 'auto', width: '100%', backgroundColor: "white", borderRadius: "5px", color: "black" }}
+                    sx={{
+                        marginLeft: 'auto',
+                        marginRight: 'auto',
+                        width: '100%',
+                        backgroundColor: "white",
+                        borderRadius: "5px",
+                        color: "black", "& .MuiInputLabel-root": {
+                            "&.Mui-focused": {
+                                color: "black", // focused label color
+                            },
+                        },
+                    }}
                     InputLabelProps={{
                         required: false,
                     }}
@@ -64,7 +75,18 @@ export default function LoginForm() {
                         ),
                     }}
                     label="Password"
-                    sx={{ marginLeft: 'auto', marginRight: 'auto', width: '100%', backgroundColor: "white", borderRadius: "5px", color: "black" }}
+                    sx={{
+                        marginLeft: 'auto',
+                        marginRight: 'auto',
+                        width: '100%',
+                        backgroundColor: "white",
+                        borderRadius: "5px",
+                        color: "black", "& .MuiInputLabel-root": {
+                            "&.Mui-focused": {
+                                color: "black", // focused label color
+                            },
+                        },
+                    }}
                 />
                 <FormControlLabel control={<Checkbox />} label="Remember-me" sx={{ marginLeft: "5px", float: "left" }} />
                 {state?.message}

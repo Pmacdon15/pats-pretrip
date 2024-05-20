@@ -186,7 +186,7 @@ export default function LoginForm() {
                     type="submit"
                     sx={{ marginLeft: 'auto', marginRight: 'auto', width: '80%', height: '50px' }}
                 >
-                    Sign In
+                    Sign Up
                 </Button>
             </form>
         </>
