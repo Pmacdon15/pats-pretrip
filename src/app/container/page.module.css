@@ -1,0 +1,24 @@
+.mainContainer {
+    display: flex;
+    flex-direction: column;
+    height: 600px;
+    width: 50%;
+    background: linear-gradient(90deg, #649bc5 0%, #3c94dc 50%, #1e579993 100%);
+    margin-top: 100px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+}
+
+@media screen and (max-width: 1268px) {
+    .mainContainer {
+        width: 80%;
+    }
+
+}
+@media screen and (max-width: 768px) {
+    .mainContainer {
+        width: 100%;
+        height: calc(100vh - 120px);
+    }
+    
+}
