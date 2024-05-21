@@ -12,9 +12,9 @@ import { DateTimePicker } from '@mui/x-date-pickers/DateTimePicker';
 
 export default function CreateTripForm() {
     return (
-        <>
+        <form>
             {/* MARK: - Start of CreateTripForm */}
-            <div className={styles.textInputContainer} style={{ marginTop: '1rem' }}>
+            <div className={styles.textInputContainer} >
                 <TextField className={styles.textField} id="standard-basic" label="Carrier" variant="standard"
                     sx={{
                         "& .MuiInputLabel-root": {
@@ -32,7 +32,6 @@ export default function CreateTripForm() {
                             },
                         },
                     }}
-
                 />
                 <TextField className={styles.textField} id="standard-basic" label="Address" variant="standard"
                     sx={{
@@ -51,23 +50,6 @@ export default function CreateTripForm() {
                             },
                         },
                     }} />
-                {/* <TextField className={styles.textField} id="standard-basic" label="Carrier" variant="standard"
-                    sx={{
-                        "& .MuiInputLabel-root": {
-                            color: "white",
-                            "&.Mui-focused": {
-                                color: "white",
-                            },
-                        },
-                        "& .MuiInput-underline": {
-                            "&:before": {
-                                borderBottomColor: "white",
-                            },
-                            "&:after": {
-                                borderBottomColor: "white",
-                            },
-                        },
-                    }} /> */}
                 {/* MARK: - DateTimePicker */}
                 <div className={styles.dateTimeContainer}>
                     <LocalizationProvider dateAdapter={AdapterDayjs}>
@@ -94,6 +76,7 @@ export default function CreateTripForm() {
                     <TextField id="standard-basic" label="Odometer Reading" variant="standard" type="number"
                         sx={{
                             marginTop: '1rem',
+                            marginLeft: '20px',
                             "& .MuiInputLabel-root": {
                                 color: "white",
                                 "&.Mui-focused": {
@@ -108,7 +91,28 @@ export default function CreateTripForm() {
                                     borderBottomColor: "white",
                                 },
                             },
-                        }} />
+                        }}
+                    />
+                    <TextField id="standard-basic" label="License Plate" variant="standard" 
+                        sx={{
+                            marginTop: '1rem',
+                            marginLeft: '20px',
+                            "& .MuiInputLabel-root": {
+                                color: "white",
+                                "&.Mui-focused": {
+                                    color: "white",
+                                },
+                            },
+                            "& .MuiInput-underline": {
+                                "&:before": {
+                                    borderBottomColor: "white",
+                                },
+                                "&:after": {
+                                    borderBottomColor: "white",
+                                },
+                            },
+                        }}
+                    />
                 </div>
                 <div className={styles.checkboxContainer}>
                     <FormControlLabel className={styles.checkbox} control={<Checkbox sx={{ color: "white" }} />} label="Air Compressor" sx={{ color: "white" }} />
@@ -120,8 +124,13 @@ export default function CreateTripForm() {
                     <FormControlLabel className={styles.checkbox} control={<Checkbox sx={{ color: "white" }} />} label="Brake System" sx={{ color: "white" }} />
                     <FormControlLabel className={styles.checkbox} control={<Checkbox sx={{ color: "white" }} />} label="Clutch" sx={{ color: "white" }} />
                     <FormControlLabel className={styles.checkbox} control={<Checkbox sx={{ color: "white" }} />} label="Coupling Devices" sx={{ color: "white" }} />
+                    <FormControlLabel className={styles.checkbox} control={<Checkbox sx={{ color: "white" }} />} label="Defrost/Heater" sx={{ color: "white" }} />
+                    <FormControlLabel className={styles.checkbox} control={<Checkbox sx={{ color: "white" }} />} label="Drive Line" sx={{ color: "white" }} />
+                    <FormControlLabel className={styles.checkbox} control={<Checkbox sx={{ color: "white" }} />} label="Engine" sx={{ color: "white" }} />
+                    <FormControlLabel className={styles.checkbox} control={<Checkbox sx={{ color: "white" }} />} label="Exhaust" sx={{ color: "white" }} />
+                    <FormControlLabel className={styles.checkbox} control={<Checkbox sx={{ color: "white" }} />} label="Fifth Wheel" sx={{ color: "white" }} />
                 </div>
             </div>
-        </>
+        </form>
     )
 }

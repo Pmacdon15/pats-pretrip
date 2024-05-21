@@ -30,7 +30,7 @@
     /* justify-content: space-between; */
     /* align-items: center; */
     justify-content: center;
-    gap: 20px;
+    /* gap: 20px; */
 }
 .checkboxContainer {
     display: flex   ;
