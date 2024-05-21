@@ -1,6 +1,6 @@
 import styles from './page.module.css';
 import SignUpForm from './signUpForm';
-import LoginSignUpContainer from '../container/loginSignUpContainer';
+import LoginSignUpContainer from '../containers/loginSignUpContainer';
 export default function SignUp() {
     return (
         <LoginSignUpContainer>

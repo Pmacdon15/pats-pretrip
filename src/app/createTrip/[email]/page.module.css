@@ -1,0 +1,34 @@
+.title {
+    color: white;
+    text-shadow: 2px 2px 4px #000000;
+}
+
+.textInputContainer {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    /* justify-content: center; */
+    align-items: center;
+    /* background-color: white; */
+}
+
+.textField {
+    width: 80%;
+    /* height: 100px; */
+}
+
+.dateTimeField {
+    width: 150px;
+    /* height: 100px; */
+}
+
+.dateTimeContainer {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    /* justify-content: space-between; */
+    /* align-items: center; */
+    justify-content: center;
+    gap: 20px;
+}

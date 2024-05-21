@@ -14,7 +14,7 @@ import MenuItem from '@mui/material/MenuItem';
 import { useRouter } from "next/navigation";
 import { logout } from './actions';
 
-const pages = ['Home', 'Current Trips', 'Past Trips', 'Logout'];
+const pages = ['Current Trips', 'Create Trip', 'Past Trips', 'Logout'];
 
 function ResponsiveAppBar({ email}: { email: string }) {
     const router = useRouter();

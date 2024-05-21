@@ -9,6 +9,22 @@
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
 }
 
+.mainCreatePage{
+    display: flex;
+    flex-direction: column;
+    min-height: 80vh;
+    max-height : fit-content;
+    /* width: 50%; */
+    width: min(1000px,96%);
+    background: linear-gradient(90deg, #649bc5 0%, #9fbdd5 50%, #649bc5 100%);
+    margin-top: 40px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+    /* color: white; */
+    /* justify-content: center; */
+    align-items: center;
+}
+
 @media screen and (max-width: 1268px) {
     .mainContainer {
         width: 80%;

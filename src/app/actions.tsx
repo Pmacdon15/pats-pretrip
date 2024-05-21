@@ -103,7 +103,7 @@ export async function login(prevState: any, formData: FormData) {
     return { message: "Error: " + (error instanceof Error ? error.message : error) };
   }
   applyCookie(email);
-  redirect(`/home/${email}`);
+  redirect(`/currentTrips/${email}`);
 }
 
 export async function auth(email: string) {
