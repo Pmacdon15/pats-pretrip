@@ -53,25 +53,35 @@ export default function CreateTripForm() {
                 {/* MARK: - DateTimePicker */}
                 <div className={styles.dateTimeContainer}>
                     <LocalizationProvider dateAdapter={AdapterDayjs}>
-                        <DateTimePicker sx={{
-                            marginTop: '1rem',
-                            color: "white",
-                            "& .MuiInputLabel-root": {
-                                color: "white",
-                                "&.Mui-focused": {
-                                    color: "white", // focused label color
-                                },
-                            },
-                            "& .MuiOutlinedInput-root": {
-                                "& fieldset": {
-                                    borderColor: "white",
-                                },
-                                "&.Mui-focused fieldset": {
-                                    borderColor: "white",
-                                },
-                            },
-                        }}
-                        />
+                    <DateTimePicker
+  sx={{
+    marginTop: '1rem',
+    color: "white",
+    textColor: "white",
+    "& .MuiInputLabel-root": {
+      color: "white",
+      "&.Mui-focused": {
+        color: "white",
+      },
+    },
+    "& .MuiOutlinedInput-root": {
+      "& fieldset": {
+        borderColor: "white",
+      },
+      "&.Mui-focused fieldset": {
+        borderColor: "white",
+      },
+    },
+    "& .MuiInputBase-input": {
+      "&:focus": {
+        color: "white",
+      },
+      "&:not(:focus)": { // Add this line
+        color: "white", // Add this line
+      },
+    },
+  }}
+/>
                     </LocalizationProvider>
                     <TextField id="standard-basic" label="Odometer Reading" variant="standard" type="number"
                         sx={{
