@@ -1,14 +1,24 @@
+'use client';
 import * as React from 'react';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import { DateTimePicker } from '@mui/x-date-pickers/DateTimePicker';
 import styles from './page.module.css';
 import TextField from '@mui/material/TextField';
+import { useForm } from 'react-hook-form';
+
 
 export default function TextFieldsForForm() {
+    const { register } = useForm();
     return (
         <>
-            <TextField className={styles.textFieldWide} id="standard-basic" label="Carrier" variant="standard"
+            <TextField
+                {...register("carrier")}
+                required={true}
+                className={styles.textFieldWide}
+                id="standard-basic"
+                label="Carrier"
+                variant="standard"
                 sx={{
                     "& .MuiInputLabel-root": {
                         color: "white",
@@ -25,8 +35,17 @@ export default function TextFieldsForForm() {
                         },
                     },
                 }}
+                InputLabelProps={{
+                    required: false,
+                }}
             />
-            <TextField className={styles.textFieldWide} id="standard-basic" label="Address" variant="standard"
+            <TextField
+                {...register("address")}
+                required={true}
+                className={styles.textFieldWide}
+                id="standard-basic"
+                label="Address"
+                variant="standard"
                 sx={{
                     "& .MuiInputLabel-root": {
                         color: "white",
@@ -42,9 +61,19 @@ export default function TextFieldsForForm() {
                             borderBottomColor: "white",
                         },
                     },
-                }} />
+                }}
+                InputLabelProps={{
+                    required: false,
+                }}
+            />
             <div className={styles.formSection}>
-                <TextField className={styles.textFieldSlim} id="standard-basic" label="Make" variant="standard"
+                <TextField
+                    {...register("make")}
+                    required={true}
+                    className={styles.textFieldSlim}
+                    id="standard-basic"
+                    label="Make"
+                    variant="standard"
                     sx={{
                         "& .MuiInputLabel-root": {
                             color: "white",
@@ -61,8 +90,17 @@ export default function TextFieldsForForm() {
                             },
                         },
                     }}
+                    InputLabelProps={{
+                        required: false,
+                    }}
                 />
-                <TextField className={styles.textFieldSlim} id="standard-basic" label="Model" variant="standard"
+                <TextField
+                    {...register("model")}
+                    required={true}
+                    className={styles.textFieldSlim}
+                    id="standard-basic"
+                    label="Model"
+                    variant="standard"
                     sx={{
                         "& .MuiInputLabel-root": {
                             color: "white",
@@ -78,10 +116,20 @@ export default function TextFieldsForForm() {
                                 borderBottomColor: "white",
                             },
                         },
+                    }}
+                    InputLabelProps={{
+                        required: false,
                     }}
                 />
 
-                <TextField className={styles.textFieldSlim} id="standard-basic" label="Odometer Reading" variant="standard" type="number"
+                <TextField
+                    {...register("odometer")}
+                    required={true}
+                    className={styles.textFieldSlim}
+                    id="standard-basic"
+                    label="Odometer Reading"
+                    variant="standard"
+                    type="number"
                     sx={{
                         "& .MuiInputLabel-root": {
                             color: "white",
@@ -106,8 +154,17 @@ export default function TextFieldsForForm() {
                             },
                         },
                     }}
+                    InputLabelProps={{
+                        required: false,
+                    }}
                 />
-                <TextField className={styles.textFieldSlim} id="standard-basic" label="Truck License Plate" variant="standard"
+                <TextField
+                    {...register("truckLP")}
+                    required={true}
+                    className={styles.textFieldSlim}
+                    id="standard-basic"
+                    label="Truck License Plate"
+                    variant="standard"
                     sx={{
                         "& .MuiInputLabel-root": {
                             color: "white",
@@ -123,6 +180,9 @@ export default function TextFieldsForForm() {
                                 borderBottomColor: "white",
                             },
                         },
+                    }}
+                    InputLabelProps={{
+                        required: false,
                     }}
                 />
             </div>
