@@ -89,20 +89,28 @@ export default function CreateTripForm() {
                 <TextField className={styles.textFieldSlim} id="standard-basic" label="Odometer Reading" variant="standard" type="number"
                     sx={{
                         "& .MuiInputLabel-root": {
+                          color: "white",
+                          "&.Mui-focused": {
                             color: "white",
-                            "&.Mui-focused": {
-                                color: "white",
-                            },
+                          },
                         },
                         "& .MuiInput-underline": {
-                            "&:before": {
-                                borderBottomColor: "white",
-                            },
-                            "&:after": {
-                                borderBottomColor: "white",
-                            },
+                          "&:before": {
+                            borderBottomColor: "white",
+                          },
+                          "&:after": {
+                            borderBottomColor: "white",
+                          },
                         },
-                    }}
+                        "& .MuiInputBase-input": { // Add this line
+                          "&:focus": { // Add this line
+                            color: "white", // Add this line
+                          },
+                          "&:not(:focus)": { // Add this line
+                            color: "white", // Add this line
+                          },
+                        },
+                      }}
                 />
                 <TextField className={styles.textFieldSlim} id="standard-basic" label="Truck License Plate" variant="standard"
                     sx={{
