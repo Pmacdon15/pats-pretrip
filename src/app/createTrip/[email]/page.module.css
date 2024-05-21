@@ -3,8 +3,8 @@
     text-shadow: 2px 2px 4px #000000;
 }
 
-.textInputContainer {
-    width: 100%;
+.textInputForm {
+    width: 80%;
     display: flex;
     flex-direction: column;
     /* justify-content: center; */
@@ -12,25 +12,22 @@
     /* background-color: white; */
 }
 
-.textField {
-    width: 80%;
+.textFieldWide{
+    width: 100%;
     /* height: 100px; */
 }
-
-.dateTimeField {
+.textFieldSlim{
     width: 150px;
-    /* height: 100px; */
 }
 
-.dateTimeContainer {
+
+.formSection {
     width: 100%;
     display: flex;
     flex-direction: row;
-    flex-wrap: wrap;
-    /* justify-content: space-between; */
-    /* align-items: center; */
-    justify-content: center;
-    /* gap: 20px; */
+    flex-wrap: wrap;    
+    gap:20px;   
+    justify-content: center; 
 }
 .checkboxContainer {
     display: flex   ;
@@ -38,9 +35,14 @@
     flex-wrap: wrap;
     justify-content: center;
     align-items: center;
-    margin-top: 20px;
+    /* margin-top: 10px; */
     width:80%;
     /* background-color: white; */
+}
+
+.text{
+    margin-top:30px;
+    color: white
 }
 .checkbox{
     margin-left: auto;
