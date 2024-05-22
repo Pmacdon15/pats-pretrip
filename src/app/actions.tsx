@@ -111,21 +111,21 @@ export async function auth(email: string) {
   try {
     const token = cookies().get("AuthCookieTracking")?.value; // Access the cookie value as a string
     if (!token) {
-     throw new Error("No token found");
+      throw new Error("No token found");
     }
     const user = jwt.verify(token, process.env.SECRET_KEY_JWT as string) as {
       username: string;
-    };  
-     
+    };
+
 
     if (user.username !== email) {
       throw new Error("Invalid token");
-    }    
+    }
     Authed = true;
   } catch (error) {
-    console.error("Error: ", error instanceof Error ? error.message : error);    
+    console.error("Error: ", error instanceof Error ? error.message : error);
   }
-  if(!Authed){
+  if (!Authed) {
     redirect("/");
   }
 }
@@ -138,6 +138,12 @@ export async function logout() {
   }
   redirect("/");
 }
+
+// export async function submitForm(formData: FormData) {
+//   console.log("Form submitted");
+//   console.log(formData.get("carrier")
+//   );
+// }
 
 //MARK: Helper functions
 async function verifyPassword(email: string, password: string) {

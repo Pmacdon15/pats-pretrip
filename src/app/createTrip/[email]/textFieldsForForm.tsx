@@ -1,22 +1,23 @@
-'use client';
+'use client'
 import * as React from 'react';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import { DateTimePicker } from '@mui/x-date-pickers/DateTimePicker';
 import styles from './page.module.css';
 import TextField from '@mui/material/TextField';
-import { useForm } from 'react-hook-form';
+// import { useForm } from 'react-hook-form';
 
 
-export default function TextFieldsForForm() {
-    const { register } = useForm();
+export default async function TextFieldsForForm() {
+    // const { register } = useForm();
     return (
         <>
             <TextField
-                {...register("carrier")}
+                // {...register("carrier")}
+                name="carrier"
                 required={true}
                 className={styles.textFieldWide}
-                id="standard-basic"
+                id="carrier"
                 label="Carrier"
                 variant="standard"
                 sx={{
@@ -40,7 +41,7 @@ export default function TextFieldsForForm() {
                 }}
             />
             <TextField
-                {...register("address")}
+                // {...register("address")}
                 required={true}
                 className={styles.textFieldWide}
                 id="standard-basic"
@@ -68,7 +69,7 @@ export default function TextFieldsForForm() {
             />
             <div className={styles.formSection}>
                 <TextField
-                    {...register("make")}
+                    // {...register("make")}
                     required={true}
                     className={styles.textFieldSlim}
                     id="standard-basic"
@@ -95,7 +96,7 @@ export default function TextFieldsForForm() {
                     }}
                 />
                 <TextField
-                    {...register("model")}
+                    // {...register("model")}
                     required={true}
                     className={styles.textFieldSlim}
                     id="standard-basic"
@@ -123,7 +124,7 @@ export default function TextFieldsForForm() {
                 />
 
                 <TextField
-                    {...register("odometer")}
+                    // {...register("odometer")}
                     required={true}
                     className={styles.textFieldSlim}
                     id="standard-basic"
@@ -159,7 +160,7 @@ export default function TextFieldsForForm() {
                     }}
                 />
                 <TextField
-                    {...register("truckLP")}
+                    // {...register("truckLP")}
                     required={true}
                     className={styles.textFieldSlim}
                     id="standard-basic"
