@@ -32,15 +32,14 @@
     justify-content: center;
 }
 
-.checkboxContainer {
+.mainContainer {
     display: flex;
-    flex-direction: row;
+    /* flex-direction: row; */
     flex-wrap: wrap;
+    width: 100%;
+    height: fit-content;
     justify-content: center;
-    align-items: center;
-    /* margin-top: 10px; */
-    width: 80%;
-    /* background-color: white; */
+    /* background-color: rgb(176, 175, 209); */
 }
 
 .text {
@@ -49,27 +48,59 @@
 }
 
 /* .checkbox {
-    margin-left: auto;
-    margin-right: auto;
-    width: 150px;
+    
+    width: 19px;
+    height: 19px;    
 } */
-.checkboxLabel {
-    margin-left: auto;
-    margin-right: auto;
+
+.checkboxContainer {
     width: 150px;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    /* flex-grow: 1; */
+    justify-content: center;
+    align-items: center;
+}
+
+.label {
+    /* margin-left: auto; */
+    margin-right: auto;
+    /* width: 150px; */
+    color: white;
+}
+
+.checkbox {
+    width: 19px;
+    height: 19px;
+    accent-color: red;
 }
 
 .hiddenInfo {
     display: none;
+    font-size: smaller;
+
 }
 
-.MuiFormControlLabel-label.Mui-checked~.hiddenInfo {
-    display: block;
+
+.hiddenInfo>p {
+    font-size: smaller;
 }
 
-/* .checkbox:checked + label + .hiddenInfo {
+
+/* .checkbox:checked~.checkboxAndLabel+.hiddenInfo {
     display: block;
 } */
+
+
+/* .checkbox:checked+label ~.hiddenInfo {
+    display: block;
+} */
+
+.checkbox:checked~.hiddenInfo {
+    display: block;
+    
+}
 
 .dividingLine {
     color: white;
