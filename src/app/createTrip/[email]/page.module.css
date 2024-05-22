@@ -9,14 +9,15 @@
     flex-direction: column;
     align-items: center;
     margin-bottom: 20px;
-    
+
 }
 
-.textFieldWide{
+.textFieldWide {
     width: 100%;
     /* height: 100px; */
 }
-.textFieldSlim{
+
+.textFieldSlim {
     width: 150px;
     margin-left: auto;
     margin-right: auto;
@@ -26,30 +27,50 @@
     width: 100%;
     display: flex;
     flex-direction: row;
-    flex-wrap: wrap;    
-    /* gap:20px;    */    
-    justify-content: center; 
+    flex-wrap: wrap;
+    /* gap:20px;    */
+    justify-content: center;
 }
+
 .checkboxContainer {
-    display: flex   ;
+    display: flex;
     flex-direction: row;
     flex-wrap: wrap;
     justify-content: center;
     align-items: center;
     /* margin-top: 10px; */
-    width:80%;
+    width: 80%;
     /* background-color: white; */
 }
 
-.text{
-    margin-top:30px;
+.text {
+    margin-top: 30px;
     color: white
 }
-.checkbox{
+
+/* .checkbox {
+    margin-left: auto;
+    margin-right: auto;
+    width: 150px;
+} */
+.checkboxLabel {
     margin-left: auto;
     margin-right: auto;
     width: 150px;
 }
-.dividingLine{    
-    color: white;   
+
+.hiddenInfo {
+    display: none;
+}
+
+.MuiFormControlLabel-label.Mui-checked~.hiddenInfo {
+    display: block;
+}
+
+/* .checkbox:checked + label + .hiddenInfo {
+    display: block;
+} */
+
+.dividingLine {
+    color: white;
 }

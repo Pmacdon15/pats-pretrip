@@ -8,7 +8,7 @@ import TextField from '@mui/material/TextField';
 // import { useForm } from 'react-hook-form';
 
 
-export default async function TextFieldsForForm() {
+export default function TextFieldsForForm() {
     // const { register } = useForm();
     return (
         <>

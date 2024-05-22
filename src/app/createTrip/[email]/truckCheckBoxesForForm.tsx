@@ -2,12 +2,28 @@ import FormControlLabel from '@mui/material/FormControlLabel';
 import Checkbox from '@mui/material/Checkbox';
 import styles from './page.module.css';
 
+
 export default function TruckCheckBoxesForForm() {
     return (
         <>
-            <div className={styles.checkboxContainer}>
-                <FormControlLabel className={styles.checkbox} control={<Checkbox sx={{ color: "white" }} />} label="Air Compressor" sx={{ color: "white" }} />
-                <FormControlLabel className={styles.checkbox} control={<Checkbox sx={{ color: "white" }} />} label="Air Lines" sx={{ color: "white" }} />
+            {/* < div className={styles.checkboxContainer}>
+                <FormControlLabel
+                    className={styles.checkboxLabel}
+                    control={<Checkbox className={styles.checkbox} sx={{ color: "white" }} />}
+                    label="Air Compressor"
+                    sx={{ color: "white" }}
+                />
+                <div className={styles.hiddenInfo}>
+                    test
+                </div> */}
+                <div>talk to me</div>
+
+                {/* < input className={styles.checkbox}type="checkbox"/ >
+                    <label>Toggle Div</label>
+                    <div className={styles.hiddenInfo}>Hidden Div Content</div>
+             */}
+
+                {/* <FormControlLabel className={styles.checkbox} control={<Checkbox sx={{ color: "white" }} />} label="Air Lines" sx={{ color: "white" }} />
                 <FormControlLabel className={styles.checkbox} control={<Checkbox sx={{ color: "white" }} />} label="Battery" sx={{ color: "white" }} />
                 <FormControlLabel className={styles.checkbox} control={<Checkbox sx={{ color: "white" }} />} label="Belts" sx={{ color: "white" }} />
                 <FormControlLabel className={styles.checkbox} control={<Checkbox sx={{ color: "white" }} />} label="Hoses" sx={{ color: "white" }} />
@@ -20,7 +36,8 @@ export default function TruckCheckBoxesForForm() {
                 <FormControlLabel className={styles.checkbox} control={<Checkbox sx={{ color: "white" }} />} label="Engine" sx={{ color: "white" }} />
                 <FormControlLabel className={styles.checkbox} control={<Checkbox sx={{ color: "white" }} />} label="Exhaust" sx={{ color: "white" }} />
                 <FormControlLabel className={styles.checkbox} control={<Checkbox sx={{ color: "white" }} />} label="Fifth Wheel" sx={{ color: "white" }} />
-            </div>
+            */}
+            
         </>
     );
 }
