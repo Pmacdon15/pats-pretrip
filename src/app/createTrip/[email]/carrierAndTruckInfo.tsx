@@ -35,13 +35,21 @@ export default async function TextFieldsForForm() {
                             borderBottomColor: "white",
                         },
                     },
+                    "& .MuiInputBase-input": {
+                        "&:focus": {
+                            color: "white",
+                        },
+                        "&:not(:focus)": {
+                            color: "white",
+                        },
+                    },
                 }}
                 InputLabelProps={{
                     required: false,
                 }}
             />
             <TextField
-                // {...register("address")}
+                name='address'
                 required={true}
                 className={styles.textFieldWide}
                 id="standard-basic"
@@ -62,6 +70,14 @@ export default async function TextFieldsForForm() {
                             borderBottomColor: "white",
                         },
                     },
+                    "& .MuiInputBase-input": {
+                        "&:focus": {
+                            color: "white",
+                        },
+                        "&:not(:focus)": {
+                            color: "white",
+                        },
+                    },
                 }}
                 InputLabelProps={{
                     required: false,
@@ -69,7 +85,7 @@ export default async function TextFieldsForForm() {
             />
             <div className={styles.formSection}>
                 <TextField
-                    // {...register("make")}
+                    name='make'
                     required={true}
                     className={styles.textFieldSlim}
                     id="standard-basic"
@@ -90,13 +106,21 @@ export default async function TextFieldsForForm() {
                                 borderBottomColor: "white",
                             },
                         },
+                        "& .MuiInputBase-input": {
+                            "&:focus": {
+                                color: "white",
+                            },
+                            "&:not(:focus)": {
+                                color: "white",
+                            },
+                        },
                     }}
                     InputLabelProps={{
                         required: false,
                     }}
                 />
                 <TextField
-                    // {...register("model")}
+                    name='model'
                     required={true}
                     className={styles.textFieldSlim}
                     id="standard-basic"
@@ -117,6 +141,14 @@ export default async function TextFieldsForForm() {
                                 borderBottomColor: "white",
                             },
                         },
+                        "& .MuiInputBase-input": {
+                            "&:focus": {
+                                color: "white",
+                            },
+                            "&:not(:focus)": {
+                                color: "white",
+                            },
+                        },
                     }}
                     InputLabelProps={{
                         required: false,
@@ -124,7 +156,7 @@ export default async function TextFieldsForForm() {
                 />
 
                 <TextField
-                    // {...register("odometer")}
+                    name='odometer'
                     required={true}
                     className={styles.textFieldSlim}
                     id="standard-basic"
@@ -146,12 +178,12 @@ export default async function TextFieldsForForm() {
                                 borderBottomColor: "white",
                             },
                         },
-                        "& .MuiInputBase-input": { // Add this line
-                            "&:focus": { // Add this line
-                                color: "white", // Add this line
+                        "& .MuiInputBase-input": {
+                            "&:focus": {
+                                color: "white",
                             },
-                            "&:not(:focus)": { // Add this line
-                                color: "white", // Add this line
+                            "&:not(:focus)": {
+                                color: "white",
                             },
                         },
                     }}
@@ -160,7 +192,7 @@ export default async function TextFieldsForForm() {
                     }}
                 />
                 <TextField
-                    // {...register("truckLP")}
+                    name='TruckLP'
                     required={true}
                     className={styles.textFieldSlim}
                     id="standard-basic"
@@ -181,6 +213,14 @@ export default async function TextFieldsForForm() {
                                 borderBottomColor: "white",
                             },
                         },
+                        "& .MuiInputBase-input": {
+                            "&:focus": {
+                                color: "white",
+                            },
+                            "&:not(:focus)": {
+                                color: "white",
+                            },
+                        },
                     }}
                     InputLabelProps={{
                         required: false,
@@ -190,6 +230,7 @@ export default async function TextFieldsForForm() {
             {/* MARK: - DateTimePicker */}
             <LocalizationProvider dateAdapter={AdapterDayjs}>
                 <DateTimePicker
+                    name='dateTime'
                     sx={{
                         marginTop: '1rem',
                         color: "white",
@@ -216,7 +257,9 @@ export default async function TextFieldsForForm() {
                                 color: "white", // Add this line
                             },
                         },
+
                     }}
+
                 />
             </LocalizationProvider>
         </>
