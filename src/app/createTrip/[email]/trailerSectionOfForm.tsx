@@ -13,7 +13,8 @@ export default function TrailerSectionOfForm() {
         'Reflectors',
         'Rims',
         'Tires',
-        "Hubs",
+        'Hubs',
+        'Air Lines',
     ];
 
     return(
