@@ -4,9 +4,26 @@ import FormControlLabel from '@mui/material/FormControlLabel';
 import Checkbox from '@mui/material/Checkbox';
 
 export default function TrailerSectionOfForm() {
+    const defects = [
+        'Kingpin',
+        'Body',
+        'Frame',
+        'Securement',
+        'Lights',
+        'Reflectors',
+        'Rims',
+        'Tires',
+        "Hubs",
+    ];
+
     return(
         <>
-        <TextField className={styles.textFieldSlim} id="standard-basic" label="Trailer License Plate" variant="standard"
+        <TextField 
+        name="trailerLP"
+        className={styles.textFieldSlim} 
+        id="standard-basic" 
+        label="Trailer License Plate" 
+        variant="standard"
                 sx={{
                     "& .MuiInputLabel-root": {
                         color: "white",
@@ -24,8 +41,30 @@ export default function TrailerSectionOfForm() {
                     },
                 }}
             />
-            <div className={styles.checkboxContainer}>
-                <FormControlLabel className={styles.checkbox} control={<Checkbox sx={{ color: "white" }} />} label="Brake Connections" sx={{ color: "white" }} />
+            <div className={styles.mainContainer}>
+                {defects.map((defect, index) => {
+                    const words = defect.split(' ');
+                    const name = words[0].toLowerCase() + words.slice(1).join('');
+                    const majorName = name + 'M';
+                    return (
+                        <div key={index} className={styles.checkboxContainer}>
+                            <input
+                                name={name}
+                                className={styles.checkbox}
+                                type="checkbox"
+                            />
+                            <label className={styles.label}>{defect}</label>
+                            <div className={styles.hiddenInfo}>
+                                <input
+                                    name={majorName}
+                                    className={styles.checkbox}
+                                    type="checkbox"
+                                />
+                                <label className={styles.label}>Check here for major.</label>
+                            </div>
+                        </div>
+                    );
+                })}
             </div>
         </>
     )

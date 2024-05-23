@@ -15,30 +15,50 @@ export default function TruckCheckBoxesForForm() {
         'Safety Devices',
         'Exhaust System',
         'Frame',
+        'Fuel System',
+        'General',
+        'Glass',
+        'Mirrors',
+        'Heater',
+        'Horn',
+        'Hydraulic System',
+        'Lamps',
+        'Steering',
+        'Suspension',
+        'Tires',
+        'Rims',
+        'Hubs',
+        'Windows',
+        'Wipers',  
+
     ];
     return (
         <>
             <div className={styles.mainContainer}>
-                {defects.map((defect, index) => (
-                    <div key={index} className={styles.checkboxContainer}>
-                        <input
-                            name={defect}
-                            className={styles.checkbox}
-                            type="checkbox"
-                        />
-                        <label className={styles.label}>{defect}</label>
-                        <div className={styles.hiddenInfo}>
+                {defects.map((defect, index) => {
+                    const words = defect.split(' ');
+                    const name = words[0].toLowerCase() + words.slice(1).join('');
+                    const majorName = name + 'M';
+                    return (
+                        <div key={index} className={styles.checkboxContainer}>
                             <input
-                            name={defect + 'M'}
+                                name={name}
                                 className={styles.checkbox}
                                 type="checkbox"
                             />
-                            <label className={styles.label}>Check here for major.</label>
+                            <label className={styles.label}>{defect}</label>
+                            <div className={styles.hiddenInfo}>
+                                <input
+                                    name={majorName}
+                                    className={styles.checkbox}
+                                    type="checkbox"
+                                />
+                                <label className={styles.label}>Check here for major.</label>
+                            </div>
                         </div>
-                    </div>
-                ))}
-            </div >
-
+                    );
+                })}
+            </div>
         </>
     );
 }

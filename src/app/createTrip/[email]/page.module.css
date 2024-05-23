@@ -34,12 +34,11 @@
 
 .mainContainer {
     display: flex;
-    /* flex-direction: row; */
     flex-wrap: wrap;
     width: 100%;
     height: fit-content;
     justify-content: center;
-    /* background-color: rgb(176, 175, 209); */
+    gap:10px;
 }
 
 .text {
