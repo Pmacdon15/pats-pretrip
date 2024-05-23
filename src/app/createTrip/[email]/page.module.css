@@ -39,6 +39,7 @@
     height: fit-content;
     justify-content: center;
     gap:10px;
+    margin-bottom: 40px;
 }
 
 .text {
@@ -83,4 +84,11 @@
 
 .dividingLine {
     color: white;
+}
+
+.submitContainer{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    gap: 20px;
 }

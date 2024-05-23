@@ -13,7 +13,6 @@ export default function TextFieldsForForm() {
     return (
         <>
             <TextField
-                // {...register("carrier")}
                 name="carrier"
                 required={true}
                 className={styles.textFieldWide}
