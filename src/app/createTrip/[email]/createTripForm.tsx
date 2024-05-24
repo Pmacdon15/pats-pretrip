@@ -10,9 +10,9 @@ import SubmitButton from './submitButton';
 
 async function submitForm(formData: FormData) {
     'use server'
+    const formDataObj: Record<string, string> = {};
     console.log("Form submitted");
-    console.table(formData.get("carrier"));
-    console.table(formData.get("dateTime"));
+    console.table(Array.from(formData.entries()));
 }
 
 export default async function CreateTripForm() {
@@ -21,7 +21,7 @@ export default async function CreateTripForm() {
             <CarrierAndTruckInfo />            
             <p className={styles.text}>Check box for defects found:</p>
             <TruckCheckBoxesForForm />
-            <p className={styles.dividingLine}>---------------------------------------</p>
+            <p className={styles.dividingLine}>--------------------------------</p>
             <TrailerSectionOfForm />
             <SubmitButton />
         </form>

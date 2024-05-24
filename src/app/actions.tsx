@@ -1,8 +1,9 @@
 "use server";
-import PasswordHasher from "./hasher";
+import { hash, verify } from "./hasher";
 import { cookies } from "next/headers";
 import jwt from "jsonwebtoken";
-import Database from "./db";
+// import Database from "./db";
+import { register, getHashedPassword } from "./db";
 import { redirect } from "next/navigation";
 import { z } from 'zod';
 
@@ -58,12 +59,8 @@ export async function signUp(prevState: any, formData: FormData) {
     if (password !== confirm_password) {
       throw new Error("Passwords do not match");
     }
-
-    const passwordHasher = new PasswordHasher();
-    const hashedPassword = await passwordHasher.hash(password);
-    const db = new Database();
-
-    if (!await db.register(email, first_name, last_name, hashedPassword))
+    const hashedPassword = await hash(password);
+    if (!await register(email, first_name, last_name, hashedPassword))
       throw new Error("Database rejected sign up!");
 
   } catch (error) {
@@ -75,7 +72,7 @@ export async function signUp(prevState: any, formData: FormData) {
   }
 
   applyCookie(email);
-  redirect(`/home/${email}`);
+  redirect(`/currentTrips/${email}`);
 }
 
 export async function login(prevState: any, formData: FormData) {
@@ -117,7 +114,6 @@ export async function auth(email: string) {
       username: string;
     };
 
-
     if (user.username !== email) {
       throw new Error("Invalid token");
     }
@@ -139,19 +135,12 @@ export async function logout() {
   redirect("/");
 }
 
-// export async function submitForm(formData: FormData) {
-//   console.log("Form submitted");
-//   console.log(formData.get("carrier")
-//   );
-// }
 
 //MARK: Helper functions
 async function verifyPassword(email: string, password: string) {
   try {
-    const db = new Database();
-    const hash = await db.getHashedPassword(email);
-    const passwordHasher = new PasswordHasher();
-    return await passwordHasher.verify(password, hash);
+    const hash = await getHashedPassword(email);
+    return await verify(password, hash);
   } catch (error) {
     console.error("Error verifying password: ", error);
     return false;
