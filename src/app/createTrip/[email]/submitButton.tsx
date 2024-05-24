@@ -1,19 +1,23 @@
+'use client';
 import Button from "@mui/material/Button";
 import TextField from "@mui/material/TextField";
 import styles from "./page.module.css";
+import { useFormStatus } from 'react-dom';
 export default function SubmitButton() {
+    const { pending } = useFormStatus()
     return (
+        
         <div  className={styles.submitContainer}>
         <Button
             type="submit"
-            variant="contained"            
+            variant="contained" 
+            disabled={pending}           
         >
             Submit
         </Button>
         <TextField
                 name="eSignature"
-                required={true}
-                // className={styles.textFieldWide}                
+                required={true}               
                 label="eSignature"
                 variant="standard"
                 sx={{

@@ -7,7 +7,7 @@ export default async function CreateTrip({ params }: { params: { email: string }
     return (
         <>
             <h1 className={styles.title} >Create Trip</h1>
-            <CreateTripForm />
+            <CreateTripForm email={decodedEmail} />
         </>
     )
 }

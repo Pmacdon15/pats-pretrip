@@ -135,6 +135,15 @@ export async function logout() {
   redirect("/");
 }
 
+export async function submitForm(email: string, prevState: any, formData: FormData ) {
+  'use server'
+  const formDataObj: Record<string, string> = {};
+  console.log("Form submitted");
+  console.log("Email: ", email);
+  console.table(Array.from(formData.entries()));
+  return { message: 'Form submitted' };
+}
+
 
 //MARK: Helper functions
 async function verifyPassword(email: string, password: string) {

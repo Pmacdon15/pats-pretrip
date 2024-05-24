@@ -1,7 +1,5 @@
 import styles from './page.module.css';
 import TextField from '@mui/material/TextField';
-import FormControlLabel from '@mui/material/FormControlLabel';
-import Checkbox from '@mui/material/Checkbox';
 
 export default function TrailerSectionOfForm() {
     const defects = [

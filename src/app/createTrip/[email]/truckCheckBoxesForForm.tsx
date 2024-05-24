@@ -2,7 +2,6 @@
 // import Checkbox from '@mui/material/Checkbox';
 import styles from './page.module.css';
 
-
 export default function TruckCheckBoxesForForm() {
     const defects = [
         'Air Brake System',
