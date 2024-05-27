@@ -8,19 +8,19 @@ CREATE TABLE
         admin BOOLEAN DEFAULT FALSE NOT NULL
     );
 
-CREATE TABLE
-    pptrips (
-        id SERIAL PRIMARY KEY,
-        userId INTEGER REFERENCES ppusers (id) ON DELETE CASCADE NOT NULL,
-        carrier VARCHAR(100) NOT NULL,
-        carrierAddress VARCHAR(255) NOT NULL,
-        inspectionAddress VARCHAR(255) NOT NULL, 
-        dataTime TIMESTAMP NOT NULL,
-        remarks TEXT
-    );
+CREATE TABLE pptrips (
+    id SERIAL PRIMARY KEY,
+    userId INTEGER REFERENCES ppusers (id) ON DELETE CASCADE NOT NULL,
+    carrier VARCHAR(100) NOT NULL,
+    carrierAddress VARCHAR(255) NOT NULL,
+    inspectionAddress VARCHAR(255) NOT NULL, 
+    dateTime TIMESTAMP NOT NULL,
+    remarks TEXT,
+    eSignature VARCHAR(255)
+);
 
 CREATE TABLE
-    pptripVehicles (
+    ppVehicles (
         id SERIAL PRIMARY KEY,
         tripId INTEGER REFERENCES pptrips (id) ON DELETE CASCADE NOT NULL,
         make VARCHAR(100) NOT NULL,
@@ -34,7 +34,7 @@ CREATE TABLE
         id SERIAL PRIMARY KEY,
         name VARCHAR(100) NOT NULL,
         has_m_defect BOOLEAN DEFAULT FALSE NOT NULL,
-        tripsId INTEGER NOT NULL,
+        tripId INTEGER NOT NULL,
         truckDefect BOOLEAN DEFAULT TRUE NOT NULL,
-        FOREIGN KEY (tripsId) REFERENCES pptrips (id) ON DELETE CASCADE
+        FOREIGN KEY (tripId) REFERENCES pptrips (id) ON DELETE CASCADE
     );

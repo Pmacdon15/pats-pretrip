@@ -18,13 +18,10 @@ export default function CreateTripForm({
     email: string;
 }) {
     const updateFormWithEmail = submitForm.bind(null, email)
-    const [state, formAction] = useFormState(updateFormWithEmail, initialState)
+    //const [state, formAction] = useFormState(updateFormWithEmail, initialState)
     return (
-        <form action={formAction} className={styles.textInputForm}>            
-            {children}   
-            <p aria-live="polite" className="sr-only">
-                {state?.message}
-            </p>
+        <form action={updateFormWithEmail} className={styles.textInputForm}>            
+            {children}            
             
             {/* <SubmitButton /> */}
         </form>

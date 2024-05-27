@@ -12,10 +12,10 @@ export default async function CreateTrip({ params }: { params: { email: string }
         <>
             <h1 className={styles.title} >Create Trip</h1>
             <CreateTripForm email={decodedEmail} >
-                {/* <CarrierAndTruckInfo /> */}
+                <CarrierAndTruckInfo />
                 <p className={styles.text}>Check box for defects found:</p>
                 <TruckCheckBoxesForForm />
-                {/* <TrailerSectionOfForm /> */}
+                <TrailerSectionOfForm />
                 <SubmitButton />
             </CreateTripForm>
         </>

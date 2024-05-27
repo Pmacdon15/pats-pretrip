@@ -135,49 +135,45 @@ export async function logout() {
   redirect("/");
 }
 
-export async function submitForm(email: string, prevState: any, formData: FormData) {
+export async function submitForm(email: string,  formData: FormData) {
   'use server'
-  // const info = await submitTripInfo(
-  //   email,
-  //   formData.get("carrier") as string,
-  //   formData.get("carrierAddress") as string,
-  //   formData.get("inspectionAddress") as string,
-  //   formData.get("dateTime") as string
-  // );
-  let userId = "1"
-  let tripId = "16"
-  // if (info !== false) {
-  //   userId = info?.userid;
-  //   tripId = info?.id;
-  // }
-  //TODO: figure out if i want to return anything with this call and if i want to do anything with that
-  // await submitTruckInfo(
-  //   tripId,
-  //   formData.get("make") as string,
-  //   formData.get("model") as string,
-  //   formData.get("odometer") as string,
-  //   formData.get("truckLP") as string,
-  // );
+  const info = await submitTripInfo(
+    email,
+    formData.get("carrier") as string,
+    formData.get("carrierAddress") as string,
+    formData.get("inspectionAddress") as string,
+    formData.get("dateTime") as string,
+    formData.get("eSignature") as string
+  );
+  let userId = "";
+  let tripId = "";
+  if (info !== false) {
+    userId = info?.userid;
+    tripId = info?.id;
+  }
+  await submitTruckInfo(
+    tripId,
+    formData.get("make") as string,
+    formData.get("model") as string,
+    Number(formData.get("odometer")),
+    formData.get("truckLP") as string,
+    formData.get("trailerLP") as string
+  );
   
   Array.from(formData.entries()).forEach(([key, value]) => {
     if (value === "on") {
       // Skip iterating over major defects because they are handled in the previous iteration
       if (key.endsWith("M"))  return;
-      console.log(`${key}: ${value}`);
+      //console.log(`${key}: ${value}`);
       const has_m_defect = formData.get(`${key}M`) === "on";
       addDefect(tripId, key, has_m_defect);
-      console.log("Defect: ", key, " Major: ", has_m_defect);      
+      //console.log("Defect: ", key, " Major: ", has_m_defect);      
     }
-  });
-  
-  
-  
-  
-  
-  console.log("Form submitted");
-  console.log("Email: ", email);
+  });  
+  console.log("Form submitted");  
   console.table(Array.from(formData.entries()));
-  return { message: 'Form submitted' };
+  redirect(`/currentTrips/${email}`);
+  //return { message: 'Form submitted' };
 }
 
 

@@ -41,6 +41,7 @@ export async function submitTripInfo(
   carrierAddress: string,
   inspectionAddress: string,
   dateTime: string,
+  eSignature: string
 ) {
   try {
     const { rows } = await sql`
@@ -49,18 +50,20 @@ export async function submitTripInfo(
     carrier,
     carrierAddress,
     inspectionAddress,
-    dateTime
+    dateTime,
+    eSignature
   )
   VALUES (
     (SELECT id FROM ppusers WHERE email = ${email}),
     ${carrier},
     ${carrierAddress},
     ${inspectionAddress},
-    ${dateTime}
+    ${dateTime},
+    ${eSignature}    
   )
   RETURNING *;
   `;
-    console.log(rows);
+    //console.log(rows);
     if (rows) {
       return rows[0]
     }
@@ -74,28 +77,31 @@ export async function submitTruckInfo(
   tripId: string,
   make: string,
   model: string,
-  odometer: string,
+  odometer: number,
   truckLP: string,
+  trailerLP: string
 ) {
   try {
     const { rows } = await sql`
-    INSERT INTO pptripVehicles(
+    INSERT INTO ppVehicles(
       tripId,
       make,
       model,
       odometer,
-      truckLP
+      truckLP,
+      trailerLP
     )
   Values (
       ${tripId},
       ${make},
       ${model},
       ${odometer},
-      ${truckLP}
+      ${truckLP},
+      ${trailerLP}
     )
     RETURNING *;
   `;
-    console.log(rows);
+    //console.log(rows);
     if (rows) {
       return true;
     }
