@@ -1,7 +1,7 @@
 'use server';
 import styles from './page.module.css';
 import LoginForm  from './loginForm';
-import LoginSignUpContainer from '../container/loginSignUpContainer';
+import LoginSignUpContainer from '../containers/loginSignUpContainer';
 export default async function Login() {
     return (
         <LoginSignUpContainer >

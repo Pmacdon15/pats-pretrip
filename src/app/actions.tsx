@@ -1,8 +1,9 @@
 "use server";
-import PasswordHasher from "./hasher";
+import { hash, verify } from "./hasher";
 import { cookies } from "next/headers";
 import jwt from "jsonwebtoken";
-import Database from "./db";
+// import Database from "./db";
+import { register, getHashedPassword, submitTripInfo, submitTruckInfo, addDefect} from "./db";
 import { redirect } from "next/navigation";
 import { z } from 'zod';
 
@@ -58,12 +59,8 @@ export async function signUp(prevState: any, formData: FormData) {
     if (password !== confirm_password) {
       throw new Error("Passwords do not match");
     }
-
-    const passwordHasher = new PasswordHasher();
-    const hashedPassword = await passwordHasher.hash(password);
-    const db = new Database();
-
-    if (!await db.register(email, first_name, last_name, hashedPassword))
+    const hashedPassword = await hash(password);
+    if (!await register(email, first_name, last_name, hashedPassword))
       throw new Error("Database rejected sign up!");
 
   } catch (error) {
@@ -75,7 +72,7 @@ export async function signUp(prevState: any, formData: FormData) {
   }
 
   applyCookie(email);
-  redirect(`/home/${email}`);
+  redirect(`/currentTrips/${email}`);
 }
 
 export async function login(prevState: any, formData: FormData) {
@@ -103,7 +100,7 @@ export async function login(prevState: any, formData: FormData) {
     return { message: "Error: " + (error instanceof Error ? error.message : error) };
   }
   applyCookie(email);
-  redirect(`/home/${email}`);
+  redirect(`/currentTrips/${email}`);
 }
 
 export async function auth(email: string) {
@@ -111,21 +108,20 @@ export async function auth(email: string) {
   try {
     const token = cookies().get("AuthCookieTracking")?.value; // Access the cookie value as a string
     if (!token) {
-     throw new Error("No token found");
+      throw new Error("No token found");
     }
     const user = jwt.verify(token, process.env.SECRET_KEY_JWT as string) as {
       username: string;
-    };  
-     
+    };
 
     if (user.username !== email) {
       throw new Error("Invalid token");
-    }    
+    }
     Authed = true;
   } catch (error) {
-    console.error("Error: ", error instanceof Error ? error.message : error);    
+    console.error("Error: ", error instanceof Error ? error.message : error);
   }
-  if(!Authed){
+  if (!Authed) {
     redirect("/");
   }
 }
@@ -139,13 +135,53 @@ export async function logout() {
   redirect("/");
 }
 
+export async function submitForm(email: string,  formData: FormData) {
+  'use server'
+  const info = await submitTripInfo(
+    email,
+    formData.get("carrier") as string,
+    formData.get("carrierAddress") as string,
+    formData.get("inspectionAddress") as string,
+    formData.get("dateTime") as string,
+    formData.get("eSignature") as string
+  );
+  let userId = "";
+  let tripId = "";
+  if (info !== false) {
+    userId = info?.userid;
+    tripId = info?.id;
+  }
+  await submitTruckInfo(
+    tripId,
+    formData.get("make") as string,
+    formData.get("model") as string,
+    Number(formData.get("odometer")),
+    formData.get("truckLP") as string,
+    formData.get("trailerLP") as string
+  );
+  
+  Array.from(formData.entries()).forEach(([key, value]) => {
+    if (value === "on") {
+      // Skip iterating over major defects because they are handled in the previous iteration
+      if (key.endsWith("M"))  return;
+      //console.log(`${key}: ${value}`);
+      const has_m_defect = formData.get(`${key}M`) === "on";
+      addDefect(tripId, key, has_m_defect);
+      //console.log("Defect: ", key, " Major: ", has_m_defect);      
+    }
+  });  
+  console.log("Form submitted");  
+  console.table(Array.from(formData.entries()));
+  redirect(`/currentTrips/${email}`);
+  //return { message: 'Form submitted' };
+}
+
+
 //MARK: Helper functions
 async function verifyPassword(email: string, password: string) {
   try {
-    const db = new Database();
-    const hash = await db.getHashedPassword(email);
-    const passwordHasher = new PasswordHasher();
-    return await passwordHasher.verify(password, hash);
+    const hash = await getHashedPassword(email);
+    return await verify(password, hash);
   } catch (error) {
     console.error("Error verifying password: ", error);
     return false;
