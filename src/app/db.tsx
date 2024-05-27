@@ -1,7 +1,6 @@
 "use server";
 import { sql } from "@vercel/postgres";
 
-// export default class Database {
 export async function register(
   email: string,
   first_name: string,
@@ -69,12 +68,12 @@ export async function submitTripInfo(
     }
   } catch (error) {
     console.error("Error submitting trip: ", error);
-    return false;
+    throw new Error("submitting trip info: " + (error instanceof Error ? error.message : error));
   }
 }
 
-export async function submitTruckInfo(  
-  tripId: string,
+export async function submitTruckInfo(
+  tripId: number,
   make: string,
   model: string,
   odometer: number,
@@ -106,13 +105,12 @@ export async function submitTruckInfo(
       return true;
     }
   } catch (error) {
-    console.error("Error submitting truck: ", error);
-    return false;
+    console.error("Error submitting truck: ", error);    
+    throw new Error("submitting truck info:" + (error instanceof Error ? error.message : error));
   }
 }
 
-
-export async function addDefect(tripId: string, name: string, has_m_defect: boolean) {
+export async function addDefect(tripId: number, name: string, has_m_defect: boolean) {
   try {
     const { rows } = await sql`
     INSERT INTO ppdefects(
@@ -130,6 +128,6 @@ export async function addDefect(tripId: string, name: string, has_m_defect: bool
     }
   } catch (error) {
     console.error("Error adding defect: ", error);
-    return false;
+    throw new Error("adding defect: " + (error instanceof Error ? error.message : error));
   }
 }

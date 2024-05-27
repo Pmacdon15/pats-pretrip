@@ -3,7 +3,7 @@ import { hash, verify } from "./hasher";
 import { cookies } from "next/headers";
 import jwt from "jsonwebtoken";
 // import Database from "./db";
-import { register, getHashedPassword, submitTripInfo, submitTruckInfo, addDefect} from "./db";
+import { register, getHashedPassword, submitTripInfo, submitTruckInfo, addDefect } from "./db";
 import { redirect } from "next/navigation";
 import { z } from 'zod';
 
@@ -135,43 +135,47 @@ export async function logout() {
   redirect("/");
 }
 
-export async function submitForm(email: string,  formData: FormData) {
+
+export async function submitForm(email: string, prevState: any, formData: FormData) {
   'use server'
-  const info = await submitTripInfo(
-    email,
-    formData.get("carrier") as string,
-    formData.get("carrierAddress") as string,
-    formData.get("inspectionAddress") as string,
-    formData.get("dateTime") as string,
-    formData.get("eSignature") as string
-  );
-  let userId = "";
-  let tripId = "";
-  if (info !== false) {
-    userId = info?.userid;
-    tripId = info?.id;
-  }
-  await submitTruckInfo(
-    tripId,
-    formData.get("make") as string,
-    formData.get("model") as string,
-    Number(formData.get("odometer")),
-    formData.get("truckLP") as string,
-    formData.get("trailerLP") as string
-  );
+  try {
+    const info = await submitTripInfo(
+      email,
+      formData.get("carrier") as string,
+      formData.get("carrierAddress") as string,
+      formData.get("inspectionAddress") as string,
+      formData.get("dateTime") as string,
+      formData.get("eSignature") as string
+    )as { id: number };  
+    // const userId = info.userId;
+    const tripId = info.id;
   
-  Array.from(formData.entries()).forEach(([key, value]) => {
-    if (value === "on") {
-      // Skip iterating over major defects because they are handled in the previous iteration
-      if (key.endsWith("M"))  return;
-      //console.log(`${key}: ${value}`);
-      const has_m_defect = formData.get(`${key}M`) === "on";
-      addDefect(tripId, key, has_m_defect);
-      //console.log("Defect: ", key, " Major: ", has_m_defect);      
-    }
-  });  
-  console.log("Form submitted");  
-  console.table(Array.from(formData.entries()));
+    await submitTruckInfo(
+      tripId,
+      formData.get("make") as string,
+      formData.get("model") as string,
+      Number(formData.get("odometer")),
+      formData.get("truckLP") as string,
+      formData.get("trailerLP") as string
+    );
+
+    Array.from(formData.entries()).forEach(([key, value]) => {
+      if (value === "on") {
+        // Skip iterating over major defects because they are handled in the previous iteration
+        if (key.endsWith("M")) return;
+        //console.log(`${key}: ${value}`);
+        const has_m_defect = formData.get(`${key}M`) === "on";
+        addDefect(tripId, key, has_m_defect);
+        //console.log("Defect: ", key, " Major: ", has_m_defect);      
+      }
+    });
+    
+  } catch (error) {
+    console.error("Error submitting form: ", error);
+    return { message:"Error: "+ (error instanceof Error ? error.message : error) };
+  }
+  console.log("Form submitted");
+    //console.table(Array.from(formData.entries()));
   redirect(`/currentTrips/${email}`);
   //return { message: 'Form submitted' };
 }
