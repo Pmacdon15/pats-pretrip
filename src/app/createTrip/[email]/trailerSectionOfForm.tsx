@@ -1,5 +1,6 @@
 import styles from './page.module.css';
 import TextField from '@mui/material/TextField';
+// TODO: make server component
 
 export default function TrailerSectionOfForm() {
     const defects = [

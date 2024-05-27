@@ -1,8 +1,7 @@
-// import FormControlLabel from '@mui/material/FormControlLabel';
-// import Checkbox from '@mui/material/Checkbox';
+'use server';
 import styles from './page.module.css';
 
-export default function TruckCheckBoxesForForm() {
+export default async function TruckCheckBoxesForForm() {
     const defects = [
         'Air Brake System',
         'Cab',
@@ -28,8 +27,7 @@ export default function TruckCheckBoxesForForm() {
         'Rims',
         'Hubs',
         'Windows',
-        'Wipers',  
-
+        'Wipers',
     ];
     return (
         <>
@@ -58,6 +56,7 @@ export default function TruckCheckBoxesForForm() {
                     );
                 })}
             </div>
+            <p className={styles.dividingLine}>--------------------------------</p>
         </>
     );
 }

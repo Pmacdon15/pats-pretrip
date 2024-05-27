@@ -48,11 +48,11 @@ export default function TextFieldsForForm() {
                 }}
             />
             <TextField
-                name='address'
+                name='carrierAddress'
                 required={true}
                 className={styles.textFieldWide}
                 id="standard-basic"
-                label="Address"
+                label="Carrier Address"
                 variant="standard"
                 sx={{
                     "& .MuiInputLabel-root": {
@@ -82,6 +82,41 @@ export default function TextFieldsForForm() {
                     required: false,
                 }}
             />
+            <TextField
+            name='inspectionAddress'
+            required={true}
+            className={styles.textFieldWide}
+            id="standard-basic"
+            label="Inspection Address"
+            variant="standard"
+            sx={{
+                "& .MuiInputLabel-root": {
+                    color: "white",
+                    "&.Mui-focused": {
+                        color: "white",
+                    },
+                },
+                "& .MuiInput-underline": {
+                    "&:before": {
+                        borderBottomColor: "white",
+                    },
+                    "&:after": {
+                        borderBottomColor: "white",
+                    },
+                },
+                "& .MuiInputBase-input": {
+                    "&:focus": {
+                        color: "white",
+                    },
+                    "&:not(:focus)": {
+                        color: "white",
+                    },
+                },
+            }}
+            InputLabelProps={{
+                required: false,
+            }}
+        />
             <div className={styles.formSection}>
                 <TextField
                     name='make'
@@ -191,7 +226,7 @@ export default function TextFieldsForForm() {
                     }}
                 />
                 <TextField
-                    name='TruckLP'
+                    name='truckLP'
                     required={true}
                     className={styles.textFieldSlim}
                     id="standard-basic"

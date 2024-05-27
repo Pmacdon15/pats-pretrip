@@ -3,7 +3,7 @@ import { hash, verify } from "./hasher";
 import { cookies } from "next/headers";
 import jwt from "jsonwebtoken";
 // import Database from "./db";
-import { register, getHashedPassword } from "./db";
+import { register, getHashedPassword, submitTripInfo, submitTruckInfo, addDefect} from "./db";
 import { redirect } from "next/navigation";
 import { z } from 'zod';
 
@@ -135,9 +135,45 @@ export async function logout() {
   redirect("/");
 }
 
-export async function submitForm(email: string, prevState: any, formData: FormData ) {
+export async function submitForm(email: string, prevState: any, formData: FormData) {
   'use server'
-  const formDataObj: Record<string, string> = {};
+  // const info = await submitTripInfo(
+  //   email,
+  //   formData.get("carrier") as string,
+  //   formData.get("carrierAddress") as string,
+  //   formData.get("inspectionAddress") as string,
+  //   formData.get("dateTime") as string
+  // );
+  let userId = "1"
+  let tripId = "16"
+  // if (info !== false) {
+  //   userId = info?.userid;
+  //   tripId = info?.id;
+  // }
+  //TODO: figure out if i want to return anything with this call and if i want to do anything with that
+  // await submitTruckInfo(
+  //   tripId,
+  //   formData.get("make") as string,
+  //   formData.get("model") as string,
+  //   formData.get("odometer") as string,
+  //   formData.get("truckLP") as string,
+  // );
+  
+  Array.from(formData.entries()).forEach(([key, value]) => {
+    if (value === "on") {
+      // Skip iterating over major defects because they are handled in the previous iteration
+      if (key.endsWith("M"))  return;
+      console.log(`${key}: ${value}`);
+      const has_m_defect = formData.get(`${key}M`) === "on";
+      addDefect(tripId, key, has_m_defect);
+      console.log("Defect: ", key, " Major: ", has_m_defect);      
+    }
+  });
+  
+  
+  
+  
+  
   console.log("Form submitted");
   console.log("Email: ", email);
   console.table(Array.from(formData.entries()));
