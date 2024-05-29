@@ -44,24 +44,26 @@ export async function submitTripInfo(
 ) {
   try {
     const { rows } = await sql`
-  INSERT INTO pptrips (
-    userId,
-    carrier,
-    carrierAddress,
-    inspectionAddress,
-    dateTime,
-    eSignature
-  )
-  VALUES (
-    (SELECT id FROM ppusers WHERE email = ${email}),
-    ${carrier},
-    ${carrierAddress},
-    ${inspectionAddress},
-    ${dateTime},
-    ${eSignature}    
-  )
-  RETURNING *;
-  `;
+      INSERT INTO pptrips (
+        userId,
+        carrier,
+        carrierAddress,
+        inspectionAddress,
+        dateTime,
+        eSignature,
+        inputDate
+      )
+      VALUES (
+        (SELECT id FROM ppusers WHERE email = ${email}),
+        ${carrier},
+        ${carrierAddress},
+        ${inspectionAddress},
+        ${dateTime},
+        ${eSignature},
+        CURRENT_TIMESTAMP
+      )
+      RETURNING *;
+    `;
     //console.log(rows);
     if (rows) {
       return rows[0]
