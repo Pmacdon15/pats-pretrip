@@ -3,7 +3,7 @@ import styles from './page.module.css';
 import { getCurrentTrips, getTrucksInfo } from "@/app/db";
 import DisplayTrip from './displayTrip';
 import BasicDisplayTrips from './basicDisplayTrips';
-import { useState ,useEffect} from 'react';
+import { useState, useEffect } from 'react';
 type Trip = {
     id: number;
     userid: number;
@@ -34,20 +34,22 @@ export default function CurrentTrips({ params }: { params: { email: string } }) 
 
     useEffect(() => {
         const fetchData = async () => {
-          const fetchedTrips = await getCurrentTrips(decodedEmail);
-          const fetchedTrucks = await getTrucksInfo(decodedEmail);
-          setTrips(fetchedTrips);
-          setTrucks(fetchedTrucks);
-          setSelectedTrip(fetchedTrips[0]);
-          setSelectedTruck(fetchedTrucks[0]);
+            const fetchedTrips = await getCurrentTrips(decodedEmail) as Trip[];
+            const fetchedTrucks = await getTrucksInfo(decodedEmail) as Truck[];
+
+            setTrips(fetchedTrips);
+            setTrucks(fetchedTrucks);
+
+            setSelectedTrip(fetchedTrips[0]);
+            setSelectedTruck(fetchedTrucks[0]);
         };
         fetchData();
-      }, [decodedEmail]);
-    
-      const handleTripClick = (trip: Trip, truck: Truck) => {
+    }, [decodedEmail]);
+
+    const handleTripClick = (trip: Trip, truck: Truck) => {
         setSelectedTrip(trip);
         setSelectedTruck(truck);
-      };
+    };
 
     console.log(trucks)
     console.log(trips)
