@@ -134,3 +134,18 @@ export async function addDefect(tripId: number, name: string, has_m_defect: bool
     throw new Error("adding defect: " + (error instanceof Error ? error.message : error));
   }
 }
+
+//MARK: Get Current Trips
+export async function getCurrentTrips(email: string) {
+  try {
+    const { rows } = await sql`
+    SELECT * FROM pptrips WHERE userId = (SELECT id FROM ppusers WHERE email = ${email}) AND inputDate > CURRENT_TIMESTAMP - INTERVAL '24 hours'
+    `;
+    if (rows) {
+      return rows;
+    }
+  } catch (error) {
+    console.error("Error getting current trips: ", error);
+    //throw new Error("getting current trips: " + (error instanceof Error ? error.message : error));
+  }
+}
