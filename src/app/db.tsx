@@ -1,6 +1,6 @@
 "use server";
 import { sql } from "@vercel/postgres";
-
+//MARK: Register User
 export async function register(
   email: string,
   first_name: string,
@@ -23,6 +23,7 @@ export async function register(
     return false;
   }
 }
+// MARK: Get hashed password
 export async function getHashedPassword(email: string) {
   const { rows } = await sql`
       SELECT password FROM ppUsers WHERE email = ${email}
@@ -33,7 +34,7 @@ export async function getHashedPassword(email: string) {
   }
   return rows[0].password;
 }
-
+//MARK: Submit Trip Info
 export async function submitTripInfo(
   email: string,
   carrier: string,
@@ -73,7 +74,7 @@ export async function submitTripInfo(
     throw new Error("submitting trip info: " + (error instanceof Error ? error.message : error));
   }
 }
-
+//MARK: Submit Truck Info
 export async function submitTruckInfo(
   tripId: number,
   make: string,
@@ -111,7 +112,7 @@ export async function submitTruckInfo(
     throw new Error("submitting truck info:" + (error instanceof Error ? error.message : error));
   }
 }
-
+//MARK: Add Defect
 export async function addDefect(tripId: number, name: string, has_m_defect: boolean) {
   try {
     const { rows } = await sql`
