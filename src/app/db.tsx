@@ -149,3 +149,18 @@ export async function getCurrentTrips(email: string) {
     //throw new Error("getting current trips: " + (error instanceof Error ? error.message : error));
   }
 }
+
+//MARK: Get current Truck Info for trips
+export async function getTrucksInfo(email: string) {
+  try {
+    const { rows } = await sql`
+    SELECT * FROM ppvehicles WHERE tripId IN (SELECT id FROM pptrips WHERE userId = (SELECT id FROM ppusers WHERE email = ${email}) AND inputDate > CURRENT_TIMESTAMP - INTERVAL '24 hours')
+    `;
+    if (rows) {
+      return rows;
+    }
+  } catch (error) {
+    console.error("Error getting truck info: ", error);
+    throw new Error("getting truck info: " + (error instanceof Error ? error.message : error));
+  }
+}

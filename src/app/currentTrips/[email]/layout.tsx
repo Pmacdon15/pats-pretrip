@@ -1,7 +1,7 @@
 'use server';
 import AppBar from '../../appBar';
 import { auth } from '../../actions'
-import CreateTripContainer from '../../containers/createTripContainer';
+import CurrentTripContainer from '../../containers/currentTripContainer';
 export default async function CurrentTrip({
     children,
     params,
@@ -14,9 +14,9 @@ export default async function CurrentTrip({
     return (
         <>
             <AppBar email={decodedEmail} />
-            <CreateTripContainer>
+            <CurrentTripContainer>
                 {children}
-            </CreateTripContainer>
+            </CurrentTripContainer>
         </>
     )
 }
