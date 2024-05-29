@@ -1,3 +1,4 @@
+'use client';
 import styles from './page.module.css';
 
 type Trip = {
@@ -21,22 +22,27 @@ type Trip = {
     trucklp: string;
     trailerlp: string;
   };
-  
-export default function BasicDisplayTrips({
-  trips,
-  trucks,
-}: {
-  trips: Trip[];
-  trucks: Truck[];
-}) {
-  return (
-    <div className={styles.tripsBasicInfoContainer}>
-      {trips?.map((trip, index) => (
-        <div className={styles.tripsBasicInfo} key={index}>
-          Vehicle: {trucks && trucks[index]?.trucklp}, <br />
-          {trip.datetime.toLocaleString()}
-        </div>
-      ))}
-    </div>
-  );
-}
+  export default function BasicDisplayTrips({
+    trips,
+    trucks,
+    onTripClick, // Add the onTripClick prop
+  }: {
+    trips: Trip[];
+    trucks: Truck[];
+    onTripClick: (trip: Trip, truck: Truck) => void; // Define the prop type
+  }) {
+    return (
+      <div className={styles.tripsBasicInfoContainer}>
+        {trips?.map((trip, index) => (
+          <div
+            className={styles.tripsBasicInfo}
+            key={index}
+            onClick={() => onTripClick(trip, trucks[index])} // Call the onTripClick handler when a trip is clicked
+          >
+            Vehicle: {trucks && trucks[index]?.trucklp}, <br />
+            {trip.datetime.toLocaleString()}
+          </div>
+        ))}
+      </div>
+    );
+  }
