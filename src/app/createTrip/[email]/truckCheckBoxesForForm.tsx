@@ -20,7 +20,6 @@ export default async function TruckCheckBoxesForForm() {
         'Heater',
         'Horn',
         'Hydraulic System',
-        'Lamps',
         'Steering',
         'Suspension',
         'Tires',
@@ -28,6 +27,12 @@ export default async function TruckCheckBoxesForForm() {
         'Hubs',
         'Windows',
         'Wipers',
+        'Kingpin',
+        'Body',
+        'Securement',
+        'Lights',
+        'Reflectors',
+        'Air Lines',
     ];
     return (
         <>
@@ -56,7 +61,6 @@ export default async function TruckCheckBoxesForForm() {
                     );
                 })}
             </div>
-            <p className={styles.dividingLine}>--------------------------------</p>
         </>
     );
 }
