@@ -10,7 +10,7 @@ export default async function CurrentTrips({ params }: { params: { email: string
         <>
             <div className={styles.tripsBasicInfoContainer} >
                 {trips?.map((trip, index) => (
-                    <div key={index}>
+                    <div   className={styles.tripsBasicInfo}key={index}>
                         Vehicle: {trucks && trucks[index]?.trucklp}, <br />
                         {trip.datetime.toLocaleString()}
                     </div>

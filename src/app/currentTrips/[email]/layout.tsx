@@ -1,7 +1,7 @@
 'use server';
 import AppBar from '../../appBar';
 import { auth } from '../../actions'
-import CurrentTripContainer from '../../containers/currentTripContainer';
+import CurrentTripContainer from './currentTripContainer';
 export default async function CurrentTrip({
     children,
     params,
