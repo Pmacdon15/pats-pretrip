@@ -1,8 +1,8 @@
-'use server';
+
 import styles from './page.module.css';
 import TextField from '@mui/material/TextField';
 
-export default async function TruckCheckBoxesForForm() {
+export default function TruckCheckBoxesForForm() {
     const defects = [
         'Air Brake System',
         'Cab',
@@ -34,6 +34,7 @@ export default async function TruckCheckBoxesForForm() {
         'Lights',
         'Reflectors',
         'Air Lines',
+        'Other'
     ];
     return (
         <>

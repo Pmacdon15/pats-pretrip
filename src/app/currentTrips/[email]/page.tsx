@@ -4,7 +4,7 @@ import InDepthDisplayTrip from '../../containers/trips/inDepthDisplayTrip';
 import BasicDisplayTrips from '../../containers/trips/basicDisplayTrips';
 import { useState, useEffect } from 'react';
 import { Button } from '@mui/material';
-import styles from './page.module.css';
+import AddDefect from "./addDefect";
 
 type Trip = {
     id: number;
@@ -64,12 +64,15 @@ export default function CurrentTrips({ params }: { params: { email: string } }) 
 
     return (
         <>
+            {/* Button is nested for styles reasons */}
             <BasicDisplayTrips onTripClick={handleTripClick} trips={trips} trucks={trucks} />
             <InDepthDisplayTrip trip={selectedTrip} truck={selectedTruck} defects={filteredDefects} >
                 <Button variant="contained" color="primary" onClick={() => alert("Add defect")}>
                     Add Defect
                 </Button>
             </InDepthDisplayTrip>
+            <AddDefect /> 
+
         </>
 
     );

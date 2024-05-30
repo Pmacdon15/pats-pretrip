@@ -17,6 +17,7 @@ export default async function CurrentTrip({
       <AppBar email={decodedEmail} />      
       <TripContainer header='Current Trips'>        
         {children}
+      
       </TripContainer>
     </>
   )
