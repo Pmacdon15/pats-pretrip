@@ -1,7 +1,7 @@
 'use client';
 import { getCurrentTrips, getCurrentTrucksInfo, getCurrentDefects } from "@/app/db";
-import InDepthDisplayTrip from './inDepthDisplayTrip';
-import BasicDisplayTrips from './basicDisplayTrips';
+import InDepthDisplayTrip from '../../containers/trips/inDepthDisplayTrip';
+import BasicDisplayTrips from '../../containers/trips/basicDisplayTrips';
 import { useState, useEffect } from 'react';
 import { Button } from '@mui/material';
 
