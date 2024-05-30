@@ -37,6 +37,9 @@ export default function InDepthDisplayTrip({
                 ))}
             </div>
             <div className={styles.inDepthTripInfo}>
+                Remarks: {trip?.remarks}
+            </div>
+            <div className={styles.inDepthTripInfo}>
                 Driver: {trip?.esignature}
             </div>
             <Button variant="contained" color="primary" onClick={() => alert("Add defect")}>
