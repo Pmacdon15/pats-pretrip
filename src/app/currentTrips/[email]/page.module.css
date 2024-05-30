@@ -19,7 +19,7 @@
     height: 70vh;
     border-radius: 10px;
     padding: 10px;
-    background-color: rgba(240, 248, 255, 0.367);
+    /* background-color: rgba(240, 248, 255, 0.367); */
     gap: 20px;
     display: flex;
     flex-direction: column;
@@ -46,7 +46,7 @@
     padding: 10px;
     margin: auto;
     border-radius: 10px;    
-    /* background-color: rgba(240, 248, 255, 0.645); */
+    /* background-color: rgba(240, 248, 255, 0.178); */
     gap:10px;
     display: flex;
     flex-direction: column;

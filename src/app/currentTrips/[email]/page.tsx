@@ -1,10 +1,9 @@
 'use client';
-import styles from './page.module.css';
-import { getCurrentTrips, getTrucksInfo , getDefects} from "@/app/db";
+import { getCurrentTrips, getCurrentTrucksInfo , getCurrentDefects} from "@/app/db";
 import InDepthDisplayTrip from './inDepthDisplayTrip';
 import BasicDisplayTrips from './basicDisplayTrips';
 import { useState, useEffect } from 'react';
-import { set } from 'zod';
+
 type Trip = {
     id: number;
     userid: number;
@@ -39,10 +38,9 @@ export default function CurrentTrips({ params }: { params: { email: string } }) 
     useEffect(() => {
         const fetchData = async () => {
             const fetchedTrips = await getCurrentTrips(decodedEmail) as Trip[];
-            const fetchedTrucks = await getTrucksInfo(decodedEmail) as Truck[];
-            const fetchedDefects = await getDefects(decodedEmail) as any;
-            setDefects(fetchedDefects);
-            
+            const fetchedTrucks = await getCurrentTrucksInfo(decodedEmail) as Truck[];
+            const fetchedDefects = await getCurrentDefects(decodedEmail) as any;
+            setDefects(fetchedDefects);            
 
             setTrips(fetchedTrips);
             setTrucks(fetchedTrucks);

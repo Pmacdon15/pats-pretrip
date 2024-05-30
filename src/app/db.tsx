@@ -151,7 +151,7 @@ export async function getCurrentTrips(email: string) {
 }
 
 //MARK: Get current Truck Info for trips
-export async function getTrucksInfo(email: string) {
+export async function getCurrentTrucksInfo(email: string) {
   try {
     const { rows } = await sql`
     SELECT * FROM ppvehicles WHERE tripId IN (SELECT id FROM pptrips WHERE userId = (SELECT id FROM ppusers WHERE email = ${email}) AND inputDate > CURRENT_TIMESTAMP - INTERVAL '24 hours')
@@ -165,7 +165,7 @@ export async function getTrucksInfo(email: string) {
   }
 }
 //MARK: Get defects for email
-export async function getDefects(email: string) {
+export async function getCurrentDefects(email: string) {
   try {
     const { rows } = await sql`
     SELECT * FROM ppdefects WHERE tripId IN (SELECT id FROM pptrips WHERE userId = (SELECT id FROM ppusers WHERE email = ${email}) AND inputDate > CURRENT_TIMESTAMP - INTERVAL '24 hours')
