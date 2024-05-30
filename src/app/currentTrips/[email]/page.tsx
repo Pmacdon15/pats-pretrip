@@ -65,9 +65,9 @@ export default function CurrentTrips({ params }: { params: { email: string } }) 
         <>
             <BasicDisplayTrips onTripClick={handleTripClick} trips={trips} trucks={trucks} />
             <InDepthDisplayTrip trip={selectedTrip} truck={selectedTruck} defects={filteredDefects} >
-            <Button variant="contained" color="primary" onClick={() => alert("Add defect")}>                
-                Add Defect
-            </Button>
+                <Button variant="contained" color="primary" onClick={() => alert("Add defect")}>
+                    Add Defect
+                </Button>
             </InDepthDisplayTrip>
         </>
 

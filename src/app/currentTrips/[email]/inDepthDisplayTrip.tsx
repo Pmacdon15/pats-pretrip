@@ -21,8 +21,8 @@ export default function InDepthDisplayTrip({
                 </p>
             </div>
             <div className={styles.inDepthTripInfo}>
-                <p>Truck Info:<br />
-                    Make: {truck?.make} <br />
+                Truck Info:<br />
+                <p>Make: {truck?.make} <br />
                     Model: {truck?.model} <br />
                     Odometer: {truck?.odometer} <br />
                     License Plate: {truck?.trucklp} <br />
