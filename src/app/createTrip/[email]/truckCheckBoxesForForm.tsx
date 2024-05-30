@@ -65,8 +65,8 @@ export default async function TruckCheckBoxesForForm() {
                 name="remarks"
                 required={true}
                 className={styles.textFieldWide}
-                id="Remarks"
-                label="remarks"
+                id="remarks"
+                label="Remarks"
                 variant="standard"
                 sx={{
                     "& .MuiInputLabel-root": {

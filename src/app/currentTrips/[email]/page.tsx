@@ -1,8 +1,9 @@
 'use client';
-import { getCurrentTrips, getCurrentTrucksInfo , getCurrentDefects} from "@/app/db";
+import { getCurrentTrips, getCurrentTrucksInfo, getCurrentDefects } from "@/app/db";
 import InDepthDisplayTrip from './inDepthDisplayTrip';
 import BasicDisplayTrips from './basicDisplayTrips';
 import { useState, useEffect } from 'react';
+import { Button } from '@mui/material';
 
 type Trip = {
     id: number;
@@ -40,7 +41,7 @@ export default function CurrentTrips({ params }: { params: { email: string } }) 
             const fetchedTrips = await getCurrentTrips(decodedEmail) as Trip[];
             const fetchedTrucks = await getCurrentTrucksInfo(decodedEmail) as Truck[];
             const fetchedDefects = await getCurrentDefects(decodedEmail) as any;
-            setDefects(fetchedDefects);            
+            setDefects(fetchedDefects);
 
             setTrips(fetchedTrips);
             setTrucks(fetchedTrucks);
@@ -59,12 +60,17 @@ export default function CurrentTrips({ params }: { params: { email: string } }) 
     console.log(trips)
     //console.log(defects)
     const filteredDefects = defects.filter(defect => defect.tripid === selectedTrip?.id);
-    
+
     return (
         <>
             <BasicDisplayTrips onTripClick={handleTripClick} trips={trips} trucks={trucks} />
-            <InDepthDisplayTrip trip={selectedTrip} truck={selectedTruck} defects={filteredDefects} />
+            <InDepthDisplayTrip trip={selectedTrip} truck={selectedTruck} defects={filteredDefects} >
+            <Button variant="contained" color="primary" onClick={() => alert("Add defect")}>                
+                Add Defect
+            </Button>
+            </InDepthDisplayTrip>
         </>
+
     );
 
 }

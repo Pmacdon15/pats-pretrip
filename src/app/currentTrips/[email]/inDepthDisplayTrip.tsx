@@ -1,11 +1,12 @@
 'use client';
 import styles from './page.module.css';
-import { Button } from '@mui/material';
 export default function InDepthDisplayTrip({
+    children,
     trip,
     truck,
-    defects
+    defects 
 }: {
+    children: React.ReactNode;
     trip: any;
     truck: any;
     defects: any;
@@ -41,10 +42,8 @@ export default function InDepthDisplayTrip({
             </div>
             <div className={styles.inDepthTripInfo}>
                 Driver: {trip?.esignature}
-            </div>
-            <Button variant="contained" color="primary" onClick={() => alert("Add defect")}>
-                Add Defect
-            </Button>
+            </div> 
+            {children}           
         </div>
     )
     // Format the defect name to be more readable
