@@ -48,7 +48,7 @@
 }
 
 .checkboxContainer {
-    width: 150px;
+    width: 20ch;
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
