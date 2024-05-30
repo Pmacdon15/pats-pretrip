@@ -62,19 +62,23 @@ export default function CurrentTrips({ params }: { params: { email: string } }) 
     //console.log(defects)
     const filteredDefects = defects.filter(defect => defect.tripid === selectedTrip?.id);
 
+    const [showAddDefect, setShowAddDefect] = useState(false);
+
+    const handleAddDefectClick = () => {
+        setShowAddDefect(true);
+    };
+
     return (
         <>
             {/* Button is nested for styles reasons */}
             <BasicDisplayTrips onTripClick={handleTripClick} trips={trips} trucks={trucks} />
             <InDepthDisplayTrip trip={selectedTrip} truck={selectedTruck} defects={filteredDefects} >
-                <Button variant="contained" color="primary" onClick={() => alert("Add defect")}>
+                <Button variant="contained" color="primary" onClick={handleAddDefectClick}>
                     Add Defect
                 </Button>
             </InDepthDisplayTrip>
-            <AddDefect /> 
-
+            {showAddDefect && <AddDefect />}
         </>
-
     );
 
 }
