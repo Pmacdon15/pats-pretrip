@@ -55,8 +55,8 @@ export default function PastTrips({ params }: { params: { email: string } }) {
         setSelectedTruck(truck);
     };
 
-    console.log(trucks)
-    console.log(trips)
+    // console.log(trucks)
+    // console.log(trips)
     //console.log(defects)
     const filteredDefects = defects.filter(defect => defect.tripid === selectedTrip?.id);
 
@@ -64,7 +64,7 @@ export default function PastTrips({ params }: { params: { email: string } }) {
         <>
             <BasicDisplayTrips onTripClick={handleTripClick} trips={trips} trucks={trucks} />
             <InDepthDisplayTrip trip={selectedTrip} truck={selectedTruck} defects={filteredDefects} >
-               <div>Inspections older than 24 hours cannot be modified.</div>
+                <div>Inspections older than 24 hours cannot be modified.</div>
             </InDepthDisplayTrip>
         </>
 

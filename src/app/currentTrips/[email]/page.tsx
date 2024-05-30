@@ -4,6 +4,7 @@ import InDepthDisplayTrip from '../../containers/trips/inDepthDisplayTrip';
 import BasicDisplayTrips from '../../containers/trips/basicDisplayTrips';
 import { useState, useEffect } from 'react';
 import { Button } from '@mui/material';
+import styles from './page.module.css';
 
 type Trip = {
     id: number;
@@ -56,8 +57,8 @@ export default function CurrentTrips({ params }: { params: { email: string } }) 
         setSelectedTruck(truck);
     };
 
-    console.log(trucks)
-    console.log(trips)
+    //console.log(trucks)
+    //console.log(trips)
     //console.log(defects)
     const filteredDefects = defects.filter(defect => defect.tripid === selectedTrip?.id);
 

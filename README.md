@@ -1,36 +1,105 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Pat's Pre-Trips
 
-## Getting Started
+# Table of Contents
+- [Description](#Description)
+- [Disclaimer](#Disclaimer)
+- [Deployments](#Deployments)
+- [Features](#Features)
+  - [Current Features](#Current-Features) 
+  - [Coming Soon](#Coming-Soon) 
+- [Cloning](#Cloning)
+- [Setup](#Setup)
+- [Start Up](#Start-Up)
+- [Usage](#Usage)
 
-First, run the development server:
+# Description
+Conduct and document pre-trip inspections for commercial vehicles with ease. View current and past trips, and create new ones quickly and efficiently Get started today!
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+# Disclaimer
+Pat's Pre-Trips is currently in development and is provided free of charge. As such, we disclaim any liability for damages or issues incurred while using the app. Our service is intended to be used as a convenience and not relied upon as the sole means of conducting pre-trip inspections. We are not responsible for any consequences resulting from its use.
+By using Pat's Pre-Trips, you acknowledge that it is a beta product and may contain errors or inaccuracies. We are continually working to improve the app, but we make no warranties or guarantees regarding its performance or reliability.
+Pat's Pre-Trips is a fun project created to explore the feasibility of a pre-trip inspection app. We hope you find it helpful, but please use it at your own risk.
+Let me know if you'd like me to make any adjustments!
+# Deployments
+Here you can try the app for your self(still in development)
+```https
+https://pats-pretrip.vercel.app/
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+# Features
+## Current Features
+1. User passwords are hashed.
+2. Authentication is achieved through Json Web tokens and cookies.
+3. Ability to see current trips less than 24 hours old.
+4. Ability to see past trips more than 24 hours old.
+## Coming Soon
+1. Ability to add on route defects.
+2. Ability to correct defects and list invoice number(Potentially take photo of invoice) 
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+# Cloning
+1. Clone repository run this command: 
+```bash
+git clone https://github.com/Pmacdon15/pats-pretrip.git
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+# Setup
+After cloning run: 
+```Bash
+cd pats-pretrip
+```
 
-## Learn More
+Once you are inside of the project directory you will have to run a few commands from the root directory to set the project up.
+The commands are:
+1. Install dependencies:
+```Bash
+npm i
+```
+2. Set up .env.local with Vercel Postgres info as while as Pepper phrase and Jwt phrase:
+```env
+# Created by Vercel CLI
+NX_DAEMON=""
+PEPPER_PHRASE=""
+POSTGRES_DATABASE=""
+POSTGRES_HOST=""
+POSTGRES_PASSWORD=""
+POSTGRES_PRISMA_URL=""
+POSTGRES_URL=""
+POSTGRES_URL_NON_POOLING=""
+POSTGRES_URL_NO_SSL=""
+POSTGRES_USER="default"
+SECRET_KEY_JWT=""
+TURBO_REMOTE_ONLY=""
+TURBO_RUN_SUMMARY=""
+VERCEL=""
+```
+it might be easiest to associate your fork with your Vercel Postgres database with your project and add these two Variables to your projects .env:
+```env
+SECRET_KEY_JWT="NewPassWordHere"
+PEPPER_PHRASE="NewPhraseHere"
+```
+Then download a copy of your env file from vercel for your project.
+> **Note**
+> This project was meant to be used with a Vercel Postgres database and I use the Vercel Sdk to communicate with the database.
 
-To learn more about Next.js, take a look at the following resources:
+3. Now we have to build the client easily done by running:
+```Bash
+npm run build
+```
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+4. Setup port forwarding on your router for both port 3000 and the answer you gave during setup.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+# Start up
+Project can be easily started from the root by running:
+```Bash
+npm run start
+```
 
-## Deploy on Vercel
+# Usage
+Then you can go to:
+```http
+http://localhost:3000
+```
+To register.
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+> **Note**
+> This project is still in development and is not meant to be relied upon as your daily driver for free trips but can be used in a pinch.
