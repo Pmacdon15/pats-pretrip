@@ -1,5 +1,6 @@
 'use server';
 import styles from './page.module.css';
+import TextField from '@mui/material/TextField';
 
 export default async function TruckCheckBoxesForForm() {
     const defects = [
@@ -60,6 +61,41 @@ export default async function TruckCheckBoxesForForm() {
                         </div>
                     );
                 })}
+                <TextField
+                name="remarks"
+                required={true}
+                className={styles.textFieldWide}
+                id="Remarks"
+                label="remarks"
+                variant="standard"
+                sx={{
+                    "& .MuiInputLabel-root": {
+                        color: "white",
+                        "&.Mui-focused": {
+                            color: "white",
+                        },
+                    },
+                    "& .MuiInput-underline": {
+                        "&:before": {
+                            borderBottomColor: "white",
+                        },
+                        "&:after": {
+                            borderBottomColor: "white",
+                        },
+                    },
+                    "& .MuiInputBase-input": {
+                        "&:focus": {
+                            color: "white",
+                        },
+                        "&:not(:focus)": {
+                            color: "white",
+                        },
+                    },
+                }}
+                InputLabelProps={{
+                    required: false,
+                }}
+            />
             </div>
         </>
     );
@@ -67,17 +103,3 @@ export default async function TruckCheckBoxesForForm() {
 
 
 
-{/* < input className={styles.checkbox} type="checkbox" />
-                <label className={styles.checkboxLabel}>Toggle Div</label>
-                <div className={styles.hiddenInfo}>Hidden Div Content</div> */}
-
-
-// <div className={styles.mainContainer}>
-// <div className={styles.checkboxContainer}>
-//     <input name='airBrakeSystem' className={styles.checkbox} type="checkbox" />
-//     <label className={styles.label}>Air Brake System</label>
-//     <div className={styles.hiddenInfo}>
-//         <input name='airBrakeSystemM' className={styles.checkbox} type="checkbox" />
-//         <label className={styles.label}>Check here for major</label>
-//     </div>
-// </div>

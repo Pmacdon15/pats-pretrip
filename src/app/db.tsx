@@ -41,6 +41,7 @@ export async function submitTripInfo(
   carrierAddress: string,
   inspectionAddress: string,
   dateTime: string,
+  remarks: string,
   eSignature: string
 ) {
   try {
@@ -51,6 +52,7 @@ export async function submitTripInfo(
         carrierAddress,
         inspectionAddress,
         dateTime,
+        remarks,
         eSignature,
         inputDate
       )
@@ -60,6 +62,7 @@ export async function submitTripInfo(
         ${carrierAddress},
         ${inspectionAddress},
         ${dateTime},
+        ${remarks},
         ${eSignature},
         CURRENT_TIMESTAMP
       )

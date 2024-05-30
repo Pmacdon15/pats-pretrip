@@ -1,5 +1,6 @@
 'use client';
 import styles from './page.module.css';
+import { Button } from '@mui/material';
 export default function InDepthDisplayTrip({
     trip,
     truck,
@@ -38,6 +39,9 @@ export default function InDepthDisplayTrip({
             <div className={styles.inDepthTripInfo}>
                 Driver: {trip?.esignature}
             </div>
+            <Button variant="contained" color="primary" onClick={() => alert("Add defect")}>
+                Add Defect
+            </Button>
         </div>
     )
     // Format the defect name to be more readable
