@@ -108,7 +108,7 @@ export async function submitTruckInfo(
       return true;
     }
   } catch (error) {
-    console.error("Error submitting truck: ", error);    
+    console.error("Error submitting truck: ", error);
     throw new Error("submitting truck info:" + (error instanceof Error ? error.message : error));
   }
 }
@@ -162,5 +162,19 @@ export async function getTrucksInfo(email: string) {
   } catch (error) {
     console.error("Error getting truck info: ", error);
     throw new Error("getting truck info: " + (error instanceof Error ? error.message : error));
+  }
+}
+//MARK: Get defects for email
+export async function getDefects(email: string) {
+  try {
+    const { rows } = await sql`
+    SELECT * FROM ppdefects WHERE tripId IN (SELECT id FROM pptrips WHERE userId = (SELECT id FROM ppusers WHERE email = ${email}) AND inputDate > CURRENT_TIMESTAMP - INTERVAL '24 hours')
+    `;
+    if (rows) {
+      return rows;
+    }
+  } catch (error) {
+    console.error("Error getting defects: ", error);
+    throw new Error("getting defects: " + (error instanceof Error ? error.message : error));
   }
 }

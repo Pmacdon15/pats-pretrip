@@ -25,11 +25,11 @@ type Trip = {
   export default function BasicDisplayTrips({
     trips,
     trucks,
-    onTripClick, // Add the onTripClick prop
+    onTripClick,
   }: {
     trips: Trip[];
     trucks: Truck[];
-    onTripClick: (trip: Trip, truck: Truck) => void; // Define the prop type
+    onTripClick: (trip: Trip, truck: Truck) => void; 
   }) {
     return (
       <div className={styles.tripsBasicInfoContainer}>
