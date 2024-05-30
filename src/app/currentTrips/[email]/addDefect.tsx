@@ -9,6 +9,7 @@ const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     const form = event.currentTarget;
     test();
+    alert('Feature coming soon');
     onHide();
 };
 
