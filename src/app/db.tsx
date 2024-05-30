@@ -137,6 +137,22 @@ export async function addDefect(tripId: number, name: string, has_m_defect: bool
     throw new Error("adding defect: " + (error instanceof Error ? error.message : error));
   }
 }
+//MARK: Change to major defect
+export async function changeToMajorDefect(tripId: number, name: string) {
+  try {
+    const { rows } = await sql`
+    UPDATE ppdefects
+    SET has_m_defect = true
+    WHERE tripId = ${tripId} AND name = ${name}
+    `;
+    if (rows) {
+      return true;
+    }
+  } catch (error) {
+    console.error("Error changing to major defect: ", error);
+    throw new Error("changing to major defect: " + (error instanceof Error ? error.message : error));
+  }
+}
 
 //MARK: Get Current Trips
 export async function getCurrentTrips(email: string) {

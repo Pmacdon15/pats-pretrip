@@ -179,31 +179,29 @@ export async function submitForm(email: string, prevState: any, formData: FormDa
   redirect(`/currentTrips/${email}`);
   //return { message: 'Form submitted' };
 }
+// TODO: remove this function
 //MARK: Add Defect on route
-export async function test(){
-  console.log("Test");
-}
-export async function addDefectFormAction(email:string, tripId: number, formData: FormData) {
-  try {
-    Array.from(formData.entries()).forEach(([key, value]) => {
-      if (value === "on") {
-        // Skip iterating over major defects because they are handled in the previous iteration
-        if (key.endsWith("M")) return;
-        //console.log(`${key}: ${value}`);
-        const has_m_defect = formData.get(`${key}M`) === "on";
-        addDefect(tripId, key, has_m_defect);
-        //console.log("Defect: ", key, " Major: ", has_m_defect);      
-      }
-    });
-  } catch (error) {
-    console.error("Error adding defect: ", error);
-    return { message: "Error: " + (error instanceof Error ? error.message : error) };
-  }
-  console.log("Defect(s) added");
-  revalidatePath(`/currentTrips/${email}`);
-  //redirect(`/currentTrips/${email}`);
-  //return { message: 'Defect added' };
-}
+// export async function addDefectFormAction(email:string, tripId: number, formData: FormData) {
+//   try {
+//     Array.from(formData.entries()).forEach(([key, value]) => {
+//       if (value === "on") {
+//         // Skip iterating over major defects because they are handled in the previous iteration
+//         if (key.endsWith("M")) return;
+//         //console.log(`${key}: ${value}`);
+//         const has_m_defect = formData.get(`${key}M`) === "on";
+//         addDefect(tripId, key, has_m_defect);
+//         //console.log("Defect: ", key, " Major: ", has_m_defect);      
+//       }
+//     });
+//   } catch (error) {
+//     console.error("Error adding defect: ", error);
+//     return { message: "Error: " + (error instanceof Error ? error.message : error) };
+//   }
+//   console.log("Defect(s) added");
+//   revalidatePath(`/currentTrips/${email}`);
+//   //redirect(`/currentTrips/${email}`);
+//   //return { message: 'Defect added' };
+// }
 
 //MARK: Helper functions
 async function verifyPassword(email: string, password: string) {

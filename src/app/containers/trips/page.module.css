@@ -1,26 +1,26 @@
 .mainTripPage{
-    min-height: 80vh;
+    /* min-height: 80vh; */
     max-height : fit-content;
     width: min(1000px,96%);
     background: linear-gradient(90deg, #649bc5 0%, #9fbdd5 50%, #649bc5 100%);    
     border-radius: 10px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);  
     display: flex;
-    flex-direction: column;    
+    flex-direction: column;        
     align-items: center;
     margin-top: 40px;
     color:white;
     text-shadow: 1px 1px 2px #000000;
 }
-.mainTripBasicAndInDepth{
-   
+.mainTripBasicAndInDepth{   
     margin-top: -10px;
-    max-height : fit-content;
+    height : fit-content;
     width: 100%;    
     display: flex;
     flex-direction: row;    
     align-items: center; 
-    /* background-color: #649bc5;   */
+    /* background-color: #091014;   */
+   
 }
 
 .tripsBasicInfoContainer {
@@ -30,17 +30,20 @@
     max-height : fit-content;
     border-radius: 10px;
     padding: 10px;
-    /* background-color: rgba(240, 248, 255, 0.367); */
+    background-color: rgba(240, 248, 255, 0.367);
     gap: 20px;
     display: flex;
     flex-direction: column;
     margin: auto;
+    height: fit-content;
+    margin-top: 0;
 }
 
 .tripsBasicInfo {
     background-color: rgba(240, 248, 255, 0.367);
     padding: 10px;
     border-radius: 10px;
+    
 }
 
 .tripsBasicInfo:hover {
@@ -48,6 +51,7 @@
     transform: scale(1.1);
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
     cursor: pointer;
+    
 
 }
 
@@ -55,13 +59,15 @@
     width: 60%;    
     height: 70vh;
     padding: 10px;
+    padding-top:0;
     margin: auto;
     border-radius: 10px;    
     /* background-color: rgba(240, 248, 255, 0.178); */
     gap:10px;
     display: flex;
     flex-direction: column;
-    
+    height: fit-content;
+    margin-top: 0;    
    
 }
 
@@ -72,6 +78,7 @@
     color:black;
     text-shadow: 0px 0px 4px #f1eded;
     box-shadow: 0px 0px 2px#1e273269;
+    height: fit-content;
 }
 
 /* MARK: Media Queries */
@@ -85,12 +92,10 @@
 
     .tripsBasicInfoContainer {
         width: 90%;
-        height: fit-content;       
     }
 
     .tripsInDepthInfoContainer {
-        width: 90%;               
-        height: fit-content;
+        width: 90%;       
     }
     
 }

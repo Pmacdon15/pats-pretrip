@@ -12,5 +12,14 @@
     flex-direction: column;
     overflow-y: auto;
     max-height: 80vh;
-    width:80%;
+    width:min(600px,90%);
+    scrollbar-width: thin;
+    scrollbar-color: #9fbdd5 #649bc5;
+}
+
+@media screen and (max-width: 500px) {
+    .container {
+        width: 90%;
+    }
+    
 }
