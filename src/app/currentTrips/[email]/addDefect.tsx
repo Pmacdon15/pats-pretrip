@@ -3,10 +3,10 @@ import { Button } from '@mui/material';
 import styles from './addDefect.module.css';
 import TruckCheckBoxesForForm from '@/app/createTrip/[email]/truckCheckBoxesForForm';
 import { addDefect, changeToMajorDefect } from '@/app/db';
-import { useRouter } from 'next/navigation'
 
-export default function AddDefect({ tripId, currentDefects, onHide }: ({ tripId: number, currentDefects: any, onHide: () => void })) {
-    const router = useRouter();
+
+export default function AddDefect({email, tripId, currentDefects, onHide }: ({email:string,  tripId: number, currentDefects: any, onHide: () => void })) {
+    // const router = useRouter();
     const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
         event.preventDefault();
         const form = event.currentTarget;
@@ -27,11 +27,9 @@ export default function AddDefect({ tripId, currentDefects, onHide }: ({ tripId:
 
                 }
             }
-        });
-
-        //console.log(tripId);
-        router.push(`/currentTrips/admin@admin.com`);
-        alert('Feature coming soon');
+        });       
+      
+       
         onHide();
     };
 

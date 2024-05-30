@@ -2,7 +2,6 @@
 import { hash, verify } from "./hasher";
 import { cookies } from "next/headers";
 import jwt from "jsonwebtoken";
-// import Database from "./db";
 import { register, getHashedPassword, submitTripInfo, submitTruckInfo, addDefect } from "./db";
 import { redirect } from "next/navigation";
 import { revalidatePath } from "next/cache";
