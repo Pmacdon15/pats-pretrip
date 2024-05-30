@@ -11,14 +11,14 @@ export default function InDepthDisplayTrip({
 }) {
     return (
         <div className={styles.tripsInDepthInfoContainer}>
-            <div className={styles.carrierInfo}>
+            <div className={styles.inDepthTripInfo}>
                 Carrier Info:<br />
                 <p>Carrier: {trip?.carrier}<br />
                     Carrier Address: {trip?.carrieraddress}<br />
                     Inspection Address: {trip?.inspectionaddress}
                 </p>
             </div>
-            <div className={styles.carrierInfo}>
+            <div className={styles.inDepthTripInfo}>
                 <p>Truck Info:<br />
                     Make: {truck?.make} <br />
                     Model: {truck?.model} <br />
@@ -27,7 +27,7 @@ export default function InDepthDisplayTrip({
                     Trailer License Plate: {truck?.trailerlp}
                 </p>
             </div>
-            <div className={styles.carrierInfo}>
+            <div className={styles.inDepthTripInfo}>
                 Defects:<br />
                 {defects.map((defect: any, index: number) => (
                     <div key={index}>
@@ -35,7 +35,7 @@ export default function InDepthDisplayTrip({
                     </div>
                 ))}
             </div>
-            <div className={styles.carrierInfo}>
+            <div className={styles.inDepthTripInfo}>
                 Driver: {trip?.esignature}
             </div>
         </div>
