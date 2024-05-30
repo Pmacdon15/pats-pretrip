@@ -68,6 +68,10 @@ export default function CurrentTrips({ params }: { params: { email: string } }) 
         setShowAddDefect(true);
     };
 
+    const handleHideAddDefect = () => {
+        setShowAddDefect(false);
+    };
+
     return (
         <>
             {/* Button is nested for styles reasons */}
@@ -77,7 +81,7 @@ export default function CurrentTrips({ params }: { params: { email: string } }) 
                     Add Defect
                 </Button>
             </InDepthDisplayTrip>
-            {showAddDefect && <AddDefect />}
+            {showAddDefect && <AddDefect onHide={handleHideAddDefect} />}
         </>
     );
 

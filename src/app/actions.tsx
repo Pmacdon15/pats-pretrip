@@ -5,6 +5,7 @@ import jwt from "jsonwebtoken";
 // import Database from "./db";
 import { register, getHashedPassword, submitTripInfo, submitTruckInfo, addDefect } from "./db";
 import { redirect } from "next/navigation";
+import { revalidatePath } from "next/cache";
 import { z } from 'zod';
 
 const schemaSignup = z.object({
@@ -145,10 +146,10 @@ export async function submitForm(email: string, prevState: any, formData: FormDa
       formData.get("dateTime") as string,
       formData.get("remarks") as string,
       formData.get("eSignature") as string
-    )as { id: number };  
+    ) as { id: number };
     // const userId = info.userId;
     const tripId = info.id;
-  
+
     await submitTruckInfo(
       tripId,
       formData.get("make") as string,
@@ -168,15 +169,40 @@ export async function submitForm(email: string, prevState: any, formData: FormDa
         //console.log("Defect: ", key, " Major: ", has_m_defect);      
       }
     });
-    
+
   } catch (error) {
     console.error("Error submitting form: ", error);
-    return { message:"Error: "+ (error instanceof Error ? error.message : error) };
+    return { message: "Error: " + (error instanceof Error ? error.message : error) };
   }
   console.log("Form submitted");
-    //console.table(Array.from(formData.entries()));
+  //console.table(Array.from(formData.entries()));
   redirect(`/currentTrips/${email}`);
   //return { message: 'Form submitted' };
+}
+//MARK: Add Defect on route
+export async function test(){
+  console.log("Test");
+}
+export async function addDefectFormAction(email:string, tripId: number, formData: FormData) {
+  try {
+    Array.from(formData.entries()).forEach(([key, value]) => {
+      if (value === "on") {
+        // Skip iterating over major defects because they are handled in the previous iteration
+        if (key.endsWith("M")) return;
+        //console.log(`${key}: ${value}`);
+        const has_m_defect = formData.get(`${key}M`) === "on";
+        addDefect(tripId, key, has_m_defect);
+        //console.log("Defect: ", key, " Major: ", has_m_defect);      
+      }
+    });
+  } catch (error) {
+    console.error("Error adding defect: ", error);
+    return { message: "Error: " + (error instanceof Error ? error.message : error) };
+  }
+  console.log("Defect(s) added");
+  revalidatePath(`/currentTrips/${email}`);
+  //redirect(`/currentTrips/${email}`);
+  //return { message: 'Defect added' };
 }
 
 //MARK: Helper functions
