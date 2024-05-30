@@ -2,20 +2,21 @@
 import { Button } from '@mui/material';
 import styles from './addDefect.module.css';
 import TruckCheckBoxesForForm from '@/app/createTrip/[email]/truckCheckBoxesForForm';
-import { test} from '@/app/actions';
+import { addDefectFormAction ,test} from '@/app/actions';
 
-export default function AddDefect({ onHide }:({ onHide: () => void }) ) {
+export default function AddDefect({ tripId, onHide }:({tripId:number, onHide: () => void }) ) {
 const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     const form = event.currentTarget;
-    test();
+    // test();
+    console.log(tripId);
     alert('Feature coming soon');
     onHide();
 };
 
 return (
     <form onSubmit={handleSubmit} className={styles.container}>
-        Add Defect
+        Add Defect:
         <TruckCheckBoxesForForm />
         <Button variant="contained" type="submit">
             Submit

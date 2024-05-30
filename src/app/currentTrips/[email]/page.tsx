@@ -81,7 +81,7 @@ export default function CurrentTrips({ params }: { params: { email: string } }) 
                     Add Defect
                 </Button>
             </InDepthDisplayTrip>
-            {showAddDefect && <AddDefect onHide={handleHideAddDefect} />}
+            {showAddDefect && <AddDefect tripId={selectedTrip?.id || 0} onHide={handleHideAddDefect} />}
         </>
     );
 
