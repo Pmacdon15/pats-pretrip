@@ -181,3 +181,45 @@ export async function getCurrentDefects(email: string) {
     throw new Error("getting defects: " + (error instanceof Error ? error.message : error));
   }
 }
+//MARK: Get all trips for email older than 24 hours
+export async function getAllTrips(email: string) {
+  try {
+    const { rows } = await sql`
+    SELECT * FROM pptrips WHERE userId = (SELECT id FROM ppusers WHERE email = ${email}) AND inputDate < CURRENT_TIMESTAMP - INTERVAL '24 hours'
+    `;
+    if (rows) {
+      return rows;
+    }
+  } catch (error) {
+    console.error("Error getting all trips: ", error);
+    throw new Error("getting all trips: " + (error instanceof Error ? error.message : error));
+  }
+}
+//MARK: Get all trucks for email older than 24 hours
+export async function getAllTrucks(email: string) {
+  try {
+    const { rows } = await sql`
+    SELECT * FROM ppvehicles WHERE tripId IN (SELECT id FROM pptrips WHERE userId = (SELECT id FROM ppusers WHERE email = ${email}) AND inputDate < CURRENT_TIMESTAMP - INTERVAL '24 hours')
+    `;
+    if (rows) {
+      return rows;
+    }
+  } catch (error) {
+    console.error("Error getting all trucks: ", error);
+    throw new Error("getting all trucks: " + (error instanceof Error ? error.message : error));
+  }
+}
+//MARK: Get all defects for email older than 24 hours
+export async function getAllDefects(email: string) {
+  try {
+    const { rows } = await sql`
+    SELECT * FROM ppdefects WHERE tripId IN (SELECT id FROM pptrips WHERE userId = (SELECT id FROM ppusers WHERE email = ${email}) AND inputDate < CURRENT_TIMESTAMP - INTERVAL '24 hours')
+    `;
+    if (rows) {
+      return rows;
+    }
+  } catch (error) {
+    console.error("Error getting all defects: ", error);
+    throw new Error("getting all defects: " + (error instanceof Error ? error.message : error));
+  }
+}
