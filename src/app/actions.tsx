@@ -33,9 +33,8 @@ const schemaLogin = z.object({
     invalid_type_error: 'Invalid Password',
   }),
 })
-
+//MARK: Sign Up
 export async function signUp(prevState: any, formData: FormData) {
-
   const validatedFields = schemaSignup.safeParse({
     email: formData.get('email'),
     first_name: formData.get('first_name'),
@@ -74,9 +73,8 @@ export async function signUp(prevState: any, formData: FormData) {
   applyCookie(email);
   redirect(`/currentTrips/${email}`);
 }
-
+//MARK: Login
 export async function login(prevState: any, formData: FormData) {
-
   const validatedFields = schemaLogin.safeParse({
     email: formData.get('email'),
     password: formData.get('password'),
@@ -102,7 +100,7 @@ export async function login(prevState: any, formData: FormData) {
   applyCookie(email);
   redirect(`/currentTrips/${email}`);
 }
-
+//MARK: Auth
 export async function auth(email: string) {
   let Authed = false;
   try {
@@ -125,7 +123,7 @@ export async function auth(email: string) {
     redirect("/");
   }
 }
-
+//MARK: Logout
 export async function logout() {
   try {
     cookies().delete("AuthCookieTracking");
@@ -135,7 +133,7 @@ export async function logout() {
   redirect("/");
 }
 
-
+//MARK: Submit Form
 export async function submitForm(email: string, prevState: any, formData: FormData) {
   'use server'
   try {
@@ -145,6 +143,7 @@ export async function submitForm(email: string, prevState: any, formData: FormDa
       formData.get("carrierAddress") as string,
       formData.get("inspectionAddress") as string,
       formData.get("dateTime") as string,
+      formData.get("remarks") as string,
       formData.get("eSignature") as string
     )as { id: number };  
     // const userId = info.userId;
@@ -179,7 +178,6 @@ export async function submitForm(email: string, prevState: any, formData: FormDa
   redirect(`/currentTrips/${email}`);
   //return { message: 'Form submitted' };
 }
-
 
 //MARK: Helper functions
 async function verifyPassword(email: string, password: string) {

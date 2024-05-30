@@ -25,6 +25,7 @@
     align-items: center;
 }
 
+
 @media screen and (max-width: 1268px) {
     .mainContainer {
         width: 80%;

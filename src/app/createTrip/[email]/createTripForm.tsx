@@ -25,8 +25,6 @@ export default function CreateTripForm({
             <p aria-live="polite" className="sr-only">
                 {state?.message}
             </p>
-
-            {/* <SubmitButton /> */}
         </form>
     );
 }

@@ -15,7 +15,7 @@ export default async function CreateTrip({ params }: { params: { email: string }
                 <CarrierAndTruckInfo />
                 <p className={styles.text}>Check box for defects found:</p>
                 <TruckCheckBoxesForForm />
-                <TrailerSectionOfForm />
+                {/* <TrailerSectionOfForm /> */}
                 <SubmitButton />
             </CreateTripForm>
         </>
