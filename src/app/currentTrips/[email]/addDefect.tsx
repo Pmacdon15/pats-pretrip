@@ -9,8 +9,8 @@ export default function AddDefect({ email, tripId, defects, onHide }: ({ email: 
         event.preventDefault();
         const form = event.currentTarget;
         const formData = new FormData(form);
-        
-        Array.from(formData.entries()).forEach(([key, value]) => {
+        console.log("tripId to be updated: ", tripId);
+                Array.from(formData.entries()).forEach(([key, value]) => {
             if (value === "on" && !key.endsWith("M")) {
                 const has_m_defect = formData.get(`${key}M`) === "on";
                 const selectedDefects = defects.filter((defect: any) => defect.tripid === tripId);                
