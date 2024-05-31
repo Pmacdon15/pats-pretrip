@@ -36,14 +36,15 @@ export default function CurrentTrips({ params }: { params: { email: string } }) 
     const router = useRouter()
     const pathname = usePathname()
     const searchParams = useSearchParams()
-    const tripId = searchParams.get("tripId")
-    console.log("Search Params tripId: ", tripId)
+    const tripId = Number(searchParams.get("tripId")) ?? 0;
+    const truckId = Number(searchParams.get("truckId")) ?? 0;
+   
     const decodedEmail = decodeURIComponent(params.email);
     const [trips, setTrips] = useState<Trip[]>([]);
     const [trucks, setTrucks] = useState<Truck[]>([]);
     const [defects, setDefects] = useState<any[]>([]);
-    const [selectedTrip, setSelectedTrip] = useState<Trip | null>(null);
-    const [selectedTruck, setSelectedTruck] = useState<Truck | null>(null);
+    const [selectedTrip, setSelectedTrip] = useState<number>(0);
+    const [selectedTruck, setSelectedTruck] = useState<number>(0);
 
     useEffect(() => {
         const fetchData = async () => {
@@ -54,21 +55,21 @@ export default function CurrentTrips({ params }: { params: { email: string } }) 
 
             setTrips(fetchedTrips);
             setTrucks(fetchedTrucks);
-            setSelectedTrip(fetchedTrips[0]);
-            setSelectedTruck(fetchedTrucks[0]);
-            router.push(pathname + '?' + createQueryString(fetchedTrips[0].id, fetchedTrucks[0].id));
+            setSelectedTrip(tripId);
+            setSelectedTruck(truckId);
+            router.push(pathname + '?' + createQueryString(tripId, truckId));
         };
         fetchData();
     }, [decodedEmail]);
 
     const handleTripClick = (trip: Trip, truck: Truck) => {
-        setSelectedTrip(trip);
-        setSelectedTruck(truck);
-        console.log("Selected Trip: ", trip.id);
+        setSelectedTrip(tripId);
+        setSelectedTruck(truckId);
+        //console.log("Selected Trip: ", trip.id);
         router.push(pathname + '?' + createQueryString(trip.id, truck.id));
     };
 
-    const filteredDefects = defects.filter(defect => defect.tripid === selectedTrip?.id);
+   // const filteredDefects = defects.filter(defect => defect.tripid === selectedTrip?.id);
 
     const [showAddDefect, setShowAddDefect] = useState(false);
 
@@ -95,12 +96,12 @@ export default function CurrentTrips({ params }: { params: { email: string } }) 
         <>
             {/* Button is nested for styles reasons */}
             <BasicDisplayTrips onTripClick={handleTripClick} trips={trips} trucks={trucks} />
-            <InDepthDisplayTrip trip={selectedTrip} truck={selectedTruck} defects={filteredDefects} >
+            <InDepthDisplayTrip trips={trips}  trucks={trucks}  defects={defects} selectedTripId={tripId} selectedTruckId={truckId}>
                 <Button variant="contained" color="primary" onClick={handleAddDefectClick}>
                     Add Defect
                 </Button>
             </InDepthDisplayTrip>
-            {showAddDefect && <AddDefect email={decodedEmail} currentDefects={filteredDefects} tripId={selectedTrip?.id || 0} onHide={handleHideAddDefect} />}
+            {showAddDefect && <AddDefect email={decodedEmail} currentDefects={defects} tripId={selectedTrip } onHide={handleHideAddDefect} />}
         </>
     );
 
