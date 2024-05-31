@@ -7,7 +7,6 @@ import { Button } from '@mui/material';
 import AddDefect from "./addDefect";
 import { useSearchParams } from 'next/navigation'
 
-
 type Trip = {
     id: number;
     userid: number;
@@ -31,11 +30,13 @@ type Truck = {
 };
 
 
-export default function CurrentTrips({ params }: { params: { email: string }}) {
+export default function CurrentTripsComponent({ email }: { email: string  }) {
+    console.log("loading current trip component")
     const searchParams = useSearchParams()
     const tripId = searchParams.get("tripId")
-    console.log("Search Params tripId: ", tripId)
-    const decodedEmail = decodeURIComponent(params.email);
+    console.log("Search Params tripId: ", searchParams.get("tripId"))
+
+    //const decodedEmail = decodeURIComponent(params.email);
     const [trips, setTrips] = useState<Trip[]>([]);
     const [trucks, setTrucks] = useState<Truck[]>([]);
     const [defects, setDefects] = useState<any[]>([]);
@@ -44,9 +45,9 @@ export default function CurrentTrips({ params }: { params: { email: string }}) {
 
     useEffect(() => {
         const fetchData = async () => {
-            const fetchedTrips = await getCurrentTrips(decodedEmail) as Trip[];
-            const fetchedTrucks = await getCurrentTrucksInfo(decodedEmail) as Truck[];
-            const fetchedDefects = await getCurrentDefects(decodedEmail) as any;
+            const fetchedTrips = await getCurrentTrips(email) as Trip[];
+            const fetchedTrucks = await getCurrentTrucksInfo(email) as Truck[];
+            const fetchedDefects = await getCurrentDefects(email) as any;
             setDefects(fetchedDefects);
 
             setTrips(fetchedTrips);
@@ -56,14 +57,13 @@ export default function CurrentTrips({ params }: { params: { email: string }}) {
             // createQueryString(selectedTrip, selectedTruck);
         };
         fetchData();
-    }, [decodedEmail]);
+    }, [email]);
 
     const handleTripClick = (trip: Trip, truck: Truck) => {
         setSelectedTrip(trip);
         setSelectedTruck(truck);
-        console.log("Selected Trip: ", trip);
-        createQueryString(trip.id);
     };
+
 
     const filteredDefects = defects.filter(defect => defect.tripid === selectedTrip?.id);
 
@@ -78,15 +78,6 @@ export default function CurrentTrips({ params }: { params: { email: string }}) {
         window.location.reload();
     };
 
-    const createQueryString = useCallback(
-        (tripId: number) => {
-          const params = new URLSearchParams(searchParams.toString())
-          params.set('tripId', tripId.toString())     
-          return params.toString()
-        },
-        [searchParams]
-      )
-
     return (
         <>
             {/* Button is nested for styles reasons */}
@@ -96,7 +87,7 @@ export default function CurrentTrips({ params }: { params: { email: string }}) {
                     Add Defect
                 </Button>
             </InDepthDisplayTrip>
-            {showAddDefect && <AddDefect email={decodedEmail} currentDefects={filteredDefects} tripId={selectedTrip?.id || 0} onHide={handleHideAddDefect} />}
+            {showAddDefect && <AddDefect email={email} currentDefects={filteredDefects} tripId={selectedTrip?.id || 0} onHide={handleHideAddDefect} />}
         </>
     );
 

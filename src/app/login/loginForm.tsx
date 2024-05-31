@@ -30,11 +30,12 @@ export default function LoginForm() {
     };
     return (
         <>
-            <form  action={formAction} className={style.form} >
+            <form action={formAction} className={style.form} >
                 <TextField
                     id="outlined-start-adornment"
                     label="E mail"
                     required={true}
+                    type="email"
                     {...register("email", { required: true })}
                     sx={{
                         marginLeft: 'auto',

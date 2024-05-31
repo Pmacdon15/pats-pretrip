@@ -1,4 +1,4 @@
-
+'use client';
 import styles from './page.module.css';
 import TextField from '@mui/material/TextField';
 

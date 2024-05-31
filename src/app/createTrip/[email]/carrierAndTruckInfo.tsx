@@ -1,4 +1,4 @@
-'use client'
+'use client';
 import * as React from 'react';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
@@ -9,7 +9,7 @@ import TextField from '@mui/material/TextField';
 
 
 export default function TextFieldsForForm() {
-    // const { register } = useForm();
+    console.log('TextFieldsForForm loading');
     return (
         <>
             <TextField
