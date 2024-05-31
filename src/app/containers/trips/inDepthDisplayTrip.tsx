@@ -1,23 +1,33 @@
-'use client';
+// 'use client';
 import styles from './page.module.css';
+
+
 export default function InDepthDisplayTrip({
     children,
-    trip,
-    truck,
-    defects 
+    trips,
+    trucks,
+    defects,
+    selectedTripId,       
 }: {
     children: React.ReactNode;
-    trip: any;
-    truck: any;
+    trips: any;
+    trucks: any;
     defects: any;
+    selectedTripId: number;        
 }) {
+ 
+    const trip = trips.find((trip: any) => trip.id === selectedTripId);
+    const truck = trucks.find((truck: any) => truck.tripid === selectedTripId);
+    const selectedDefects = defects.filter((defect: any) => defect.tripid === selectedTripId);    ;
+   
     return (
-        <div className={styles.tripsInDepthInfoContainer}>
+        <div className={styles.tripsInDepthInfoContainer}> 
             <div className={styles.inDepthTripInfo}>
                 Carrier Info:<br />
                 <p>Carrier: {trip?.carrier}<br />
                     Carrier Address: {trip?.carrieraddress}<br />
-                    Inspection Address: {trip?.inspectionaddress}
+                    Inspection Address: {trip?.inspectionaddress}<br/>
+                    Inspection Time: {trip?.datetime.toLocaleString()}
                 </p>
             </div>
             <div className={styles.inDepthTripInfo}>
@@ -31,7 +41,7 @@ export default function InDepthDisplayTrip({
             </div>
             <div className={styles.inDepthTripInfo}>
                 Defects:<br />
-                {defects.map((defect: any, index: number) => (
+                {selectedDefects.map((defect: any, index: number) => (
                     <div key={index}>
                         {formatDefectName(defect.name)}: {defect.has_m_defect ? "Major" : "Minor"}
                     </div>

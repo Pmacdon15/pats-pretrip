@@ -1,4 +1,4 @@
-'use client'
+'use client';
 import * as React from 'react';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
@@ -9,7 +9,7 @@ import TextField from '@mui/material/TextField';
 
 
 export default function TextFieldsForForm() {
-    // const { register } = useForm();
+    console.log('TextFieldsForForm loading');
     return (
         <>
             <TextField
@@ -266,22 +266,30 @@ export default function TextFieldsForForm() {
         id="standard-basic" 
         label="Trailer License Plate" 
         variant="standard"
-                sx={{
-                    "& .MuiInputLabel-root": {
-                        color: "white",
-                        "&.Mui-focused": {
-                            color: "white",
-                        },
-                    },
-                    "& .MuiInput-underline": {
-                        "&:before": {
-                            borderBottomColor: "white",
-                        },
-                        "&:after": {
-                            borderBottomColor: "white",
-                        },
-                    },
-                }}
+        sx={{
+            "& .MuiInputLabel-root": {
+                color: "white",
+                "&.Mui-focused": {
+                    color: "white",
+                },
+            },
+            "& .MuiInput-underline": {
+                "&:before": {
+                    borderBottomColor: "white",
+                },
+                "&:after": {
+                    borderBottomColor: "white",
+                },
+            },
+            "& .MuiInputBase-input": {
+                "&:focus": {
+                    color: "white",
+                },
+                "&:not(:focus)": {
+                    color: "white",
+                },
+            },
+        }}
             />
             </div>
             {/* MARK: - DateTimePicker */}

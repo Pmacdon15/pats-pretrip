@@ -2,9 +2,12 @@
 import { getCurrentTrips, getCurrentTrucksInfo, getCurrentDefects } from "@/app/db";
 import InDepthDisplayTrip from '../../containers/trips/inDepthDisplayTrip';
 import BasicDisplayTrips from '../../containers/trips/basicDisplayTrips';
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 import { Button } from '@mui/material';
-import styles from './page.module.css';
+import AddDefect from "./addDefect";
+import { useSearchParams } from 'next/navigation'
+import { useRouter, usePathname } from 'next/navigation';
+
 
 type Trip = {
     id: number;
@@ -30,48 +33,70 @@ type Truck = {
 
 
 export default function CurrentTrips({ params }: { params: { email: string } }) {
+    const router = useRouter()
+    const pathname = usePathname()
+    const searchParams = useSearchParams()
+    const tripId = Number(searchParams.get("tripId")) ?? 0;
+
     const decodedEmail = decodeURIComponent(params.email);
     const [trips, setTrips] = useState<Trip[]>([]);
     const [trucks, setTrucks] = useState<Truck[]>([]);
     const [defects, setDefects] = useState<any[]>([]);
-    const [selectedTrip, setSelectedTrip] = useState<Trip | null>(null);
-    const [selectedTruck, setSelectedTruck] = useState<Truck | null>(null);
+    //const [selectedTrip, setSelectedTrip] = useState<number>(0);
+    // const [selectedTruck, setSelectedTruck] = useState<number>(0);
+
+    const createQueryString = useCallback(
+        (tripId: number) => {
+            const params = new URLSearchParams(searchParams.toString())
+            params.set('tripId', tripId.toString())
+            //params.set('truckId', truckId.toString())
+            return params.toString()
+        },
+        [searchParams]
+    )
 
     useEffect(() => {
         const fetchData = async () => {
             const fetchedTrips = await getCurrentTrips(decodedEmail) as Trip[];
             const fetchedTrucks = await getCurrentTrucksInfo(decodedEmail) as Truck[];
             const fetchedDefects = await getCurrentDefects(decodedEmail) as any;
-            setDefects(fetchedDefects);
 
             setTrips(fetchedTrips);
             setTrucks(fetchedTrucks);
-            setSelectedTrip(fetchedTrips[0]);
-            setSelectedTruck(fetchedTrucks[0]);
+            setDefects(fetchedDefects);
+
+            if (fetchedTrips.length > 0 && tripId === 0) {
+                router.push(pathname + '?' + createQueryString(fetchedTrips[0].id));
+            }
         };
         fetchData();
-    }, [decodedEmail]);
+    }, [decodedEmail, router, tripId, pathname, createQueryString]);
 
-    const handleTripClick = (trip: Trip, truck: Truck) => {
-        setSelectedTrip(trip);
-        setSelectedTruck(truck);
+    const handleTripClick = (trip: Trip, truck: Truck) => {        
+        router.push(pathname + '?' + createQueryString(trip.id));
     };
 
-    //console.log(trucks)
-    //console.log(trips)
-    //console.log(defects)
-    const filteredDefects = defects.filter(defect => defect.tripid === selectedTrip?.id);
+    const [showAddDefect, setShowAddDefect] = useState(false);
 
+    const handleAddDefectClick = () => {
+        setShowAddDefect(true);
+    };
+
+    const handleHideAddDefect = async () => {
+        setShowAddDefect(false);
+        window.location.reload();
+    };
+   
     return (
         <>
+            {/* Button is nested for styles reasons */}
             <BasicDisplayTrips onTripClick={handleTripClick} trips={trips} trucks={trucks} />
-            <InDepthDisplayTrip trip={selectedTrip} truck={selectedTruck} defects={filteredDefects} >
-                <Button variant="contained" color="primary" onClick={() => alert("Add defect")}>
+            <InDepthDisplayTrip trips={trips} trucks={trucks} defects={defects} selectedTripId={tripId}>
+                <Button variant="contained" color="primary" onClick={handleAddDefectClick}>
                     Add Defect
                 </Button>
-            </InDepthDisplayTrip>
+            </InDepthDisplayTrip>            
+            {showAddDefect && <AddDefect email={decodedEmail} defects={defects} tripId={tripId} onHide={handleHideAddDefect} />}
         </>
-
     );
-
 }

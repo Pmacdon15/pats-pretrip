@@ -137,6 +137,22 @@ export async function addDefect(tripId: number, name: string, has_m_defect: bool
     throw new Error("adding defect: " + (error instanceof Error ? error.message : error));
   }
 }
+//MARK: Change to major defect
+export async function changeToMajorDefect(tripId: number, name: string) {
+  try {
+    const { rows } = await sql`
+    UPDATE ppdefects
+    SET has_m_defect = true
+    WHERE tripId = ${tripId} AND name = ${name}
+    `;
+    if (rows) {
+      return true;
+    }
+  } catch (error) {
+    console.error("Error changing to major defect: ", error);
+    throw new Error("changing to major defect: " + (error instanceof Error ? error.message : error));
+  }
+}
 
 //MARK: Get Current Trips
 export async function getCurrentTrips(email: string) {
@@ -167,6 +183,7 @@ export async function getCurrentTrucksInfo(email: string) {
     throw new Error("getting truck info: " + (error instanceof Error ? error.message : error));
   }
 }
+
 //MARK: Get defects for email
 export async function getCurrentDefects(email: string) {
   try {
@@ -181,6 +198,7 @@ export async function getCurrentDefects(email: string) {
     throw new Error("getting defects: " + (error instanceof Error ? error.message : error));
   }
 }
+
 //MARK: Get all trips for email older than 24 hours
 export async function getAllTrips(email: string) {
   try {
@@ -195,6 +213,7 @@ export async function getAllTrips(email: string) {
     throw new Error("getting all trips: " + (error instanceof Error ? error.message : error));
   }
 }
+
 //MARK: Get all trucks for email older than 24 hours
 export async function getAllTrucks(email: string) {
   try {
@@ -209,6 +228,7 @@ export async function getAllTrucks(email: string) {
     throw new Error("getting all trucks: " + (error instanceof Error ? error.message : error));
   }
 }
+
 //MARK: Get all defects for email older than 24 hours
 export async function getAllDefects(email: string) {
   try {
