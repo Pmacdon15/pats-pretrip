@@ -16,11 +16,10 @@ export default function AddDefect({ email, tripId, currentDefects, onHide }: ({ 
                 const existingDefect = currentDefects.find((defect: any) => defect.name === key);
                 if (!existingDefect) {
                     addDefect(tripId, key, has_m_defect);
-                    console.log("Defect: ", key, " Major: ", has_m_defect);
+                    //console.log("Defect: ", key, " Major: ", has_m_defect);
                 } else if (existingDefect.has_m_defect === false && has_m_defect === true) {
                     changeToMajorDefect(tripId, key);
-                    console.log("Changed to major defect: ", key);
-
+                    //console.log("Changed to major defect: ", key);
                 }
             }
         });

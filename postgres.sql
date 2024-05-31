@@ -16,7 +16,8 @@ CREATE TABLE pptrips (
     inspectionAddress VARCHAR(255) NOT NULL, 
     dateTime TIMESTAMP NOT NULL,
     remarks TEXT,
-    eSignature VARCHAR(255)
+    eSignature VARCHAR(255),
+    inputDate TIMESTAMP NOT NULL 
 );
 
 CREATE TABLE
@@ -26,8 +27,7 @@ CREATE TABLE
         make VARCHAR(100) NOT NULL,
         model VARCHAR(100) NOT NULL,
         odometer NUMERIC(10, 2) NOT NULL,
-        truckLP VARCHAR(20) NOT NULL,
-        inputDate TIMESTAMP NOT NULL   
+        truckLP VARCHAR(20) NOT NULL,          
     );
 
 CREATE TABLE

@@ -6,6 +6,7 @@ import { useState, useEffect, useCallback } from 'react';
 import { Button } from '@mui/material';
 import AddDefect from "./addDefect";
 import { useSearchParams } from 'next/navigation'
+import { useRouter ,usePathname} from 'next/navigation';
 
 
 type Trip = {
@@ -31,7 +32,9 @@ type Truck = {
 };
 
 
-export default function CurrentTrips({ params }: { params: { email: string }}) {
+export default function CurrentTrips({ params }: { params: { email: string } }) {
+    const router = useRouter()
+    const pathname = usePathname()
     const searchParams = useSearchParams()
     const tripId = searchParams.get("tripId")
     console.log("Search Params tripId: ", tripId)
@@ -53,7 +56,7 @@ export default function CurrentTrips({ params }: { params: { email: string }}) {
             setTrucks(fetchedTrucks);
             setSelectedTrip(fetchedTrips[0]);
             setSelectedTruck(fetchedTrucks[0]);
-            // createQueryString(selectedTrip, selectedTruck);
+            router.push(pathname + '?' + createQueryString(fetchedTrips[0].id, fetchedTrucks[0].id));
         };
         fetchData();
     }, [decodedEmail]);
@@ -61,8 +64,8 @@ export default function CurrentTrips({ params }: { params: { email: string }}) {
     const handleTripClick = (trip: Trip, truck: Truck) => {
         setSelectedTrip(trip);
         setSelectedTruck(truck);
-        console.log("Selected Trip: ", trip);
-        createQueryString(trip.id);
+        console.log("Selected Trip: ", trip.id);
+        router.push(pathname + '?' + createQueryString(trip.id, truck.id));
     };
 
     const filteredDefects = defects.filter(defect => defect.tripid === selectedTrip?.id);
@@ -79,13 +82,14 @@ export default function CurrentTrips({ params }: { params: { email: string }}) {
     };
 
     const createQueryString = useCallback(
-        (tripId: number) => {
-          const params = new URLSearchParams(searchParams.toString())
-          params.set('tripId', tripId.toString())     
-          return params.toString()
+        (tripId: number, truckId: number) => {
+            const params = new URLSearchParams(searchParams.toString())
+            params.set('tripId', tripId.toString())
+            params.set('truckId', truckId.toString())
+            return params.toString()
         },
         [searchParams]
-      )
+    )
 
     return (
         <>
