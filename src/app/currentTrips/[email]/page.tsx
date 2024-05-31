@@ -89,8 +89,10 @@ export default function CurrentTrips({ params }: { params: { email: string } }) 
    
     return (
         <>
-            {/* Button is nested for styles reasons */}
-            <BasicDisplayTrips onTripClick={handleTripClick} trips={trips} trucks={trucks} />
+            {trips.length>0 ? (
+            <BasicDisplayTrips onTripClick={handleTripClick} trips={trips} trucks={trucks} />) : (
+                <p>No trips found.</p>
+            )}
             <InDepthDisplayTrip trips={trips} trucks={trucks} defects={defects} selectedTripId={tripId}>
                 <Button variant="contained" color="primary" onClick={handleAddDefectClick}>
                     Add Defect

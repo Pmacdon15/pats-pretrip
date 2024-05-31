@@ -72,7 +72,10 @@ export default function PastTrips({ params }: { params: { email: string } }) {
     };
     return (
         <>           
-            <BasicDisplayTrips onTripClick={handleTripClick} trips={trips} trucks={trucks} />
+             {trips.length>0 ? (
+            <BasicDisplayTrips onTripClick={handleTripClick} trips={trips} trucks={trucks} />) : (
+                <p>No trips found.</p>
+            )}
             <InDepthDisplayTrip trips={trips} trucks={trucks} defects={defects} selectedTripId={tripId}>
             <div>Inspections older than 24 hours cannot be modified.</div>
             </InDepthDisplayTrip> 
