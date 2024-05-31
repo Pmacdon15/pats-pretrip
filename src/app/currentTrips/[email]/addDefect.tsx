@@ -4,8 +4,7 @@ import TruckCheckBoxesForForm from '@/app/createTrip/[email]/truckCheckBoxesForF
 import { addDefect, changeToMajorDefect } from '@/app/db';
 
 
-export default function AddDefect({ email, tripId, defects, onHide }: ({ email: string, tripId: number, defects: any, onHide: () => void })) {
-    console.table("Defects: ", defects )
+export default function AddDefect({ email, tripId, defects, onHide }: ({ email: string, tripId: number, defects: any, onHide: () => void })) {    
     const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
         event.preventDefault();
         const form = event.currentTarget;
