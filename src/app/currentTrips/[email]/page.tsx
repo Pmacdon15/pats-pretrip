@@ -96,12 +96,12 @@ export default function CurrentTrips({ params }: { params: { email: string } }) 
         <>
             {/* Button is nested for styles reasons */}
             <BasicDisplayTrips onTripClick={handleTripClick} trips={trips} trucks={trucks} />
-            <InDepthDisplayTrip trips={trips}  trucks={trucks}  defects={defects} selectedTripId={tripId} selectedTruckId={truckId}>
+            <InDepthDisplayTrip trips={trips}  trucks={trucks}  defects={defects} selectedTripId={tripId}>
                 <Button variant="contained" color="primary" onClick={handleAddDefectClick}>
                     Add Defect
                 </Button>
             </InDepthDisplayTrip>
-            {showAddDefect && <AddDefect email={decodedEmail} currentDefects={defects} tripId={selectedTrip } onHide={handleHideAddDefect} />}
+            {showAddDefect && <AddDefect email={decodedEmail} defects={defects} tripId={selectedTrip} onHide={handleHideAddDefect} />}
         </>
     );
 

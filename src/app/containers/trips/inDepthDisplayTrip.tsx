@@ -7,20 +7,21 @@ export default function InDepthDisplayTrip({
     trips,
     trucks,
     defects,
-    selectedTripId,
-    selectedTruckId
+    selectedTripId,       
 }: {
     children: React.ReactNode;
     trips: any;
     trucks: any;
     defects: any;
-    selectedTripId: number;
-    selectedTruckId: number;
-    
+    selectedTripId: number;        
 }) {
  
     const trip = trips.find((trip: any) => trip.id === selectedTripId);
-    const truck = trucks.find((truck: any) => truck.id === selectedTruckId);
+    const truck = trucks.find((truck: any) => truck.tripid === selectedTripId);
+    const selectedDefects = defects.filter((defect: any) => defect.tripid === selectedTripId);
+    console.log(trucks);
+    // console.table(defects);
+    // console.table(selectedDefects);
    
     return (
         <div className={styles.tripsInDepthInfoContainer}> 
@@ -40,20 +41,20 @@ export default function InDepthDisplayTrip({
                     Trailer License Plate: {truck?.trailerlp}
                 </p>
             </div>
-            {/* <div className={styles.inDepthTripInfo}>
+            <div className={styles.inDepthTripInfo}>
                 Defects:<br />
-                {defects.map((defect: any, index: number) => (
+                {selectedDefects.map((defect: any, index: number) => (
                     <div key={index}>
                         {formatDefectName(defect.name)}: {defect.has_m_defect ? "Major" : "Minor"}
                     </div>
                 ))}
-            </div> */}
-            {/* <div className={styles.inDepthTripInfo}>
+            </div>
+            <div className={styles.inDepthTripInfo}>
                 Remarks: {trip?.remarks}
             </div>
             <div className={styles.inDepthTripInfo}>
                 Driver: {trip?.esignature}
-            </div>  */}
+            </div> 
             {children}           
         </div>
     )

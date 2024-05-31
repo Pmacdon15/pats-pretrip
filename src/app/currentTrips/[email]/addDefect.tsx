@@ -4,16 +4,18 @@ import TruckCheckBoxesForForm from '@/app/createTrip/[email]/truckCheckBoxesForF
 import { addDefect, changeToMajorDefect } from '@/app/db';
 
 
-export default function AddDefect({ email, tripId, currentDefects, onHide }: ({ email: string, tripId: number, currentDefects: any, onHide: () => void })) {
+export default function AddDefect({ email, tripId, defects, onHide }: ({ email: string, tripId: number, defects: any, onHide: () => void })) {
+    console.table("Defects: ", defects )
     const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
         event.preventDefault();
         const form = event.currentTarget;
         const formData = new FormData(form);
-
+        
         Array.from(formData.entries()).forEach(([key, value]) => {
             if (value === "on" && !key.endsWith("M")) {
                 const has_m_defect = formData.get(`${key}M`) === "on";
-                const existingDefect = currentDefects.find((defect: any) => defect.name === key);
+                const selectedDefects = defects.filter((defect: any) => defect.tripid === tripId);                
+                const existingDefect = selectedDefects.find((defect: any) => defect.name === key);
                 if (!existingDefect) {
                     addDefect(tripId, key, has_m_defect);
                     //console.log("Defect: ", key, " Major: ", has_m_defect);
