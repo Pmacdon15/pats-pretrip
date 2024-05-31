@@ -30,7 +30,6 @@ export default function TruckCheckBoxesForForm() {
         'Wipers',
         'Kingpin',
         'Body',
-        'Securement',
         'Lights',
         'Reflectors',
         'Air Lines',
