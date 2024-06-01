@@ -5,4 +5,4 @@ import { authkitMiddleware } from '@workos-inc/authkit-nextjs';
 export default authkitMiddleware({ debug: true });
 
 // Match against pages that require auth, e.g.:
-export const config = { matcher: ['/','/appBar/LogInLogOuButtons','/auth/callback', '/createTrip/[email]'] };
+//export const config = { matcher: ['/','/home/[email]','/appBar/LogInLogOuButtons','/auth/callback', '/createTrip/[email]'] };

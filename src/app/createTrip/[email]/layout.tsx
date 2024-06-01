@@ -1,16 +1,13 @@
 'use server';
-import AppBar from '../../appBar/appBar';
-// import { auth } from '../../actions'
 import CreateTripContainer from '../../containers/createTripContainer';
+import { getUser } from '@workos-inc/authkit-nextjs';
+
 export default async function CreateTrip({
   children,
-  params,
 }: {
   children: React.ReactNode;
-  params: { email: string };
 }) {
-  const decodedEmail = decodeURIComponent(params.email);
-  // await auth(decodedEmail);
+  await getUser({ ensureSignedIn: true });
   return (
     <>
       {/* <AppBar email={decodedEmail} />user?.email*/}
