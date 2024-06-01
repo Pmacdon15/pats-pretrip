@@ -14,11 +14,11 @@ export default async function CurrentTrip({
     // await auth(decodedEmail);
     return (
         <>
-            {/* <AppBar email={decodedEmail} />
+            {/* <AppBar email={decodedEmail} />*/}
             <TripContainer header='Past Trips'>
-                
-            </TripContainer> */}
-            {children}
+                {children}
+            </TripContainer> 
+            
         </>
     )
 }

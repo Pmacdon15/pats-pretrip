@@ -23,7 +23,7 @@ export default async function RootLayout({
     <html lang="en">
 
       <body className={styles.body}>
-        <ResponsiveAppBar email="test">
+        <ResponsiveAppBar email={user?.email||"No Logged in user"}>
           <LogInLogOuButtons />
         </ResponsiveAppBar>
         <div>
