@@ -7,6 +7,7 @@ import { Button } from '@mui/material';
 import AddDefect from "./addDefect";
 import { useSearchParams } from 'next/navigation'
 import { useRouter, usePathname } from 'next/navigation';
+import styles from '@/app/containers/trips/page.module.css';
 
 
 type Trip = {
@@ -41,9 +42,7 @@ export default function CurrentTrips({ params }: { params: { email: string } }) 
     const decodedEmail = decodeURIComponent(params.email);
     const [trips, setTrips] = useState<Trip[]>([]);
     const [trucks, setTrucks] = useState<Truck[]>([]);
-    const [defects, setDefects] = useState<any[]>([]);
-    //const [selectedTrip, setSelectedTrip] = useState<number>(0);
-    // const [selectedTruck, setSelectedTruck] = useState<number>(0);
+    const [defects, setDefects] = useState<any[]>([]);;
 
     const createQueryString = useCallback(
         (tripId: number) => {
@@ -72,7 +71,7 @@ export default function CurrentTrips({ params }: { params: { email: string } }) 
         fetchData();
     }, [decodedEmail, router, tripId, pathname, createQueryString]);
 
-    const handleTripClick = (trip: Trip, truck: Truck) => {        
+    const handleTripClick = (trip: Trip, truck: Truck) => {
         router.push(pathname + '?' + createQueryString(trip.id));
     };
 
@@ -86,18 +85,22 @@ export default function CurrentTrips({ params }: { params: { email: string } }) 
         setShowAddDefect(false);
         window.location.reload();
     };
-   
+
     return (
         <>
-            {trips.length>0 ? (
-            <BasicDisplayTrips onTripClick={handleTripClick} trips={trips} trucks={trucks} />) : (
-                <p>No trips found.</p>
+            {trips.length > 0 ? (
+                <BasicDisplayTrips onTripClick={handleTripClick} trips={trips} trucks={trucks} />) : (
+                <div className={styles.tripsBasicInfoContainer}>
+                    <div className={styles.tripsBasicInfo} >
+                        No trips found.
+                    </div>
+                </div>
             )}
             <InDepthDisplayTrip trips={trips} trucks={trucks} defects={defects} selectedTripId={tripId}>
                 <Button variant="contained" color="primary" onClick={handleAddDefectClick}>
                     Add Defect
                 </Button>
-            </InDepthDisplayTrip>            
+            </InDepthDisplayTrip>
             {showAddDefect && <AddDefect email={decodedEmail} defects={defects} tripId={tripId} onHide={handleHideAddDefect} />}
         </>
     );

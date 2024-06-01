@@ -5,6 +5,7 @@ import BasicDisplayTrips from '../../containers/trips/basicDisplayTrips';
 import { useState, useEffect, useCallback } from 'react';
 import { useSearchParams } from 'next/navigation'
 import { useRouter, usePathname } from 'next/navigation';
+import styles from '@/app/containers/trips/page.module.css';
 
 type Trip = {
     id: number;
@@ -72,9 +73,13 @@ export default function PastTrips({ params }: { params: { email: string } }) {
     };
     return (
         <>           
-             {trips.length>0 ? (
-            <BasicDisplayTrips onTripClick={handleTripClick} trips={trips} trucks={trucks} />) : (
-                <p>No trips found.</p>
+              {trips.length > 0 ? (
+                <BasicDisplayTrips onTripClick={handleTripClick} trips={trips} trucks={trucks} />) : (
+                <div className={styles.tripsBasicInfoContainer}>
+                    <div className={styles.tripsBasicInfo} >
+                        No trips found.
+                    </div>
+                </div>
             )}
             <InDepthDisplayTrip trips={trips} trucks={trucks} defects={defects} selectedTripId={tripId}>
             <div>Inspections older than 24 hours cannot be modified.</div>
