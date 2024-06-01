@@ -6,7 +6,7 @@ export default async function Login() {
     return (
         <>
             <div className={styles.title}>
-                <h1>Pat`&apos;s Pre-Trip</h1>
+                <h1>Pat&apos;s Pre-Trip</h1>
             </div>
             <LoginSignUpContainer >
                 <h1 className={styles.title} >Sign In</h1>
