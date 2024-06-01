@@ -116,4 +116,4 @@ http://localhost:3000
 To register.
 
 > **Note**
-> This project is still in development and is not meant to be relied upon as your daily driver for free trips but can be used in a pinch.
+> This project is still in development and is not meant to be relied upon as your daily driver but can be for free in a pinch.
