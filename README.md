@@ -110,7 +110,7 @@ npm run start
 
 # Usage
 Then you can go to:
-```http
+```Http
 http://localhost:3000
 ```
 To register.
