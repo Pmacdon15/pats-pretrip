@@ -153,6 +153,23 @@ export async function changeToMajorDefect(tripId: number, name: string) {
     throw new Error("changing to major defect: " + (error instanceof Error ? error.message : error));
   }
 }
+//MARK: Add remark 
+//MARK: Add remark
+export async function addRemark(tripId: number, remark: string) {
+  try {
+    const { rows } = await sql`
+      UPDATE pptrips
+      SET remarks = remarks || ', ' || ${remark}
+      WHERE id = ${tripId}
+    `;
+    if (rows) {
+      return true;
+    }
+  } catch (error) {
+    console.error("Error adding remark: ", error);
+    //throw new Error("adding remark: " + (error instanceof Error ? error.message : error));
+  }
+}
 
 //MARK: Get Current Trips
 export async function getCurrentTrips(email: string) {

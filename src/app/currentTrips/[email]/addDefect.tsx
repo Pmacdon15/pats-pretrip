@@ -1,15 +1,15 @@
 import { Button } from '@mui/material';
 import styles from './addDefect.module.css';
 import TruckCheckBoxesForForm from '@/app/createTrip/[email]/truckCheckBoxesForForm';
-import { addDefect, changeToMajorDefect } from '@/app/db';
+import { addDefect, changeToMajorDefect, addRemark } from '@/app/db';
 
 
 export default function AddDefect({ email, tripId, defects, onHide }: ({ email: string, tripId: number, defects: any, onHide: () => void })) {    
-    const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+    const handleSubmit = async  (event: React.FormEvent<HTMLFormElement>) => {
         event.preventDefault();
         const form = event.currentTarget;
         const formData = new FormData(form);
-        console.log("tripId to be updated: ", tripId);
+        //console.log("tripId to be updated: ", tripId);
                 Array.from(formData.entries()).forEach(([key, value]) => {
             if (value === "on" && !key.endsWith("M")) {
                 const has_m_defect = formData.get(`${key}M`) === "on";
@@ -24,7 +24,8 @@ export default function AddDefect({ email, tripId, defects, onHide }: ({ email: 
                 }
             }
         });
-
+        const newRemarks = formData.get("remarks") as string;
+        await addRemark(tripId, newRemarks);
         onHide();
     };
 

@@ -29,17 +29,21 @@ https://pats-pretrip.vercel.app/
 
 # Features
 ## Current Features
-1. User passwords are hashed.
-2. Authentication is achieved through Json Web tokens and cookies.
-3. Ability to see current trips less than 24 hours old.
-4. Ability to see past trips more than 24 hours old.
-1. Ability to add on route defects.
-## Coming Soon
-1. Ability to add remarks to defects on route.
-2. Ability to correct defects and list invoice number(Potentially take photo of invoice).
-3. Location automatically selected by device.
-4. Time automatically selected by device.
-
+1. Security
+- User passwords are hashed.
+- Authentication is achieved through Json Web tokens and cookies.
+2. Trip Management
+- Ability to see current trips less than 24 hours old.
+- Ability to see past trips more than 24 hours old.
+3. Defect Management
+- Ability to add on route defects.
+- Ability to add remarks to defects on route.
+# Coming Soon
+1. Defect Management
+- Ability to correct defects and list invoice number (Potentially take photo of invoice).
+2. Automation
+- Location automatically selected by device.
+- Time automatically selected by device.
 
 # Cloning
 1. Clone repository run this command: 
@@ -86,12 +90,12 @@ Then download a copy of your env file from vercel for your project.
 > **Note**
 > This project was meant to be used with a Vercel Postgres database and I use the Vercel Sdk to communicate with the database.
 
-3. If you want to run it in development, if so run:
+3. If you want to run it in development run:
 ```Bash
 npm run dev
 ```
 
-Other words we have to build the client easily done by running:
+Other words we have to build the project, which is easily done by running:
 ```Bash
 npm run build
 ```
