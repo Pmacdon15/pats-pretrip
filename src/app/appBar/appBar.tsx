@@ -10,25 +10,25 @@ import MenuIcon from '@mui/icons-material/Menu';
 import Container from '@mui/material/Container';
 import Button from '@mui/material/Button';
 import MenuItem from '@mui/material/MenuItem';
-// import AdbIcon from '@mui/icons-material/Adb';
 import { useRouter } from "next/navigation";
-import { logout } from './actions';
+// import { logout } from '../actions';
 
-const pages = ['Current Trips', 'Create Trip', 'Past Trips', 'Logout'];
 
-function ResponsiveAppBar({ email}: { email: string }) {
-    const router = useRouter();
+const pages = ['Home', 'Current Trips', 'Create Trip', 'Past Trips'];
+
+function ResponsiveAppBar({ email, children }: { email: string, children: React.ReactNode }) {
+  const router = useRouter();
   const [anchorElNav, setAnchorElNav] = React.useState<null | HTMLElement>(null);
-//   const [anchorElUser, setAnchorElUser] = React.useState<null | HTMLElement>(null);
+  //   const [anchorElUser, setAnchorElUser] = React.useState<null | HTMLElement>(null);
 
   const handleOpenNavMenu = (event: React.MouseEvent<HTMLElement>) => {
     setAnchorElNav(event.currentTarget);
-  }; 
+  };
   const handleCloseNavMenu = () => {
     setAnchorElNav(null);
   };
 
- 
+
   return (
     <AppBar position="static">
       <Container maxWidth="xl">
@@ -83,14 +83,14 @@ function ResponsiveAppBar({ email}: { email: string }) {
             >
               {pages.map((page) => (
                 <MenuItem key={page} onClick={() => {
-                    if (page === "Logout") {
-                      logout();
-                    } else {
-                      const [firstWord, secondWord] = page.split(" ");
-                      const path = secondWord ? `${firstWord.toLowerCase()}${secondWord}` : firstWord.toLowerCase();
-                      router.push(`/${path}/${email}`);
-                    }
-                  }}>
+                  // if (page === "Logout") {
+                  //   logout();
+                  // } else {
+                    const [firstWord, secondWord] = page.split(" ");
+                    const path = secondWord ? `${firstWord.toLowerCase()}${secondWord}` : firstWord.toLowerCase();
+                    router.push(`/${path}/${email}`);
+                  //}
+                }}>
                   <Typography textAlign="center">{page}</Typography>
                 </MenuItem>
               ))}
@@ -120,20 +120,21 @@ function ResponsiveAppBar({ email}: { email: string }) {
               <Button
                 key={page}
                 onClick={() => {
-                    if (page === "Logout") {
-                      logout();
-                    } else {
-                      const [firstWord, secondWord] = page.split(" ");
-                      const path = secondWord ? `${firstWord.toLowerCase()}${secondWord}` : firstWord.toLowerCase();
-                      router.push(`/${path}/${email}`);
-                    }
-                  }}
+                  // if (page === "Logout") {
+                  //   logout();
+                  // } else {
+                    const [firstWord, secondWord] = page.split(" ");
+                    const path = secondWord ? `${firstWord.toLowerCase()}${secondWord}` : firstWord.toLowerCase();
+                    router.push(`/${path}/${email}`);
+                  // }
+                }}
                 sx={{ my: 2, color: 'white', display: 'block' }}
               >
                 {page}
               </Button>
             ))}
-          </Box>          
+          </Box>
+          {children}
         </Toolbar>
       </Container>
     </AppBar>

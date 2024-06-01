@@ -1,23 +1,19 @@
 'use server';
-import AppBar from '../../appBar';
-import { auth } from '../../actions'
+import { getUser } from '@workos-inc/authkit-nextjs';
 import TripContainer from '../../containers/trips/tripContainer';
 
 export default async function CurrentTrip({
-    children,
-    params,
-  }: {
-    children: React.ReactNode;
-    params: { email: string };
-  }) {
-    const decodedEmail = decodeURIComponent(params.email);
-    await auth(decodedEmail);
-    return (
-        <>
-            <AppBar email={decodedEmail} />
-            <TripContainer header='Past Trips'>
-                {children}
-            </TripContainer>
-        </>
-    )
+  children,
+}: {
+  children: React.ReactNode;
+}) {
+
+  await getUser({ ensureSignedIn: true });
+  return (
+    <>
+      <TripContainer header='Past Trips'>
+        {children}
+      </TripContainer>
+    </>
+  )
 }

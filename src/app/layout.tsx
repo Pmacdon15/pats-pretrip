@@ -1,6 +1,9 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import styles from "./page.module.css";
+import ResponsiveAppBar from "@/app/appBar/appBar";
+import LogInLogOuButtons from "@/app/appBar/loginLogoutButtons";
+import { getUser } from '@workos-inc/authkit-nextjs';
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -9,14 +12,21 @@ export const metadata: Metadata = {
   description: "Away to complete commercial vehicle inspections, When you don't have access to your usual method of documenting the inspection.",
 };
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const { user } = await getUser();
+
   return (
     <html lang="en">
-      <body className={styles.body}>{children}</body>
+      <body className={styles.body}>
+        <ResponsiveAppBar email={user?.email||"No Logged in user"}>
+          <LogInLogOuButtons />
+        </ResponsiveAppBar>       
+        {children}
+      </body>
     </html>
   );
 }
