@@ -80,15 +80,34 @@ SECRET_KEY_JWT="ThisToCanBeAnything"
 TURBO_REMOTE_ONLY=""
 TURBO_RUN_SUMMARY=""
 VERCEL=""
+
+# Needed for authkit-nextjs library example, defined in WorkOS dashboard
+WORKOS_REDIRECT_URI="http://localhost:3000/auth/callback"
+
+# Needed for authkit-nextjs library example. Must be at least 32 characters long
+WORKOS_COOKIE_PASSWORD=""
+
+WORKOS_CLIENT_ID=""
+WORKOS_API_KEY=""
+
 ```
 it might be easiest to associate your fork with your Vercel Postgres database with your project and add these two Variables to your projects .env:
 ```env
 SECRET_KEY_JWT="NewPassWordHere"
 PEPPER_PHRASE="NewPhraseHere"
+
+# Needed for authkit-nextjs library example, defined in WorkOS dashboard
+WORKOS_REDIRECT_URI="http://localhost:3000/auth/callback"
+
+# Needed for authkit-nextjs library example. Must be at least 32 characters long
+WORKOS_COOKIE_PASSWORD="Obtained through sign up of workos.com"
+
+WORKOS_CLIENT_ID="Obtained through sign up of workos.com"
+WORKOS_API_KEY="Obtained through sign up of workos.com"
 ```
 Then download a copy of your env file from vercel for your project.
 > **Note**
-> This project was meant to be used with a Vercel Postgres database and I use the Vercel Sdk to communicate with the database.
+> This project was meant to be used with a Vercel Postgres database, Work os Auth Kit and I use the Vercel Sdk to communicate with the database.
 
 3. If you want to run it in development run:
 ```Bash

@@ -1,38 +1,55 @@
 "use server";
 import { sql } from "@vercel/postgres";
-//MARK: Register User
-export async function register(
-  email: string,
-  first_name: string,
-  last_name: string,
-  password: string
-) {
+// //MARK: Register User
+// export async function register(
+//   email: string,
+//   first_name: string,
+//   last_name: string,
+//   password: string
+// ) {
+//   try {
+//     const { rows } = await sql`
+//         INSERT INTO ppUsers (email, first_name, last_name, password)
+//         VALUES (${email}, ${first_name}, ${last_name}, ${password})
+//         `;
+//     if (Array.isArray(rows) && rows.length === 0) {
+//       console.log("User registered");
+//       console.log(rows);
+//       return true;
+//     }
+//     return false;
+//   } catch (error) {
+//     console.error("Error registering user: ", error);
+//     return false;
+//   }
+// }
+// // MARK: Get hashed password
+// export async function getHashedPassword(email: string) {
+//   const { rows } = await sql`
+//       SELECT password FROM ppUsers WHERE email = ${email}
+//     `;
+
+//   if (rows.length === 0) {
+//     return false; // User not found
+//   }
+//   return rows[0].password;
+// }
+
+//MARK: Register user if they aren't already registered
+export async function registerIfNotExistingUser(email: string|null, first_name: string|null, last_name: string|null) {
   try {
     const { rows } = await sql`
-        INSERT INTO ppUsers (email, first_name, last_name, password)
-        VALUES (${email}, ${first_name}, ${last_name}, ${password})
-        `;
-    if (Array.isArray(rows) && rows.length === 0) {
-      console.log("User registered");
-      console.log(rows);
+    INSERT INTO ppusers (email, first_name, last_name)
+    VALUES (${email}, ${first_name}, ${last_name})
+    ON CONFLICT DO NOTHING
+    `;
+    if (rows) {
       return true;
     }
-    return false;
   } catch (error) {
     console.error("Error registering user: ", error);
-    return false;
+    //throw new Error("registering user: " + (error instanceof Error ? error.message : error));
   }
-}
-// MARK: Get hashed password
-export async function getHashedPassword(email: string) {
-  const { rows } = await sql`
-      SELECT password FROM ppUsers WHERE email = ${email}
-    `;
-
-  if (rows.length === 0) {
-    return false; // User not found
-  }
-  return rows[0].password;
 }
 //MARK: Submit Trip Info
 export async function submitTripInfo(

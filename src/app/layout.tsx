@@ -21,16 +21,10 @@ export default async function RootLayout({
 
   return (
     <html lang="en">
-
       <body className={styles.body}>
         <ResponsiveAppBar email={user?.email||"No Logged in user"}>
           <LogInLogOuButtons />
-        </ResponsiveAppBar>
-        <div>
-          {user?.firstName}<br/>
-          {user?.lastName}<br/>
-          {user?.email}<br/>
-        </div>
+        </ResponsiveAppBar>       
         {children}
       </body>
     </html>
