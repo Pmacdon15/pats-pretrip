@@ -1,9 +1,16 @@
-// import Image from "next/image";
-// import styles from "./page.module.css";
-import Login  from './login/page';
-export default function Home() {
-  
+import { getUser } from '@workos-inc/authkit-nextjs';
+import Login from './login/page';
+export default async function Home() {
+  const { user } = await getUser();
+  if(!user){
+   
+  }
+
   return (
-    <Login/>
+    <div>
+      <h1>Home</h1>
+      {user?.firstName}<br />
+    </div>
+    // <Login/>
   );
 }

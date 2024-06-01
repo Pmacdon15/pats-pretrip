@@ -1,6 +1,6 @@
 'use server';
-import AppBar from '../../appBar';
-import { auth } from '../../actions'
+import AppBar from '../../appBar/appBar';
+// import { auth } from '../../actions'
 import CreateTripContainer from '../../containers/createTripContainer';
 export default async function CreateTrip({
     children,
@@ -10,13 +10,14 @@ export default async function CreateTrip({
     params: { email: string };
   }) {
     const decodedEmail = decodeURIComponent(params.email);
-    await auth(decodedEmail);
+    // await auth(decodedEmail);
     return (
         <>
-            <AppBar email={decodedEmail} />
+            {/* <AppBar email={decodedEmail} />
             <CreateTripContainer>
-                {children}
-            </CreateTripContainer>
+                
+            </CreateTripContainer> */}
+            {children}
         </>
     )
 }

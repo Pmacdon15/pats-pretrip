@@ -1,6 +1,6 @@
 'use server';
-import AppBar from '../../appBar';
-import { auth } from '../../actions'
+import AppBar from '../../appBar/appBar';
+// import { auth } from '../../actions'
 import TripContainer from '../../containers/trips/tripContainer';
 
 export default async function CurrentTrip({
@@ -11,13 +11,14 @@ export default async function CurrentTrip({
     params: { email: string };
   }) {
     const decodedEmail = decodeURIComponent(params.email);
-    await auth(decodedEmail);
+    // await auth(decodedEmail);
     return (
         <>
-            <AppBar email={decodedEmail} />
+            {/* <AppBar email={decodedEmail} />
             <TripContainer header='Past Trips'>
-                {children}
-            </TripContainer>
+                
+            </TripContainer> */}
+            {children}
         </>
     )
 }

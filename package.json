@@ -17,6 +17,7 @@
     "@mui/x-date-pickers": "^7.5.0",
     "@mui/x-date-pickers-pro": "^7.5.0",
     "@vercel/postgres": "^0.8.0",
+    "@workos-inc/authkit-nextjs": "^0.6.1",
     "bcrypt": "^5.1.1",
     "dayjs": "^1.11.11",
     "install": "^0.13.0",

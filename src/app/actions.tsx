@@ -33,105 +33,105 @@ const schemaLogin = z.object({
     invalid_type_error: 'Invalid Password',
   }),
 })
-//MARK: Sign Up
-export async function signUp(prevState: any, formData: FormData) {
-  const validatedFields = schemaSignup.safeParse({
-    email: formData.get('email'),
-    first_name: formData.get('first_name'),
-    last_name: formData.get('last_name'),
-    password: formData.get('password'),
-    confirm_password: formData.get('confirm_password'),
-  })
-  if (!validatedFields.success) {
-    return {
-      errors: validatedFields.error.flatten().fieldErrors,
-    }
-  }
+// //MARK: Sign Up
+// export async function signUp(prevState: any, formData: FormData) {
+//   const validatedFields = schemaSignup.safeParse({
+//     email: formData.get('email'),
+//     first_name: formData.get('first_name'),
+//     last_name: formData.get('last_name'),
+//     password: formData.get('password'),
+//     confirm_password: formData.get('confirm_password'),
+//   })
+//   if (!validatedFields.success) {
+//     return {
+//       errors: validatedFields.error.flatten().fieldErrors,
+//     }
+//   }
 
-  const email = formData.get("email") as string;
-  const first_name = formData.get("first_name") as string;
-  const last_name = formData.get("last_name") as string;
-  const password = formData.get("password") as string;
-  const confirm_password = formData.get("confirm_password") as string;
+//   const email = formData.get("email") as string;
+//   const first_name = formData.get("first_name") as string;
+//   const last_name = formData.get("last_name") as string;
+//   const password = formData.get("password") as string;
+//   const confirm_password = formData.get("confirm_password") as string;
 
-  try {
-    if (password !== confirm_password) {
-      throw new Error("Passwords do not match");
-    }
-    const hashedPassword = await hash(password);
-    if (!await register(email, first_name, last_name, hashedPassword))
-      throw new Error("Database rejected sign up!");
+//   try {
+//     if (password !== confirm_password) {
+//       throw new Error("Passwords do not match");
+//     }
+//     const hashedPassword = await hash(password);
+//     if (!await register(email, first_name, last_name, hashedPassword))
+//       throw new Error("Database rejected sign up!");
 
-  } catch (error) {
-    console.error(
-      "Error registering user: ",
-      error instanceof Error ? error.message : error
-    );
-    return { message: "User not signed up Error: " + (error instanceof Error ? error.message : error) };
-  }
+//   } catch (error) {
+//     console.error(
+//       "Error registering user: ",
+//       error instanceof Error ? error.message : error
+//     );
+//     return { message: "User not signed up Error: " + (error instanceof Error ? error.message : error) };
+//   }
 
-  applyCookie(email);
-  redirect(`/currentTrips/${email}`);
-}
-//MARK: Login
-export async function login(prevState: any, formData: FormData) {
-  const validatedFields = schemaLogin.safeParse({
-    email: formData.get('email'),
-    password: formData.get('password'),
-  })
+//   applyCookie(email);
+//   redirect(`/currentTrips/${email}`);
+// }
+// //MARK: Login
+// export async function login(prevState: any, formData: FormData) {
+//   const validatedFields = schemaLogin.safeParse({
+//     email: formData.get('email'),
+//     password: formData.get('password'),
+//   })
 
-  if (!validatedFields.success) {
-    return {
-      errors: validatedFields.error.flatten().fieldErrors,
-    }
-  }
-  const email = formData.get("email") as string;
-  const password = formData.get("password") as string;
-  try {
-    if (!await verifyPassword(email, password))
-      throw new Error("Authentication failed");
-  } catch (error) {
-    console.error(
-      "Error logging in user: ",
-      error instanceof Error ? error.message : error
-    );
-    return { message: "Error: " + (error instanceof Error ? error.message : error) };
-  }
-  applyCookie(email);
-  redirect(`/currentTrips/${email}`);
-}
+//   if (!validatedFields.success) {
+//     return {
+//       errors: validatedFields.error.flatten().fieldErrors,
+//     }
+//   }
+//   const email = formData.get("email") as string;
+//   const password = formData.get("password") as string;
+//   try {
+//     if (!await verifyPassword(email, password))
+//       throw new Error("Authentication failed");
+//   } catch (error) {
+//     console.error(
+//       "Error logging in user: ",
+//       error instanceof Error ? error.message : error
+//     );
+//     return { message: "Error: " + (error instanceof Error ? error.message : error) };
+//   }
+//   applyCookie(email);
+//   redirect(`/currentTrips/${email}`);
+// }
 //MARK: Auth
-export async function auth(email: string) {
-  let Authed = false;
-  try {
-    const token = cookies().get("AuthCookieTracking")?.value; // Access the cookie value as a string
-    if (!token) {
-      throw new Error("No token found");
-    }
-    const user = jwt.verify(token, process.env.SECRET_KEY_JWT as string) as {
-      username: string;
-    };
+// export async function auth(email: string) {
+//   let Authed = false;
+//   try {
+//     const token = cookies().get("AuthCookieTracking")?.value; // Access the cookie value as a string
+//     if (!token) {
+//       throw new Error("No token found");
+//     }
+//     const user = jwt.verify(token, process.env.SECRET_KEY_JWT as string) as {
+//       username: string;
+//     };
 
-    if (user.username !== email) {
-      throw new Error("Invalid token");
-    }
-    Authed = true;
-  } catch (error) {
-    console.error("Error: ", error instanceof Error ? error.message : error);
-  }
-  if (!Authed) {
-    redirect("/");
-  }
-}
-//MARK: Logout
-export async function logout() {
-  try {
-    cookies().delete("AuthCookieTracking");
-  } catch (error) {
-    console.error("Error: ", error);
-  }
-  redirect("/");
-}
+//     if (user.username !== email) {
+//       throw new Error("Invalid token");
+//     }
+//     Authed = true;
+//   } catch (error) {
+//     console.error("Error: ", error instanceof Error ? error.message : error);
+//   }
+//   if (!Authed) {
+//     redirect("/");
+//   }
+// }
+// //MARK: Logout
+// export async function logout() {
+//   try {
+//     cookies().delete("AuthCookieTracking");
+//   } catch (error) {
+//     console.error("Error: ", error);
+//   }
+//   redirect("/");
+// }
 
 //MARK: Submit Form
 export async function submitForm(email: string, prevState: any, formData: FormData) {
