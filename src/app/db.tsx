@@ -277,3 +277,79 @@ export async function getAllDefects(email: string) {
     throw new Error("getting all defects: " + (error instanceof Error ? error.message : error));
   }
 }
+
+//MARK: Get user stats
+export async function getUserStats() {
+  try {
+    const { rows } = await sql`
+    SELECT COUNT(*) AS total_users FROM ppusers;
+    `;
+    
+    if (rows) {
+      return rows[0].total_users;
+    }
+  } catch (error) {
+    console.error("Error getting user stats: ", error);
+    //throw new Error("getting user stats: " + (error instanceof Error ? error.message : error));
+  }
+}
+
+//MARK: Get trip stats
+export async function getTripStats() {
+  try {
+    const { rows } = await sql`
+    SELECT COUNT(*) AS total_trips FROM pptrips;
+    `;
+    if (rows) {
+      return rows[0].total_trips;
+    }
+  } catch (error) {
+    console.error("Error getting trip stats: ", error);
+    //throw new Error("getting trip stats: " + (error instanceof Error ? error.message : error));
+  }
+}
+
+//MARK: Get defect amount of defects
+export async function getDefectStats() {
+  try {
+    const { rows } = await sql`
+    SELECT COUNT(*) AS total_defects FROM ppdefects;
+    `;
+    if (rows) {
+      return rows[0].total_defects;
+    }
+  } catch (error) {
+    console.error("Error getting defect stats: ", error);
+    //throw new Error("getting defect stats: " + (error instanceof Error ? error.message : error));
+  }
+}
+
+// Get most common defect
+export async function getMostCommonDefect() {
+  try {
+    const { rows } = await sql`
+    SELECT name, COUNT(name) AS count FROM ppdefects GROUP BY name ORDER BY count DESC LIMIT 1;
+    `;
+    if (rows) {
+      return rows[0].name;
+    }
+  } catch (error) {
+    console.error("Error getting most common defect: ", error);
+    //throw new Error("getting most common defect: " + (error instanceof Error ? error.message : error));
+  }
+}
+
+//MARK: Get least common defect
+export async function getLeastCommonDefect() {
+  try {
+    const { rows } = await sql`
+    SELECT name, COUNT(name) AS count FROM ppdefects GROUP BY name ORDER BY count ASC LIMIT 1;
+    `;
+    if (rows) {
+      return rows[0].name;
+    }
+  } catch (error) {
+    console.error("Error getting least common defect: ", error);
+    //throw new Error("getting least common defect: " + (error instanceof Error ? error.message : error));
+  }
+}
