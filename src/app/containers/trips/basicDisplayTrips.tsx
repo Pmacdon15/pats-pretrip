@@ -30,7 +30,7 @@ type Trip = {
     trips: Trip[];
     trucks: Truck[];
     onTripClick: (trip: Trip, truck: Truck) => void; 
-  }) {
+  }) {    
     return (
       <div className={styles.tripsBasicInfoContainer}>
         {trips?.map((trip, index) => (
