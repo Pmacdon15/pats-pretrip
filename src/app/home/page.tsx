@@ -19,7 +19,7 @@ export default async function Home() {
             <div className={styles.infoContainer}>
                 Pat&apos;s Pre Trips
                 Streamline pre-trip inspections with this innovative web app, built with Next.js, Auth Kit, Vercel, and TypeScript. Quickly conduct safety checks and hit the road with confidence!
-                Developed by Patrick MacDonald
+                Developed by Patrick MacDonald<br />
                 Let me know if you&apos;d like me to make any changes!
             </div>
             <div className={styles.infoContainer}>
