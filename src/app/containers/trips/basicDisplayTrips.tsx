@@ -40,7 +40,7 @@ type Trip = {
             onClick={() => onTripClick(trip, trucks[index])} // Call the onTripClick handler when a trip is clicked
           >
             Vehicle: {trucks && trucks[index]?.trucklp}, <br />
-            {trip.datetime.toString()}
+            {trip.datetime.toLocaleString()}
           </div>
         ))}
       </div>
