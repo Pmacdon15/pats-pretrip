@@ -276,9 +276,9 @@ export async function getAllDefects(email: string) {
 export async function getUserStats() {
   try {
     const { rows } = await sql`
-    SELECT COUNT(*) AS total_users FROM ppusers;
+    SELECT COUNT(DISTINCT email) AS total_users FROM pptrips;
     `;
-
+    console.log(rows);
     if (rows) {
       return rows[0].total_users;
     }
