@@ -14,7 +14,6 @@ type Trip = {
     carrier: string;
     carrieraddress: string;
     inspectionaddress: string;
-    datetime: Date;
     remarks: string | null;
     esignature: string;
     inputdate: Date;
@@ -70,7 +69,7 @@ export default function CurrentTrips({ params }: { params: { email: string } }) 
         fetchData();
     }, [decodedEmail, router, tripId, pathname, createQueryString]);
 
-    const handleTripClick = (trip: Trip, truck: Truck) => {
+    const handleTripClick = (trip: Trip) => {
         router.push(pathname + '?' + createQueryString(trip.id));
     };
 

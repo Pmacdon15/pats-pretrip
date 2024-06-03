@@ -6,7 +6,6 @@ type Trip = {
     carrier: string;
     carrieraddress: string;
     inspectionaddress: string;
-    datetime: Date;
     remarks: string | null;
     esignature: string;
     inputdate: Date;
@@ -29,7 +28,7 @@ type Trip = {
   }: {
     trips: Trip[];
     trucks: Truck[];
-    onTripClick: (trip: Trip, truck: Truck) => void; 
+    onTripClick: (trip: Trip) => void; 
   }) {    
     return (
       <div className={styles.tripsBasicInfoContainer}>
@@ -37,7 +36,7 @@ type Trip = {
         <div
         className={styles.tripsBasicInfo}
         key={index}
-        onClick={() => onTripClick(trip, trucks[index])} // Call the onTripClick handler when a trip is clicked
+        onClick={() => onTripClick(trip)} // Call the onTripClick handler when a trip is clicked
         >
         Vehicle: {trucks && trucks[index]?.trucklp}, <br />        
         

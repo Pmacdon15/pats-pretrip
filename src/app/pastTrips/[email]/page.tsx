@@ -9,14 +9,13 @@ import styles from '@/app/containers/trips/page.module.css';
 
 type Trip = {
     id: number;
-    userid: number;
     carrier: string;
     carrieraddress: string;
     inspectionaddress: string;
-    datetime: Date;
     remarks: string | null;
     esignature: string;
     inputdate: Date;
+    email: string;
 };
 
 type Truck = {
@@ -68,8 +67,8 @@ export default function PastTrips({ params }: { params: { email: string } }) {
         fetchData();
     }, [decodedEmail, router, tripId, pathname, createQueryString]);
 
-    const handleTripClick = (trip: Trip, truck: Truck) => {        
-        router.push(pathname + '?' + createQueryString(trip.id));
+    const handleTripClick = (selectedTrip: Trip) => {        
+        router.push(pathname + '?' + createQueryString(selectedTrip.id));
     };
     return (
         <>           
