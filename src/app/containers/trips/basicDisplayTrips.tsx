@@ -3,7 +3,6 @@ import styles from './page.module.css';
 
 type Trip = {
     id: number;
-    userid: number;
     carrier: string;
     carrieraddress: string;
     inspectionaddress: string;
@@ -11,6 +10,7 @@ type Trip = {
     remarks: string | null;
     esignature: string;
     inputdate: Date;
+    email: string;
   };
   
   type Truck = {

@@ -16,9 +16,9 @@ export default function InDepthDisplayTrip({
     selectedTripId: number;        
 }) {
  
-    const trip = trips.find((trip: any) => trip.id === selectedTripId);
-    const truck = trucks.find((truck: any) => truck.tripid === selectedTripId);
-    const selectedDefects = defects.filter((defect: any) => defect.tripid === selectedTripId);   
+    const trip = trips?.find((trip: any) => trip.id === selectedTripId);
+    const truck = trucks?.find((truck: any) => truck.tripid === selectedTripId);
+    const selectedDefects = defects?.filter((defect: any) => defect.tripid === selectedTripId);   
     
     return (
         <div className={styles.tripsInDepthInfoContainer}> 
@@ -51,7 +51,7 @@ export default function InDepthDisplayTrip({
                 Remarks: {trip?.remarks}
             </div>
             <div className={styles.inDepthTripInfo}>
-                Driver: {trip?.esignature}
+                eSignature: {trip?.esignature}
             </div> 
             {children}           
         </div>

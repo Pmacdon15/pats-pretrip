@@ -1,6 +1,6 @@
 'use server';
 import { getUser } from '@workos-inc/authkit-nextjs';
-import TripContainer from '../../containers/trips/tripContainer';
+import TripContainer from '@/app/containers/trips/tripContainer';
 
 export default async function CurrentTrip({
   children,

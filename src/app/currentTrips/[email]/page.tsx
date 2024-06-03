@@ -9,10 +9,8 @@ import { useSearchParams } from 'next/navigation'
 import { useRouter, usePathname } from 'next/navigation';
 import styles from '@/app/containers/trips/page.module.css';
 
-
 type Trip = {
-    id: number;
-    userid: number;
+    id: number;    
     carrier: string;
     carrieraddress: string;
     inspectionaddress: string;
@@ -20,6 +18,7 @@ type Trip = {
     remarks: string | null;
     esignature: string;
     inputdate: Date;
+    email: string;
 };
 
 type Truck = {
@@ -31,7 +30,6 @@ type Truck = {
     trucklp: string;
     trailerlp: string;
 };
-
 
 export default function CurrentTrips({ params }: { params: { email: string } }) {
     const router = useRouter()
@@ -63,8 +61,9 @@ export default function CurrentTrips({ params }: { params: { email: string } }) 
             setTrips(fetchedTrips);
             setTrucks(fetchedTrucks);
             setDefects(fetchedDefects);
+            console.log(fetchedTrips);
 
-            if (fetchedTrips.length > 0 && tripId === 0) {
+            if (fetchedTrips?.length > 0 && tripId === 0) {
                 router.push(pathname + '?' + createQueryString(fetchedTrips[0].id));
             }
         };
@@ -88,7 +87,7 @@ export default function CurrentTrips({ params }: { params: { email: string } }) 
 
     return (
         <>
-            {trips.length > 0 ? (
+            {trips ? (
                 <BasicDisplayTrips onTripClick={handleTripClick} trips={trips} trucks={trucks} />) : (
                 <div className={styles.tripsBasicInfoContainer}>
                     <div className={styles.tripsBasicInfo} >
