@@ -218,7 +218,10 @@ export async function getCurrentDefects(email: string) {
 export async function getAllTrips(email: string) {
   try {
     const { rows } = await sql`
-    SELECT * FROM pptrips WHERE userId = (SELECT id FROM ppusers WHERE email = ${email}) AND inputDate < CURRENT_TIMESTAMP - INTERVAL '24 hours'
+      SELECT *
+      FROM pptrips
+      WHERE email = ${email}
+      AND inputDate < CURRENT_TIMESTAMP - INTERVAL '24 hours'
     `;
     if (rows) {
       return rows;
@@ -233,7 +236,10 @@ export async function getAllTrips(email: string) {
 export async function getAllTrucks(email: string) {
   try {
     const { rows } = await sql`
-    SELECT * FROM ppvehicles WHERE tripId IN (SELECT id FROM pptrips WHERE userId = (SELECT id FROM ppusers WHERE email = ${email}) AND inputDate < CURRENT_TIMESTAMP - INTERVAL '24 hours')
+      SELECT *
+      FROM pptrips
+      WHERE email = ${email}
+      AND inputDate < CURRENT_TIMESTAMP - INTERVAL '24 hours'
     `;
     if (rows) {
       return rows;
@@ -248,7 +254,14 @@ export async function getAllTrucks(email: string) {
 export async function getAllDefects(email: string) {
   try {
     const { rows } = await sql`
-    SELECT * FROM ppdefects WHERE tripId IN (SELECT id FROM pptrips WHERE userId = (SELECT id FROM ppusers WHERE email = ${email}) AND inputDate < CURRENT_TIMESTAMP - INTERVAL '24 hours')
+      SELECT *
+      FROM ppdefects
+      WHERE tripId IN (
+        SELECT id
+        FROM pptrips
+        WHERE email = ${email}
+        AND inputDate < CURRENT_TIMESTAMP - INTERVAL '24 hours'
+      )
     `;
     if (rows) {
       return rows;
