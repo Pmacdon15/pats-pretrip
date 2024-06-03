@@ -14,7 +14,6 @@ CREATE TABLE pptrips (
     carrier VARCHAR(100) NOT NULL,
     carrierAddress VARCHAR(255) NOT NULL,
     inspectionAddress VARCHAR(255) NOT NULL, 
-    dateTime TIMESTAMP NOT NULL,
     remarks TEXT,
     eSignature VARCHAR(255),
     inputDate TIMESTAMP NOT NULL 
