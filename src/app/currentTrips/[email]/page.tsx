@@ -9,7 +9,6 @@ import { useSearchParams } from 'next/navigation'
 import { useRouter, usePathname } from 'next/navigation';
 import styles from '@/app/containers/trips/page.module.css';
 
-
 type Trip = {
     id: number;    
     carrier: string;
@@ -31,7 +30,6 @@ type Truck = {
     trucklp: string;
     trailerlp: string;
 };
-
 
 export default function CurrentTrips({ params }: { params: { email: string } }) {
     const router = useRouter()
