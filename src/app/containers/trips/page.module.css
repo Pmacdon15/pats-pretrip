@@ -2,7 +2,8 @@
     /* min-height: 80vh; */
     max-height: fit-content;
     width: min(1000px, 96%);
-    background: linear-gradient(90deg, #649bc5 0%, #9fbdd5 50%, #649bc5 100%);
+    /* background: linear-gradient(90deg, #649bc5 0%, #9fbdd5a2 50%, #649bc542 100%); */
+    /* background-color: #649bc5; */
     border-radius: 10px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
     display: flex;
@@ -32,7 +33,7 @@
     max-height: fit-content;
     border-radius: 10px;
     padding: 10px;
-    background-color: rgba(240, 248, 255, 0.367);
+    background-color: rgba(240, 248, 255, 0.096);
     gap: 20px;
     display: flex;
     flex-direction: column;
@@ -45,9 +46,10 @@
 }
 
 .tripsBasicInfo {
-    background-color: rgba(240, 248, 255, 0.367);
+    background-color: rgba(240, 248, 255, 0.174);
     padding: 10px;
     border-radius: 10px;
+    box-shadow: 0px 0px 2px#1e273269;
 
 }
 
@@ -77,12 +79,12 @@
 }
 
 .inDepthTripInfo {
-    background-color: rgba(240, 248, 255, 0.367);
+    background-color: rgba(240, 248, 255, 0.205);
     padding: 10px;
     border-radius: 10px;
     color: black;
     text-shadow: 0px 0px 4px #f1eded;
-    box-shadow: 0px 0px 2px#1e273269;
+    box-shadow: 0px 0px 1px#1e273269;
     height: fit-content;
 }
 
