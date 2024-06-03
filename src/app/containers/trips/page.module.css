@@ -43,6 +43,7 @@
     overflow-y: auto;
     scrollbar-width: thin;
     scrollbar-color: #9fbdd5 #649bc5;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
 }
 
 .tripsBasicInfo {

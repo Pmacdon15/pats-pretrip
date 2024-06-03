@@ -51,7 +51,7 @@ export default function InDepthDisplayTrip({
                 Remarks: {trip?.remarks}
             </div>
             <div className={styles.inDepthTripInfo}>
-                Driver: {trip?.esignature}
+                eSignature: {trip?.esignature}
             </div> 
             {children}           
         </div>
