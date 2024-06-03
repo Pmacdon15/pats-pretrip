@@ -42,7 +42,6 @@ export async function submitForm(email: string, prevState: any, formData: FormDa
       formData.get("carrier") as string,
       formData.get("carrierAddress") as string,
       formData.get("inspectionAddress") as string,
-      formData.get("dateTime") as string,
       formData.get("remarks") as string,
       formData.get("eSignature") as string
     ) as { id: number };

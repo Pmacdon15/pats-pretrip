@@ -1,12 +1,7 @@
 'use client';
 import * as React from 'react';
-import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
-import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
-import { DateTimePicker } from '@mui/x-date-pickers/DateTimePicker';
 import styles from './page.module.css';
 import TextField from '@mui/material/TextField';
-// import { useForm } from 'react-hook-form';
-
 
 export default function TextFieldsForForm() {
     console.log('TextFieldsForForm loading');
@@ -83,40 +78,40 @@ export default function TextFieldsForForm() {
                 }}
             />
             <TextField
-            name='inspectionAddress'
-            required={true}
-            className={styles.textFieldWide}
-            id="standard-basic"
-            label="Inspection Address"
-            variant="standard"
-            sx={{
-                "& .MuiInputLabel-root": {
-                    color: "white",
-                    "&.Mui-focused": {
+                name='inspectionAddress'
+                required={true}
+                className={styles.textFieldWide}
+                id="standard-basic"
+                label="Inspection Address"
+                variant="standard"
+                sx={{
+                    "& .MuiInputLabel-root": {
                         color: "white",
+                        "&.Mui-focused": {
+                            color: "white",
+                        },
                     },
-                },
-                "& .MuiInput-underline": {
-                    "&:before": {
-                        borderBottomColor: "white",
+                    "& .MuiInput-underline": {
+                        "&:before": {
+                            borderBottomColor: "white",
+                        },
+                        "&:after": {
+                            borderBottomColor: "white",
+                        },
                     },
-                    "&:after": {
-                        borderBottomColor: "white",
+                    "& .MuiInputBase-input": {
+                        "&:focus": {
+                            color: "white",
+                        },
+                        "&:not(:focus)": {
+                            color: "white",
+                        },
                     },
-                },
-                "& .MuiInputBase-input": {
-                    "&:focus": {
-                        color: "white",
-                    },
-                    "&:not(:focus)": {
-                        color: "white",
-                    },
-                },
-            }}
-            InputLabelProps={{
-                required: false,
-            }}
-        />
+                }}
+                InputLabelProps={{
+                    required: false,
+                }}
+            />
             <div className={styles.formSection}>
                 <TextField
                     name='make'
@@ -260,73 +255,38 @@ export default function TextFieldsForForm() {
                         required: false,
                     }}
                 />
-                <TextField 
-        name="trailerLP"
-        className={styles.textFieldSlim} 
-        id="standard-basic" 
-        label="Trailer License Plate" 
-        variant="standard"
-        sx={{
-            "& .MuiInputLabel-root": {
-                color: "white",
-                "&.Mui-focused": {
-                    color: "white",
-                },
-            },
-            "& .MuiInput-underline": {
-                "&:before": {
-                    borderBottomColor: "white",
-                },
-                "&:after": {
-                    borderBottomColor: "white",
-                },
-            },
-            "& .MuiInputBase-input": {
-                "&:focus": {
-                    color: "white",
-                },
-                "&:not(:focus)": {
-                    color: "white",
-                },
-            },
-        }}
-            />
-            </div>
-            {/* MARK: - DateTimePicker */}
-            <LocalizationProvider dateAdapter={AdapterDayjs}>
-                <DateTimePicker
-                    name='dateTime'
+                <TextField
+                    name="trailerLP"
+                    className={styles.textFieldSlim}
+                    id="standard-basic"
+                    label="Trailer License Plate"
+                    variant="standard"
                     sx={{
-                        marginTop: '1rem',
-                        color: "white",
-                        textColor: "white",
                         "& .MuiInputLabel-root": {
                             color: "white",
                             "&.Mui-focused": {
                                 color: "white",
                             },
                         },
-                        "& .MuiOutlinedInput-root": {
-                            "& fieldset": {
-                                borderColor: "white",
+                        "& .MuiInput-underline": {
+                            "&:before": {
+                                borderBottomColor: "white",
                             },
-                            "&.Mui-focused fieldset": {
-                                borderColor: "white",
+                            "&:after": {
+                                borderBottomColor: "white",
                             },
                         },
                         "& .MuiInputBase-input": {
                             "&:focus": {
                                 color: "white",
                             },
-                            "&:not(:focus)": { // Add this line
-                                color: "white", // Add this line
+                            "&:not(:focus)": {
+                                color: "white",
                             },
                         },
-
                     }}
-
                 />
-            </LocalizationProvider>
+            </div>
         </>
     )
 }

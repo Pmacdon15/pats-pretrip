@@ -57,7 +57,6 @@ export async function submitTripInfo(
   carrier: string,
   carrierAddress: string,
   inspectionAddress: string,
-  dateTime: string,
   remarks: string,
   eSignature: string
 ) {
@@ -67,8 +66,7 @@ export async function submitTripInfo(
         userId,
         carrier,
         carrierAddress,
-        inspectionAddress,
-        dateTime,
+        inspectionAddress,        
         remarks,
         eSignature,
         inputDate
@@ -77,8 +75,7 @@ export async function submitTripInfo(
         (SELECT id FROM ppusers WHERE email = ${email}),
         ${carrier},
         ${carrierAddress},
-        ${inspectionAddress},
-        ${dateTime},
+        ${inspectionAddress},         
         ${remarks},
         ${eSignature},
         CURRENT_TIMESTAMP

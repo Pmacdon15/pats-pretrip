@@ -19,8 +19,7 @@ export default function InDepthDisplayTrip({
     const trip = trips.find((trip: any) => trip.id === selectedTripId);
     const truck = trucks.find((truck: any) => truck.tripid === selectedTripId);
     const selectedDefects = defects.filter((defect: any) => defect.tripid === selectedTripId);   
-    console.log(trips);
-    console.log(trip?.datetime);
+    
     return (
         <div className={styles.tripsInDepthInfoContainer}> 
             <div className={styles.inDepthTripInfo}>
@@ -28,7 +27,7 @@ export default function InDepthDisplayTrip({
                 <p>Carrier: {trip?.carrier}<br />
                     Carrier Address: {trip?.carrieraddress}<br />
                     Inspection Address: {trip?.inspectionaddress}<br/>
-                    Inspection Time: {trip?.datetime.toString()}
+                    Inspection Time: {trip?.inputdate.toString()}
                 </p>
             </div>
             <div className={styles.inDepthTripInfo}>
