@@ -1,56 +1,22 @@
 "use server";
 import { sql } from "@vercel/postgres";
-// //MARK: Register User
-// export async function register(
-//   email: string,
-//   first_name: string,
-//   last_name: string,
-//   password: string
-// ) {
+
+// //MARK: Register user if they aren't already registered
+// export async function registerIfNotExistingUser(email: string|null, first_name: string|null, last_name: string|null) {
 //   try {
 //     const { rows } = await sql`
-//         INSERT INTO ppUsers (email, first_name, last_name, password)
-//         VALUES (${email}, ${first_name}, ${last_name}, ${password})
-//         `;
-//     if (Array.isArray(rows) && rows.length === 0) {
-//       console.log("User registered");
-//       console.log(rows);
+//     INSERT INTO ppusers (email, first_name, last_name)
+//     VALUES (${email}, ${first_name}, ${last_name})
+//     ON CONFLICT DO NOTHING
+//     `;
+//     if (rows) {
 //       return true;
 //     }
-//     return false;
 //   } catch (error) {
 //     console.error("Error registering user: ", error);
-//     return false;
+//     //throw new Error("registering user: " + (error instanceof Error ? error.message : error));
 //   }
 // }
-// // MARK: Get hashed password
-// export async function getHashedPassword(email: string) {
-//   const { rows } = await sql`
-//       SELECT password FROM ppUsers WHERE email = ${email}
-//     `;
-
-//   if (rows.length === 0) {
-//     return false; // User not found
-//   }
-//   return rows[0].password;
-// }
-
-//MARK: Register user if they aren't already registered
-export async function registerIfNotExistingUser(email: string|null, first_name: string|null, last_name: string|null) {
-  try {
-    const { rows } = await sql`
-    INSERT INTO ppusers (email, first_name, last_name)
-    VALUES (${email}, ${first_name}, ${last_name})
-    ON CONFLICT DO NOTHING
-    `;
-    if (rows) {
-      return true;
-    }
-  } catch (error) {
-    console.error("Error registering user: ", error);
-    //throw new Error("registering user: " + (error instanceof Error ? error.message : error));
-  }
-}
 //MARK: Submit Trip Info
 export async function submitTripInfo(
   email: string,
@@ -59,26 +25,27 @@ export async function submitTripInfo(
   inspectionAddress: string,
   remarks: string,
   eSignature: string
+
 ) {
   try {
     const { rows } = await sql`
       INSERT INTO pptrips (
-        userId,
         carrier,
         carrierAddress,
         inspectionAddress,        
         remarks,
         eSignature,
-        inputDate
+        inputDate,
+        email
       )
-      VALUES (
-        (SELECT id FROM ppusers WHERE email = ${email}),
+      VALUES (        
         ${carrier},
         ${carrierAddress},
         ${inspectionAddress},         
         ${remarks},
         ${eSignature},
-        CURRENT_TIMESTAMP
+        CURRENT_TIMESTAMP,
+        ${email}
       )
       RETURNING *;
     `;
@@ -167,7 +134,7 @@ export async function changeToMajorDefect(tripId: number, name: string) {
     throw new Error("changing to major defect: " + (error instanceof Error ? error.message : error));
   }
 }
-//MARK: Add remark 
+
 //MARK: Add remark
 export async function addRemark(tripId: number, remark: string) {
   try {
@@ -188,8 +155,11 @@ export async function addRemark(tripId: number, remark: string) {
 //MARK: Get Current Trips
 export async function getCurrentTrips(email: string) {
   try {
-    const { rows } = await sql`
-    SELECT * FROM pptrips WHERE userId = (SELECT id FROM ppusers WHERE email = ${email}) AND inputDate > CURRENT_TIMESTAMP - INTERVAL '24 hours'
+    const { rows } = await sql`  
+      SELECT *
+      FROM pptrips
+      WHERE email = ${email}
+      AND inputDate > CURRENT_TIMESTAMP - INTERVAL '24 hours'
     `;
     if (rows) {
       return rows;
@@ -204,7 +174,14 @@ export async function getCurrentTrips(email: string) {
 export async function getCurrentTrucksInfo(email: string) {
   try {
     const { rows } = await sql`
-    SELECT * FROM ppvehicles WHERE tripId IN (SELECT id FROM pptrips WHERE userId = (SELECT id FROM ppusers WHERE email = ${email}) AND inputDate > CURRENT_TIMESTAMP - INTERVAL '24 hours')
+      SELECT *
+      FROM ppvehicles
+      WHERE tripId IN (
+        SELECT id
+        FROM pptrips
+        WHERE email = ${email}
+        AND inputDate > CURRENT_TIMESTAMP - INTERVAL '24 hours'
+      )
     `;
     if (rows) {
       return rows;
@@ -219,7 +196,14 @@ export async function getCurrentTrucksInfo(email: string) {
 export async function getCurrentDefects(email: string) {
   try {
     const { rows } = await sql`
-    SELECT * FROM ppdefects WHERE tripId IN (SELECT id FROM pptrips WHERE userId = (SELECT id FROM ppusers WHERE email = ${email}) AND inputDate > CURRENT_TIMESTAMP - INTERVAL '24 hours')
+      SELECT *
+      FROM ppdefects
+      WHERE tripId IN (
+        SELECT id
+        FROM pptrips
+        WHERE email = ${email}
+        AND inputDate > CURRENT_TIMESTAMP - INTERVAL '24 hours'
+      )
     `;
     if (rows) {
       return rows;
@@ -281,7 +265,7 @@ export async function getUserStats() {
     const { rows } = await sql`
     SELECT COUNT(*) AS total_users FROM ppusers;
     `;
-    
+
     if (rows) {
       return rows[0].total_users;
     }
