@@ -4,7 +4,7 @@ import SignInButton from './signInButton';
 import { Button } from '@mui/material';
 import { cookies } from 'next/headers'
 import { redirect } from 'next/navigation';
-
+//TODO : change this to async
 async function signOut() {
     cookies().delete('wos-session');
     redirect('/');
