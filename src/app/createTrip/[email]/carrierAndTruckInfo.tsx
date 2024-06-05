@@ -2,9 +2,10 @@
 import * as React from 'react';
 import styles from './page.module.css';
 import TextField from '@mui/material/TextField';
+import GeoLocation from '@/app/location/geoLocation';
 
 export default function TextFieldsForForm() {
-    console.log('TextFieldsForForm loading');
+    const location = GeoLocation()    
     return (
         <>
             <TextField
@@ -83,6 +84,7 @@ export default function TextFieldsForForm() {
                 className={styles.textFieldWide}
                 id="standard-basic"
                 label="Inspection Address"
+                defaultValue={location}
                 variant="standard"
                 sx={{
                     "& .MuiInputLabel-root": {
@@ -110,6 +112,7 @@ export default function TextFieldsForForm() {
                 }}
                 InputLabelProps={{
                     required: false,
+                    shrink: location ? true : false 
                 }}
             />
             <div className={styles.formSection}>
