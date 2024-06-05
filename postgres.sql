@@ -1,12 +1,12 @@
-CREATE TABLE
-    ppusers (
-        id SERIAL PRIMARY KEY,
-        email VARCHAR(255) UNIQUE NOT NULL,
-        first_name VARCHAR(50) NOT NULL,
-        last_name VARCHAR(50) NOT NULL,
-        -- password VARCHAR(255) NOT NULL, -- This is for an older version with in house authentication
-        admin BOOLEAN DEFAULT FALSE NOT NULL
-    );
+-- CREATE TABLE
+--     ppusers (
+--         id SERIAL PRIMARY KEY,
+--         email VARCHAR(255) UNIQUE NOT NULL,
+--         first_name VARCHAR(50) NOT NULL,
+--         last_name VARCHAR(50) NOT NULL,
+--         -- password VARCHAR(255) NOT NULL, -- This is for an older version with in house authentication
+--         admin BOOLEAN DEFAULT FALSE NOT NULL
+--     );
 
 CREATE TABLE pptrips (
     id SERIAL PRIMARY KEY,

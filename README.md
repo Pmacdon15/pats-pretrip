@@ -8,13 +8,20 @@
 - [Features](#Features)
   - [Current Features](#Current-Features) 
   - [Coming Soon](#Coming-Soon) 
+- [Necessary Subscriptions](#Necessary-Subscriptions)
 - [Cloning](#Cloning)
 - [Setup](#Setup)
 - [Start Up](#Start-Up)
 - [Usage](#Usage)
 
 # Description
-Conduct and document pre-trip inspections for commercial vehicles with ease. View current and past trips, and create new ones quickly and efficiently Get started today!
+Conduct and document pre-trip inspections for commercial vehicles with ease. View current and past trips, and create new ones quickly and efficiently. Built using TypeScript, Next.js, and Auth Kit for secure authentication, and GeoApify for geolocation services. Get started today!
+This description showcases the technologies used in the project, including:
+- TypeScript for robust and maintainable code.
+- Next.js for server-side rendering and static site generation.
+- Auth Kit for secure authentication and authorization.
+- GeoApify for Geo Location services for obtaining users address from coordinates.
+Feel free to modify it as needed to fit your project's specific requirements!
 
 # Disclaimer
 Pat's Pre-Trips is currently in development and is provided free of charge. As such, we disclaim any liability for damages or issues incurred while using the app. Our service is intended to be used as a convenience and not relied upon as the sole means of conducting pre-trip inspections. We are not responsible for any consequences resulting from its use.
@@ -23,9 +30,7 @@ Pat's Pre-Trips is a fun project created to explore the feasibility of a pre-tri
 Let me know if you'd like me to make any adjustments!
 # Deployments
 Here you can try the app for your self(still in development)
-```https
-https://pats-pretrip.vercel.app/
-```
+[https://pats-pretrip.vercel.app/](https://pats-pretrip.vercel.app/)
 
 # Features
 ## Current Features
@@ -39,11 +44,15 @@ https://pats-pretrip.vercel.app/
 - Ability to add remarks to defects on route.
 4. Automation
 - Time automatically selected by device.
+- Location Populated for inspection address if user allows browser permissions.
 # Coming Soon
 1. Defect Management
 - Ability to correct defects and list invoice number (Potentially take photo of invoice).
-2. Automation
-- Location automatically selected by device.
+
+# Necessary Subscriptions
+1. Serverless PostgreSQL DB with Vercel. [https://vercel.com/](https://vercel.com/)
+2. Work OS Account. [https://workos.com/](https://workos.com/)
+3. Geoapify Api account. [https://www.geoapify.com/](https://www.geoapify.com/)
 
 # Cloning
 1. Clone repository run this command: 
@@ -63,7 +72,8 @@ The commands are:
 ```Bash
 npm i
 ```
-2. Set up .env.local with Vercel Postgres info as while as Pepper phrase and Jwt phrase:
+
+2. Set up .env.local with Vercel Postgres, Work OS and Geoapify info:
 ```env
 # Created by Vercel CLI
 NX_DAEMON=""
@@ -79,7 +89,7 @@ TURBO_REMOTE_ONLY=""
 TURBO_RUN_SUMMARY=""
 VERCEL=""
 
-# Needed for authkit-nextjs library example, defined in WorkOS dashboard
+# Needed for authkit-nextjs library example, must defined in WorkOS dashboard to work.
 WORKOS_REDIRECT_URI="http://localhost:3000/auth/callback"
 
 # Needed for authkit-nextjs library example. Must be at least 32 characters long
@@ -88,20 +98,11 @@ WORKOS_COOKIE_PASSWORD=""
 WORKOS_CLIENT_ID=""
 WORKOS_API_KEY=""
 
+REVERSE_GEOCODING_API_KEY="You get this from Geoapify"
 ```
-it might be easiest to associate your fork with your Vercel Postgres database with your project and add these two variables to your projects .env:
-```env
 
-# Needed for authkit-nextjs library example, defined in WorkOS dashboard
-WORKOS_REDIRECT_URI="http://localhost:3000/auth/callback"
+It might be easiest to associate your fork with your Vercel Postgres database with your project and add these 5 variables to your Vercel projects .env and then use the Vercel Cli to pull the env, making hosting later much easier.
 
-# Needed for authkit-nextjs library example. Must be at least 32 characters long
-WORKOS_COOKIE_PASSWORD="Obtained through sign up of workos.com"
-
-WORKOS_CLIENT_ID="Obtained through sign up of workos.com"
-WORKOS_API_KEY="Obtained through sign up of workos.com"
-```
-Then download a copy of your env file from vercel for your project.
 > **Note**
 > This project was meant to be used with a Vercel Postgres database, Work os Auth Kit and I use the Vercel Sdk to communicate with the database.
 
@@ -114,8 +115,6 @@ Other words we have to build the project, which is easily done by running:
 ```Bash
 npm run build
 ```
-
-4. Setup port forwarding on your router for port 3000.
 
 # Start up
 Project can be easily started from the root by running:
