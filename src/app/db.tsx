@@ -278,7 +278,7 @@ export async function getUserStats() {
     const { rows } = await sql`
     SELECT COUNT(DISTINCT email) AS total_users FROM pptrips;
     `;
-    console.log(rows);
+    //console.log(rows);
     if (rows) {
       return rows[0].total_users;
     }
