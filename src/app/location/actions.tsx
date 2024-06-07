@@ -11,7 +11,7 @@ export async function getAddress(lat: string, lng: string): Promise<object> {
             }
         );
         data = await response.json();
-        console.log(data);
+        //console.log(data);
     } catch (error) {
         console.error("Error fetching:", (error instanceof Error ? error.message : error))
     }

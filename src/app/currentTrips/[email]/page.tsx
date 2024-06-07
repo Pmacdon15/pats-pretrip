@@ -10,7 +10,7 @@ import { useRouter, usePathname } from 'next/navigation';
 import styles from '@/app/containers/trips/page.module.css';
 
 type Trip = {
-    id: number;    
+    id: number;
     carrier: string;
     carrieraddress: string;
     inspectionaddress: string;
@@ -39,7 +39,8 @@ export default function CurrentTrips({ params }: { params: { email: string } }) 
     const decodedEmail = decodeURIComponent(params.email);
     const [trips, setTrips] = useState<Trip[]>([]);
     const [trucks, setTrucks] = useState<Truck[]>([]);
-    const [defects, setDefects] = useState<any[]>([]);;
+    const [defects, setDefects] = useState<any[]>([]);
+    const [showAddDefect, setShowAddDefect] = useState(false);
 
     const createQueryString = useCallback(
         (tripId: number) => {
@@ -73,15 +74,17 @@ export default function CurrentTrips({ params }: { params: { email: string } }) 
         router.push(pathname + '?' + createQueryString(trip.id));
     };
 
-    const [showAddDefect, setShowAddDefect] = useState(false);
+
 
     const handleAddDefectClick = () => {
         setShowAddDefect(true);
     };
 
-    const handleHideAddDefect = async () => {
+    const handleHideAddDefect = async (formSubmitted: boolean) => {
         setShowAddDefect(false);
-        window.location.reload();
+        if (formSubmitted) {
+            window.location.reload();
+        }
     };
 
     return (
