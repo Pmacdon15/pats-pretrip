@@ -24,6 +24,10 @@
 .container.show {
     opacity: 1;
 }
+.container.hide {
+    transition: opacity 1s ease-in-out; 
+    opacity: 0;
+}
 
 @media screen and (max-width: 500px) {
     .container {
