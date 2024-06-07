@@ -28,8 +28,6 @@ const useGeoLocation = () => {
         }));
     };
 
-
-
     useEffect(() => {
         if (!("geolocation" in navigator)) {
             onError({ code: 0, message: "Geolocation not supported" });
