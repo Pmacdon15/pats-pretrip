@@ -2,9 +2,22 @@ import { Button } from '@mui/material';
 import styles from './addDefect.module.css';
 import TruckCheckBoxesForForm from '@/app/createTrip/[email]/truckCheckBoxesForForm';
 import { addDefect, changeToMajorDefect, addRemark } from '@/app/db';
+import { useEffect, useState } from 'react';
 
 
 export default function AddDefect({  tripId, defects, onHide }: ({ tripId: number, defects: any, onHide: () => void })) {    
+    const [show, setShow] = useState(false);
+
+    useEffect(() => {
+        // When component mounts, add a delay before showing to create a transition effect
+        const timer = setTimeout(() => {
+            setShow(true);
+        }, 100); // Adjust the delay time as needed
+
+        return () => clearTimeout(timer); // Clean up the timer on unmount
+    }, []);
+    
+    
     const handleSubmit = async  (event: React.FormEvent<HTMLFormElement>) => {
         event.preventDefault();
         const form = event.currentTarget;
@@ -26,11 +39,12 @@ export default function AddDefect({  tripId, defects, onHide }: ({ tripId: numbe
         });
         const newRemarks = formData.get("remarks") as string;
         await addRemark(tripId, newRemarks);
+        setShow(false);
         onHide();
     };
 
     return (
-        <form onSubmit={handleSubmit} className={styles.container}>
+        <form onSubmit={handleSubmit} className={`${styles.container} ${show ? styles.show : ''}`}>
             Add Defect:
             <TruckCheckBoxesForForm />
             <Button variant="contained" type="submit">
