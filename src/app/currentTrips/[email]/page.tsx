@@ -75,7 +75,6 @@ export default function CurrentTrips({ params }: { params: { email: string } }) 
     };
 
 
-
     const handleAddDefectClick = () => {
         setShowAddDefect(true);
     };
@@ -89,7 +88,7 @@ export default function CurrentTrips({ params }: { params: { email: string } }) 
 
     return (
         <>
-               {trips.length > 0 ? (
+            {trips.length > 0 ? (
                 <BasicDisplayTrips onTripClick={handleTripClick} trips={trips} trucks={trucks} />) : (
                 <div className={styles.tripsBasicInfoContainer}>
                     <div className={styles.tripsBasicInfo} >
@@ -98,9 +97,11 @@ export default function CurrentTrips({ params }: { params: { email: string } }) 
                 </div>
             )}
             <InDepthDisplayTrip trips={trips} trucks={trucks} defects={defects} selectedTripId={tripId}>
-                <Button variant="contained" color="primary" onClick={handleAddDefectClick}>
-                    Add Defect
-                </Button>
+                {trips.length > 0 ? (
+                    <Button variant="contained" color="primary" onClick={handleAddDefectClick}>
+                        Add Defect
+                    </Button>
+                ) : (<> </>)}
             </InDepthDisplayTrip>
             {showAddDefect && <AddDefect defects={defects} tripId={tripId} onHide={handleHideAddDefect} />}
         </>
