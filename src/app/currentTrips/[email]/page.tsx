@@ -89,7 +89,7 @@ export default function CurrentTrips({ params }: { params: { email: string } }) 
 
     return (
         <>
-            {trips ? (
+               {trips.length > 0 ? (
                 <BasicDisplayTrips onTripClick={handleTripClick} trips={trips} trucks={trucks} />) : (
                 <div className={styles.tripsBasicInfoContainer}>
                     <div className={styles.tripsBasicInfo} >
