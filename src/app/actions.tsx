@@ -1,7 +1,6 @@
 "use server";
-import { cookies } from "next/headers";
-import jwt from "jsonwebtoken";
 import { submitTripInfo, submitTruckInfo, addDefect } from "./db";
+import { revalidatePath } from "next/cache";
 import { redirect } from "next/navigation";
 import { z } from 'zod';
 
@@ -32,6 +31,11 @@ const schemaLogin = z.object({
   }),
 })
 
+// Revalidate Path for currentTrips
+export async function revalidateCurrentTrips(email: string) {
+  revalidatePath(`/currentTrips/${email}`);
+  redirect(`/currentTrips/${email}`);
+}
 
 //MARK: Submit Form
 export async function submitForm(email: string, prevState: any, formData: FormData) {

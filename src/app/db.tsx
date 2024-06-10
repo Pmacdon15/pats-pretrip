@@ -1,22 +1,6 @@
 "use server";
 import { sql } from "@vercel/postgres";
 
-// //MARK: Register user if they aren't already registered
-// export async function registerIfNotExistingUser(email: string|null, first_name: string|null, last_name: string|null) {
-//   try {
-//     const { rows } = await sql`
-//     INSERT INTO ppusers (email, first_name, last_name)
-//     VALUES (${email}, ${first_name}, ${last_name})
-//     ON CONFLICT DO NOTHING
-//     `;
-//     if (rows) {
-//       return true;
-//     }
-//   } catch (error) {
-//     console.error("Error registering user: ", error);
-//     //throw new Error("registering user: " + (error instanceof Error ? error.message : error));
-//   }
-// }
 //MARK: Submit Trip Info
 export async function submitTripInfo(
   email: string,

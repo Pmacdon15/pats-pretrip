@@ -8,6 +8,7 @@ import AddDefect from "./addDefect";
 import { useSearchParams } from 'next/navigation'
 import { useRouter, usePathname } from 'next/navigation';
 import styles from '@/app/containers/trips/page.module.css';
+import { revalidateCurrentTrips } from "@/app/actions";
 
 type Trip = {
     id: number;
@@ -82,7 +83,7 @@ export default function CurrentTrips({ params }: { params: { email: string } }) 
     const handleHideAddDefect = async (formSubmitted: boolean) => {
         setShowAddDefect(false);
         if (formSubmitted) {
-            window.location.reload();
+            revalidateCurrentTrips(decodedEmail);
         }
     };
 
