@@ -12,12 +12,29 @@ import { revalidateCurrentTrips } from "@/actions/actions";
 import { Trip, Truck } from '@/types/types';
 
 
-export default function ClientComponent({ email, trips, trucks, defects }: { email: string, trips: Trip[], trucks: Truck[], defects: any[] }) {
+export default function ClientComponent({ email }: { email: string }) {
     const router = useRouter()
     const pathname = usePathname()
     const searchParams = useSearchParams()
     const tripId = Number(searchParams.get("tripId")) ?? 0;
     const decodedEmail = decodeURIComponent(email);
+
+    const [trips, setTrips] = useState<Trip[]>([]);
+    const [trucks, setTrucks] = useState<Truck[]>([]);
+    const [defects, setDefects] = useState<any[]>([]);
+
+    useEffect(() => {
+        const fetchData = async () => {
+            const fetchedTrips = await getCurrentTrips(decodedEmail) as Trip[]; 
+            const fetchedTrucks = await getCurrentTrucksInfo(decodedEmail) as Truck[];  
+            const fetchedDefects = await getCurrentDefects(decodedEmail) as any;
+
+            setTrips(fetchedTrips);
+            setTrucks(fetchedTrucks);
+            setDefects(fetchedDefects);
+        };
+        fetchData();
+    }, [decodedEmail]);
 
     const [showAddDefect, setShowAddDefect] = useState(false);
 
