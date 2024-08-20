@@ -1,15 +1,5 @@
 
 import { getCurrentTrips, getCurrentTrucksInfo, getCurrentDefects } from "@/app/db";
-import InDepthDisplayTrip from '../../containers/trips/inDepthDisplayTrip';
-import BasicDisplayTrips from '../../containers/trips/basicDisplayTrips';
-import { useState, useEffect, useCallback } from 'react';
-import { Button } from '@mui/material';
-import AddDefect from "./addDefect";
-import { useSearchParams } from 'next/navigation'
-import { useRouter, usePathname } from 'next/navigation';
-import styles from '@/app/containers/trips/page.module.css';
-import { revalidateCurrentTrips } from "@/app/actions";
-
 import ClientComponent from "@/app/currentTrips/[email]/clientComponent";
 
 type Trip = {
