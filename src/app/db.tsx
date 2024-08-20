@@ -145,7 +145,7 @@ export async function getCurrentTrips(email: string) {
       WHERE email = ${email}
       AND inputDate > CURRENT_TIMESTAMP - INTERVAL '24 hours'
     `;
-    if (rows) {
+    if (rows) {      
       return rows;
     }
   } catch (error) {

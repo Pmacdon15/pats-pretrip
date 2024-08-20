@@ -40,7 +40,7 @@ type Trip = {
         >
         Vehicle: {trucks && trucks[index]?.trucklp}, <br />        
         
-        {trip.inputdate.toString()}                
+        {trip.inputdate.toLocaleString()}                
         </div>
       ))}
       </div>
