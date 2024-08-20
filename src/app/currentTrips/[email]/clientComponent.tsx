@@ -9,27 +9,8 @@ import { useSearchParams } from 'next/navigation'
 import { useRouter, usePathname } from 'next/navigation';
 import styles from '@/app/containers/trips/page.module.css';
 import { revalidateCurrentTrips } from "@/app/actions";
+import { Trip, Truck } from '@/types/types';
 
-type Trip = {
-    id: number;
-    carrier: string;
-    carrieraddress: string;
-    inspectionaddress: string;
-    remarks: string | null;
-    esignature: string;
-    inputdate: string;
-    email: string;
-};
-
-type Truck = {
-    id: number;
-    tripid: number;
-    make: string;
-    model: string;
-    odometer: string;
-    trucklp: string;
-    trailerlp: string;
-};
 
 export default function ClientComponent({ email, trips, trucks, defects }: { email: string, trips: Trip[], trucks: Truck[], defects: any[] }) {
     const router = useRouter()
@@ -76,19 +57,7 @@ export default function ClientComponent({ email, trips, trucks, defects }: { ema
             revalidateCurrentTrips(decodedEmail);
         }
     };
-
-    // const [modifiedTrips, setModifiedTrips] = useState(trips);
-
-    // useEffect(() => {
-    //     // Modify the data on the client-side
-    //     const modifiedData = trips.map((trip) => {
-    //         // Make changes to the trip data here
-    //         trip.inputdate = trip.inputdate.toLocaleString
-    //         return trip;
-    //     });
-    //     setModifiedTrips(modifiedData);
-    // }, [trips]);
-
+  
 
     return (
         <>

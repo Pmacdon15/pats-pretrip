@@ -1,26 +1,7 @@
 // 'use client';
 import styles from './page.module.css';
+import { Trip, Truck } from '@/types/types';
 
-type Trip = {
-    id: number;
-    carrier: string;
-    carrieraddress: string;
-    inspectionaddress: string;
-    remarks: string | null;
-    esignature: string;
-    inputdate: string;
-    email: string;
-  };
-  
-  type Truck = {
-    id: number;
-    tripid: number;
-    make: string;
-    model: string;
-    odometer: string;
-    trucklp: string;
-    trailerlp: string;
-  };
   export default function BasicDisplayTrips({
     trips,
     trucks,

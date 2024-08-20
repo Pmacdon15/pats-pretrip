@@ -1,27 +1,27 @@
 
 import { getCurrentTrips, getCurrentTrucksInfo, getCurrentDefects } from "@/app/db";
 import ClientComponent from "@/app/currentTrips/[email]/clientComponent";
+import { Trip, Truck } from '@/types/types';
+// type Trip = {
+//     id: number;
+//     carrier: string;
+//     carrieraddress: string;
+//     inspectionaddress: string;
+//     remarks: string | null;
+//     esignature: string;
+//     inputdate: string;
+//     email: string;
+// };
 
-type Trip = {
-    id: number;
-    carrier: string;
-    carrieraddress: string;
-    inspectionaddress: string;
-    remarks: string | null;
-    esignature: string;
-    inputdate: string;
-    email: string;
-};
-
-type Truck = {
-    id: number;
-    tripid: number;
-    make: string;
-    model: string;
-    odometer: string;
-    trucklp: string;
-    trailerlp: string;
-};
+// type Truck = {
+//     id: number;
+//     tripid: number;
+//     make: string;
+//     model: string;
+//     odometer: string;
+//     trucklp: string;
+//     trailerlp: string;
+// };
 
 export default async function CurrentTrips({ params }: { params: { email: string } }) {
 
@@ -31,11 +31,11 @@ export default async function CurrentTrips({ params }: { params: { email: string
         trip.inputdate = new Date(trip.inputdate).toLocaleString();
     });
     const fetchedTrucks = await getCurrentTrucksInfo(decodedEmail) as Truck[];
-    const fetchedDefects = await getCurrentDefects(decodedEmail) as any; 
+    const fetchedDefects = await getCurrentDefects(decodedEmail) as any;
 
     return (
         <>
-         <ClientComponent email={decodedEmail}trips={fetchedTrips} trucks={fetchedTrucks} defects={fetchedDefects} />
+            <ClientComponent email={decodedEmail} trips={fetchedTrips} trucks={fetchedTrucks} defects={fetchedDefects} />
         </>
     );
 }
