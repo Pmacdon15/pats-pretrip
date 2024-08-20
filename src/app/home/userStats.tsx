@@ -1,4 +1,4 @@
-import { getUserStats } from "../db";
+import { getUserStats } from "../../actions/db";
 import styles from './page.module.css';
 export default async function UserStats() {
     const amountOfUsers = await getUserStats();

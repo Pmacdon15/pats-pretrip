@@ -1,5 +1,5 @@
 'use client';
-import { getCurrentTrips, getCurrentTrucksInfo, getCurrentDefects } from "@/app/db";
+import { getCurrentTrips, getCurrentTrucksInfo, getCurrentDefects } from "@/actions/db";
 import InDepthDisplayTrip from '../../containers/trips/inDepthDisplayTrip';
 import BasicDisplayTrips from '../../containers/trips/basicDisplayTrips';
 import { useState, useEffect, useCallback } from 'react';
@@ -8,7 +8,7 @@ import AddDefect from "./addDefect";
 import { useSearchParams } from 'next/navigation'
 import { useRouter, usePathname } from 'next/navigation';
 import styles from '@/app/containers/trips/page.module.css';
-import { revalidateCurrentTrips } from "@/app/actions";
+import { revalidateCurrentTrips } from "@/actions/actions";
 import { Trip, Truck } from '@/types/types';
 
 

@@ -1,7 +1,7 @@
 import { Button } from '@mui/material';
 import styles from './addDefect.module.css';
 import TruckCheckBoxesForForm from '@/app/createTrip/[email]/truckCheckBoxesForForm';
-import { addDefect, changeToMajorDefect, addRemark } from '@/app/db';
+import { addDefect, changeToMajorDefect, addRemark } from '@/actions/db';
 import { useEffect, useState } from 'react';
 
 export default function AddDefect({ tripId, defects, onHide }: ({ tripId: number, defects: any, onHide:(formSubmitted: boolean)  => void })) {

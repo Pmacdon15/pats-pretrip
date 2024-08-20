@@ -1,5 +1,5 @@
 
-import { getCurrentTrips, getCurrentTrucksInfo, getCurrentDefects } from "@/app/db";
+import { getCurrentTrips, getCurrentTrucksInfo, getCurrentDefects } from "@/actions/db";
 import ClientComponent from "@/app/currentTrips/[email]/clientComponent";
 import { Trip, Truck } from '@/types/types';
 

@@ -1,5 +1,5 @@
 "use server";
-import { submitTripInfo, submitTruckInfo, addDefect } from "./db";
+import { submitTripInfo, submitTruckInfo, addDefect } from "@/actions/db";
 import { revalidatePath } from "next/cache";
 import { redirect } from "next/navigation";
 import { z } from 'zod';
