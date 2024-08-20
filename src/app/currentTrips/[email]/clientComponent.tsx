@@ -7,7 +7,7 @@ import { Button } from '@mui/material';
 import AddDefect from "./addDefect";
 import { useSearchParams } from 'next/navigation'
 import { useRouter, usePathname } from 'next/navigation';
-import styles from '@/app/containers/trips/page.module.css';
+import styles from '@/components/trips/page.module.css';
 import { revalidateCurrentTrips } from "@/actions/actions";
 import { Trip, Truck } from '@/types/types';
 
@@ -41,7 +41,7 @@ export default function ClientComponent({ email, trips, trucks, defects }: { ema
             }
         };
         setSearchParams();
-    }, [router, tripId, pathname, createQueryString]);
+    }, [trips, router, tripId, pathname, createQueryString]);
 
     const handleTripClick = (trip: Trip) => {
         router.push(pathname + '?' + createQueryString(trip.id));
@@ -57,7 +57,7 @@ export default function ClientComponent({ email, trips, trucks, defects }: { ema
             revalidateCurrentTrips(decodedEmail);
         }
     };
-  
+
 
     return (
         <>
