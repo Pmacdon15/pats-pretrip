@@ -23,6 +23,7 @@
     flex-direction: row;
     align-items: center;
     /* background-color: #091014;   */
+    
 
 }
 
@@ -44,6 +45,7 @@
     scrollbar-width: thin;
     scrollbar-color: #9fbdd5 #649bc5;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+    
 }
 
 .tripsBasicInfo {
@@ -83,8 +85,8 @@
     background-color: rgba(240, 248, 255, 0.205);
     padding: 10px;
     border-radius: 10px;
-    color: black;
-    text-shadow: 0px 0px 4px #f1eded;
+    /* color: white;
+    text-shadow: 0px 0px 4px #020202; */
     box-shadow: 0px 0px 1px#1e273269;
     height: fit-content;
 }
