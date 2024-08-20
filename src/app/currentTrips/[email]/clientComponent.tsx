@@ -17,7 +17,7 @@ type Trip = {
     inspectionaddress: string;
     remarks: string | null;
     esignature: string;
-    inputdate: Date;
+    inputdate: string;
     email: string;
 };
 
@@ -31,13 +31,13 @@ type Truck = {
     trailerlp: string;
 };
 
-export default function ClientComponent({email, trips, trucks, defects }: {  email: string, trips: Trip[], trucks: Truck[], defects: any[] }) {
+export default function ClientComponent({ email, trips, trucks, defects }: { email: string, trips: Trip[], trucks: Truck[], defects: any[] }) {
     const router = useRouter()
     const pathname = usePathname()
     const searchParams = useSearchParams()
     const tripId = Number(searchParams.get("tripId")) ?? 0;
     const decodedEmail = decodeURIComponent(email);
-   
+
     const [showAddDefect, setShowAddDefect] = useState(false);
 
     const createQueryString = useCallback(
@@ -66,7 +66,6 @@ export default function ClientComponent({email, trips, trucks, defects }: {  ema
         router.push(pathname + '?' + createQueryString(trip.id));
     };
 
-
     const handleAddDefectClick = () => {
         setShowAddDefect(true);
     };
@@ -77,6 +76,19 @@ export default function ClientComponent({email, trips, trucks, defects }: {  ema
             revalidateCurrentTrips(decodedEmail);
         }
     };
+
+    // const [modifiedTrips, setModifiedTrips] = useState(trips);
+
+    // useEffect(() => {
+    //     // Modify the data on the client-side
+    //     const modifiedData = trips.map((trip) => {
+    //         // Make changes to the trip data here
+    //         trip.inputdate = trip.inputdate.toLocaleString
+    //         return trip;
+    //     });
+    //     setModifiedTrips(modifiedData);
+    // }, [trips]);
+
 
     return (
         <>

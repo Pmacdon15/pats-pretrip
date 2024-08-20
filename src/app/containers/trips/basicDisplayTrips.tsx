@@ -8,7 +8,7 @@ type Trip = {
     inspectionaddress: string;
     remarks: string | null;
     esignature: string;
-    inputdate: Date;
+    inputdate: string;
     email: string;
   };
   
@@ -40,7 +40,7 @@ type Trip = {
         >
         Vehicle: {trucks && trucks[index]?.trucklp}, <br />        
         
-        {trip.inputdate.toString()}                
+        {trip.inputdate.toLocaleString()}                
         </div>
       ))}
       </div>
