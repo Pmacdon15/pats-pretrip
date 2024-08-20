@@ -1,5 +1,5 @@
 'use server';
-import CreateTripContainer from './[email]/createTripContainer';
+import CreateTripContainer from '../../components/createTrip/createTripContainer';
 import { getUser } from '@workos-inc/authkit-nextjs';
 
 export default async function CreateTrip({

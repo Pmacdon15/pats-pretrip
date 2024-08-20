@@ -1,10 +1,7 @@
-
 'use client';
 import styles from './page.module.css';
 import { useFormState } from 'react-dom'
-import { submitForm } from '../../actions';
-
-
+import { submitForm } from '@/actions/actions';
 
 const initialState = {
     message: '',

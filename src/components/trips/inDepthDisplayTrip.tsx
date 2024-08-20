@@ -1,33 +1,33 @@
 // 'use client';
 import styles from './page.module.css';
-
+import { Trip, Truck } from '@/types/types';
 
 export default function InDepthDisplayTrip({
     children,
     trips,
     trucks,
     defects,
-    selectedTripId,       
+    selectedTripId,
 }: {
     children: React.ReactNode;
-    trips: any;
-    trucks: any;
+    trips: Trip[];
+    trucks: Truck[];
     defects: any;
-    selectedTripId: number;        
+    selectedTripId: number;
 }) {
- 
+
     const trip = trips?.find((trip: any) => trip.id === selectedTripId);
     const truck = trucks?.find((truck: any) => truck.tripid === selectedTripId);
-    const selectedDefects = defects?.filter((defect: any) => defect.tripid === selectedTripId);   
-    
+    const selectedDefects = defects?.filter((defect: any) => defect.tripid === selectedTripId);
+
     return (
-        <div className={styles.tripsInDepthInfoContainer}> 
+        <div className={styles.tripsInDepthInfoContainer}>
             <div className={styles.inDepthTripInfo}>
                 Carrier Info:<br />
                 <p>Carrier: {trip?.carrier}<br />
                     Carrier Address: {trip?.carrieraddress}<br />
-                    Inspection Address: {trip?.inspectionaddress}<br/>
-                    Inspection Time: {trip?.inputdate.toString()}
+                    Inspection Address: {trip?.inspectionaddress}<br />
+                    Inspection Time: {trip?.inputdate.toLocaleString()}
                 </p>
             </div>
             <div className={styles.inDepthTripInfo}>
@@ -52,8 +52,8 @@ export default function InDepthDisplayTrip({
             </div>
             <div className={styles.inDepthTripInfo}>
                 eSignature: {trip?.esignature}
-            </div> 
-            {children}           
+            </div>
+            {children}
         </div>
     )
     // Format the defect name to be more readable

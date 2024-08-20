@@ -1,4 +1,4 @@
-import { getDefectStats, getMostCommonDefect, getLeastCommonDefect } from "../db";
+import { getDefectStats, getMostCommonDefect, getLeastCommonDefect } from "../../actions/db";
 import styles from './page.module.css';
 
 export default async function DefectStats() {

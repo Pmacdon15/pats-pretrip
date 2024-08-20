@@ -1,26 +1,7 @@
 // 'use client';
 import styles from './page.module.css';
+import { Trip, Truck } from '@/types/types';
 
-type Trip = {
-    id: number;
-    carrier: string;
-    carrieraddress: string;
-    inspectionaddress: string;
-    remarks: string | null;
-    esignature: string;
-    inputdate: Date;
-    email: string;
-  };
-  
-  type Truck = {
-    id: number;
-    tripid: number;
-    make: string;
-    model: string;
-    odometer: string;
-    trucklp: string;
-    trailerlp: string;
-  };
   export default function BasicDisplayTrips({
     trips,
     trucks,
@@ -40,7 +21,7 @@ type Trip = {
         >
         Vehicle: {trucks && trucks[index]?.trucklp}, <br />        
         
-        {trip.inputdate.toString()}                
+        {trip.inputdate.toLocaleString()}                
         </div>
       ))}
       </div>

@@ -1,0 +1,45 @@
+.mainPage {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    text-align: center;
+    align-items: center;
+    gap: 10px;
+}
+
+.infoContainer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    /* background-color: rgba(152, 183, 205, 0.205); */
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    /* backdrop-filter: blur(10px); */
+    border-radius: 10px;
+    gap: 10px;
+    padding: 5px;
+    color: white;
+    width: min(80%, 800px);
+
+}
+
+.header {
+    color: white;
+    text-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
+    align-items: center;
+}
+
+.infoBox {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    background-color: #98b7cd2d;
+    border-radius: 10px;
+    padding: 10px;
+    height: 90px;
+    width: 120px;
+    color: white;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    text-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
+}

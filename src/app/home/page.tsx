@@ -1,8 +1,7 @@
 
-import UserStats from './userStats';
-import TripStats from './tripStats';
-import DefectStats from './defectStats';
-
+import UserStats from '@/components/home/userStats';
+import TripStats from '@/components/home/tripStats';
+import DefectStats from '@/components/home/defectStats';
 import styles from './page.module.css';
 export default async function Home() {
    
