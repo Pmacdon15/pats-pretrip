@@ -1,5 +1,7 @@
 "use server";
 import { sql } from "@vercel/postgres";
+import { revalidatePath } from "next/cache";
+import { redirect } from "next/navigation";
 
 //MARK: Submit Trip Info
 export async function submitTripInfo(
@@ -82,6 +84,7 @@ export async function submitTruckInfo(
 }
 //MARK: Add Defect
 export async function addDefect(tripId: number, name: string, has_m_defect: boolean) {
+  let results;
   try {
     const { rows } = await sql`
     INSERT INTO ppdefects(
@@ -95,12 +98,14 @@ export async function addDefect(tripId: number, name: string, has_m_defect: bool
       ${has_m_defect}
     )`;
     if (rows) {
-      return true;
+      results = rows;
     }
   } catch (error) {
     console.error("Error adding defect: ", error);
     throw new Error("adding defect: " + (error instanceof Error ? error.message : error));
   }
+  revalidatePath("/currentTrips");
+  redirect("/currentTrips");
 }
 //MARK: Change to major defect
 export async function changeToMajorDefect(tripId: number, name: string) {

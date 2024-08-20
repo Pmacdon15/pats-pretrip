@@ -25,8 +25,8 @@ export default function ClientComponent({ email }: { email: string }) {
 
     useEffect(() => {
         const fetchData = async () => {
-            const fetchedTrips = await getCurrentTrips(decodedEmail) as Trip[]; 
-            const fetchedTrucks = await getCurrentTrucksInfo(decodedEmail) as Truck[];  
+            const fetchedTrips = await getCurrentTrips(decodedEmail) as Trip[];
+            const fetchedTrucks = await getCurrentTrucksInfo(decodedEmail) as Truck[];
             const fetchedDefects = await getCurrentDefects(decodedEmail) as any;
 
             setTrips(fetchedTrips);
@@ -42,7 +42,6 @@ export default function ClientComponent({ email }: { email: string }) {
         (tripId: number) => {
             const params = new URLSearchParams(searchParams.toString())
             params.set('tripId', tripId.toString())
-            //params.set('truckId', truckId.toString())
             return params.toString()
         },
         [searchParams]
@@ -50,11 +49,8 @@ export default function ClientComponent({ email }: { email: string }) {
 
     useEffect(() => {
         const setSearchParams = async () => {
-
-            console.log(trips);
-
             if (trips?.length > 0 && tripId === 0) {
-                router.push(pathname + '?' + createQueryString(trips[0].id));
+                router.push(pathname + '?' + createQueryString(trips[trips.length - 1].id));
             }
         };
         setSearchParams();

@@ -27,7 +27,7 @@ export default function InDepthDisplayTrip({
                 <p>Carrier: {trip?.carrier}<br />
                     Carrier Address: {trip?.carrieraddress}<br />
                     Inspection Address: {trip?.inspectionaddress}<br />
-                    Inspection Time: {trip?.inputdate.toLocaleString()}
+                    Inspection Time: {trip?.inputdate.toLocaleString()}<br />
                 </p>
             </div>
             <div className={styles.inDepthTripInfo}>
