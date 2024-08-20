@@ -1,0 +1,124 @@
+.mainCreatePage{
+    display: flex;
+    flex-direction: column;
+    min-height: 80vh;
+    max-height : fit-content;    
+    width: min(1000px,96%);
+    /* background: linear-gradient(90deg, #649bc5 0%, #9fbdd5 50%, #649bc5 100%); */
+    background-color: #649bc55c;
+    margin-top: 10px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+    
+    align-items: center;
+}
+
+
+@media screen and (max-width: 1268px) {
+    .mainContainer {
+        width: 80%;
+    }
+
+}
+@media screen and (max-width: 768px) {
+    .mainContainer {
+        width: 100%;
+        height: 80vh;
+    }
+    
+}
+
+.title {
+    color: white;
+    text-shadow: 2px 2px 4px #000000;
+}
+
+.textInputForm {
+    width: 80%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 20px;
+
+}
+
+.textFieldWide {
+    width: 100%;
+    /* height: 100px; */
+}
+
+.textFieldSlim {
+    width: 150px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.formSection {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    /* gap:20px;    */
+    justify-content: center;
+}
+
+.mainContainer {
+    display: flex;
+    flex-wrap: wrap;
+    width: 100%;
+    height: fit-content;
+    justify-content: center;
+    gap:10px;
+    margin-bottom: 40px;
+}
+
+.text {
+    margin-top: 30px;
+    color: white
+}
+
+.checkboxContainer {
+    width: 20ch;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;   
+}
+
+.label {
+    margin-right: auto;
+    color: white;
+}
+
+.checkbox {
+    width: 19px;
+    height: 19px;
+    accent-color: red;
+}
+
+.hiddenInfo {
+    display: none;
+    font-size: smaller;
+}
+
+
+.hiddenInfo>p {
+    font-size: smaller;
+}
+
+.checkbox:checked~.hiddenInfo {
+    display: block;
+    
+}
+
+.dividingLine {
+    color: white;
+}
+
+.submitContainer{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    gap: 20px;
+}

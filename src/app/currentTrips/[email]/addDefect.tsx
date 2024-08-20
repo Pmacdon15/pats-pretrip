@@ -1,6 +1,6 @@
 import { Button } from '@mui/material';
 import styles from './addDefect.module.css';
-import TruckCheckBoxesForForm from '@/app/createTrip/[email]/truckCheckBoxesForForm';
+import TruckCheckBoxesForForm from '@/components/createTrip/truckCheckBoxesForForm';
 import { addDefect, changeToMajorDefect, addRemark } from '@/actions/db';
 import { useEffect, useState } from 'react';
 
