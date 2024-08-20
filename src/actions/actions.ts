@@ -77,6 +77,7 @@ export async function submitForm(email: string, prevState: any, formData: FormDa
     return { message: "Error: " + (error instanceof Error ? error.message : error) };
   }
   console.log("Form submitted");
+  revalidatePath(`/currentTrips/${email}`);
   redirect(`/currentTrips/${email}`);
 }
 
