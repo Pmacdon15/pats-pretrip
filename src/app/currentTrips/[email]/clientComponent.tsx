@@ -17,7 +17,7 @@ type Trip = {
     inspectionaddress: string;
     remarks: string | null;
     esignature: string;
-    inputdate: Date;
+    inputdate: string;
     email: string;
 };
 
