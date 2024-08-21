@@ -1,7 +1,7 @@
 'use client';
-import { getCurrentTrips, getCurrentTrucksInfo, getCurrentDefects } from "@/actions/db";
-import InDepthDisplayTrip from '../../../components/trips/inDepthDisplayTrip';
-import BasicDisplayTrips from '../../../components/trips/basicDisplayTrips';
+import { getCurrentTrips, getCurrentTrucksInfo, getCurrentDefects, getAllTrips } from "@/actions/db";
+import InDepthDisplayTrip from '@/components/trips/inDepthDisplayTrip';
+import BasicDisplayTrips from '@/components/trips/basicDisplayTrips';
 import { useState, useEffect, useCallback } from 'react';
 import { Button } from '@mui/material';
 import AddDefect from "./addDefect";
@@ -12,7 +12,7 @@ import { revalidateCurrentTrips } from "@/actions/actions";
 import { Trip, Truck } from '@/types/types';
 
 
-export default function ClientComponent({ email }: { email: string }) {
+export default function ClientComponent({ email ,currentTrips}: { email: string, currentTrips: boolean }) {
     const router = useRouter()
     const pathname = usePathname()
     const searchParams = useSearchParams()
@@ -25,10 +25,19 @@ export default function ClientComponent({ email }: { email: string }) {
 
     useEffect(() => {
         const fetchData = async () => {
-            const fetchedTrips = await getCurrentTrips(decodedEmail) as Trip[];
-            const fetchedTrucks = await getCurrentTrucksInfo(decodedEmail) as Truck[];
-            const fetchedDefects = await getCurrentDefects(decodedEmail) as any;
-
+            
+            let fetchedTrips: Trip[] = [];
+            let fetchedTrucks: Truck[] = [];
+            let fetchedDefects: any[] = [];
+            if(currentTrips){
+                fetchedTrips = await getCurrentTrips(decodedEmail) as Trip[];
+                fetchedTrucks = await getCurrentTrucksInfo(decodedEmail) as Truck[];
+                fetchedDefects = await getCurrentDefects(decodedEmail) as any;
+            }else{
+                fetchedTrips = await getAllTrips(decodedEmail) as Trip[];
+                fetchedTrucks = await getCurrentTrucksInfo(decodedEmail) as Truck[];
+                fetchedDefects = await getCurrentDefects(decodedEmail) as any;
+            }      
             setTrips(fetchedTrips);
             setTrucks(fetchedTrucks);
             setDefects(fetchedDefects);

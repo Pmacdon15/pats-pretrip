@@ -8,7 +8,7 @@ export default async function PastTrips({ params }: { params: { email: string } 
 
     return (
         <>
-         <ClientComponent email={decodedEmail} />
+         <ClientComponent email={decodedEmail} currentTrips={false} />
         </>
     );
 }
