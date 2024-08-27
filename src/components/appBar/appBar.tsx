@@ -14,7 +14,7 @@ import { useRouter } from "next/navigation";
 // import { logout } from '../actions';
 
 
-const pages = ['Home', 'Current Trips', 'Create Trip', 'Past Trips'];
+const pages = ['Home', 'Create Trip', 'Current Trips', 'Past Trips'];
 
 function ResponsiveAppBar({ email, children }: { email: string, children: React.ReactNode }) {
   const router = useRouter();
