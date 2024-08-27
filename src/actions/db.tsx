@@ -104,8 +104,8 @@ export async function addDefect(tripId: number, name: string, has_m_defect: bool
     console.error("Error adding defect: ", error);
     throw new Error("adding defect: " + (error instanceof Error ? error.message : error));
   }
-  revalidatePath("/currentTrips");
-  redirect("/currentTrips");
+  // revalidatePath("/currentTrips");
+  // redirect("/currentTrips");
 }
 //MARK: Change to major defect
 export async function changeToMajorDefect(tripId: number, name: string) {
