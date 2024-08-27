@@ -30,7 +30,7 @@ Pat's Pre-Trips is a fun project created to explore the feasibility of a pre-tri
 Let me know if you'd like me to make any adjustments!
 # Deployments
 Here you can try the app for your self(still in development)
-[https://pats-pretrip.vercel.app/](https://pats-pretrip.vercel.app/)
+[https://pats-pretrip.vercel.app/](https://patspretrips.vercel.app/)
 
 # Features
 ## Current Features
