@@ -26,7 +26,9 @@ CREATE TABLE
         make VARCHAR(100) NOT NULL,
         model VARCHAR(100) NOT NULL,
         odometer NUMERIC(10, 2) NOT NULL,
-        truckLP VARCHAR(20) NOT NULL,          
+        truckLP VARCHAR(20) NOT NULL, 
+        trailerLP VARCHAR(20),
+        trailerLP2 VARCHAR(20),         
     );
 
 CREATE TABLE

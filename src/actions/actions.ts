@@ -58,7 +58,8 @@ export async function submitForm(email: string, prevState: any, formData: FormDa
       formData.get("model") as string,
       Number(formData.get("odometer")),
       formData.get("truckLP") as string,
-      formData.get("trailerLP") as string
+      formData.get("trailerLP") as string,
+      formData.get("trailerLP2") as string
     );
 
     Array.from(formData.entries()).forEach(([key, value]) => {

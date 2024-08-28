@@ -51,7 +51,8 @@ export async function submitTruckInfo(
   model: string,
   odometer: number,
   truckLP: string,
-  trailerLP: string
+  trailerLP: string,
+  trailerLP2: string
 ) {
   try {
     const { rows } = await sql`
@@ -61,7 +62,8 @@ export async function submitTruckInfo(
       model,
       odometer,
       truckLP,
-      trailerLP
+      trailerLP,
+      trailerLP2
     )
   Values (
       ${tripId},
@@ -69,7 +71,8 @@ export async function submitTruckInfo(
       ${model},
       ${odometer},
       ${truckLP},
-      ${trailerLP}
+      ${trailerLP},
+      ${trailerLP2}
     )
     RETURNING *;
   `;

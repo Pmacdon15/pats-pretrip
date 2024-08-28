@@ -80,7 +80,6 @@ export default function ClientComponent({ email, currentTrips }: { email: string
         }
     };
 
-
     return (
         <>
             {trips.length > 0 ? (
