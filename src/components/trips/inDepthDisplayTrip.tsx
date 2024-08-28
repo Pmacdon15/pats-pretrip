@@ -36,7 +36,8 @@ export default function InDepthDisplayTrip({
                     Model: {truck?.model} <br />
                     Odometer: {truck?.odometer} <br />
                     License Plate: {truck?.trucklp} <br />
-                    Trailer License Plate: {truck?.trailerlp}
+                    Trailer License Plate: {truck?.trailerlp}<br/>
+                    Second Trailer License Plate: {truck?.trailerlp2}
                 </p>
             </div>
             <div className={styles.inDepthTripInfo}>

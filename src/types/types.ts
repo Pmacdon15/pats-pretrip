@@ -17,4 +17,5 @@ export type Truck = {
     odometer: string;
     trucklp: string;
     trailerlp: string;
+    trailerlp2: string;
 };
